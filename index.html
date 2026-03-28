@@ -15,6 +15,7 @@
   <meta name="twitter:description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt." />
   <meta name="twitter:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
   <link rel="canonical" href="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
+  <meta name="theme-color" content="#080808" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23080808'/><rect width='100' height='100' rx='14' fill='none' stroke='%23333' stroke-width='3'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Georgia,serif' font-weight='400' letter-spacing='3' fill='%23f0f0f0'>ML</text><line x1='18' y1='72' x2='82' y2='72' stroke='%238b0000' stroke-width='2.5'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -602,7 +603,7 @@
       </div>
       <div class="stats">
         <div class="stat">
-          <div class="stat-number">44</div>
+          <div class="stat-number" id="age-counter">44</div>
           <div class="stat-label">Years old and just getting started</div>
         </div>
         <div class="stat">
@@ -611,7 +612,7 @@
         </div>
         <div class="stat">
           <div class="stat-number">3</div>
-          <div class="stat-label">3 continents. More coming.</div>
+          <div class="stat-label">Continents. More coming.</div>
         </div>
       </div>
     </div>
@@ -646,7 +647,7 @@
         <span class="location-tag">Sacramento, CA</span>
         <span class="location-tag">Carlsbad, CA</span>
         <span class="location-tag">Oceanside, CA</span>
-        <span class="location-tag">Alexandria, Egypt</span>
+        <span class="location-tag">Cairo, Egypt</span>
         <span class="location-tag">Giza, Egypt</span>
         <span class="location-tag">Alexandria, Egypt</span>
         <span class="location-tag">Istanbul, Turkey</span>
@@ -712,7 +713,7 @@
     <div class="divider" style="margin:0 auto 40px;"></div>
     <div class="now-content">
       <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
-      <div class="now-highlight">"44 years old.<br/>Just getting started."</div>
+      <div class="now-highlight">"<span id="age-counter-now">44</span> years old.<br/>Just getting started."</div>
       <p>The grind, the travel, the pivots — they all pointed here. The world is wide open and I intend to take full advantage of that.</p>
     </div>
   </section>
@@ -1252,6 +1253,24 @@
     // DYNAMIC YEAR
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+    // LIVE AGE COUNTER — birthday May 18, 1981
+    (function() {
+      const BIRTH = new Date('1981-05-18T00:00:00');
+      const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+      const counterEl = document.getElementById('age-counter');
+      const counterNowEl = document.getElementById('age-counter-now');
+
+      function update() {
+        const age = (Date.now() - BIRTH.getTime()) / MS_PER_YEAR;
+        const display = age.toFixed(4);
+        const whole = Math.floor(age);
+        if (counterEl) counterEl.textContent = display;
+        if (counterNowEl) counterNowEl.textContent = whole;
+        requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    })();
+
     // SCROLL FADE IN
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1285,15 +1304,18 @@
         if (belowHero) points.push({ x: mouseX, y: mouseY, life: 1.0 });
       });
 
-      const DECAY = 0.04;
+      const DECAY_PER_MS = 0.04 / 16.67; // normalized to 60fps
+      let trailLastTime = 0;
 
-      function draw() {
+      function draw(now) {
         requestAnimationFrame(draw);
+        const dt = Math.min((now - trailLastTime) / 16.67, 3);
+        trailLastTime = now;
         tc.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 
-        // Decay all points
+        // Decay all points (delta-time normalized)
         for (let i = points.length - 1; i >= 0; i--) {
-          points[i].life -= DECAY;
+          points[i].life -= DECAY_PER_MS * dt * 16.67;
           if (points[i].life <= 0) points.splice(i, 1);
         }
 
