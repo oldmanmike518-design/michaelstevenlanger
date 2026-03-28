@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michael Steven Langer</title>
-  <meta name="description" content="Michael Steven Langer — Entrepreneur, builder, and traveler based in Cairo, Egypt. Founder of Prompt Pilot, MapFix EG, and Prompt Duel. Sales at Swivl." />
-  <meta property="og:title" content="Michael Steven Langer" />
-  <meta property="og:description" content="Entrepreneur, builder, and traveler based in Cairo, Egypt. Building AI products and chasing ideas across continents." />
+  <title>Michael Steven Langer — Entrepreneur and Builder</title>
+  <meta name="description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt. Building AI products and chasing ideas across continents." />
+  <meta property="og:title" content="Michael Steven Langer — Entrepreneur and Builder" />
+  <meta property="og:description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt. Building AI products and chasing ideas across continents." />
   <meta property="og:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
   <meta property="og:url" content="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Michael Steven Langer" />
-  <meta name="twitter:description" content="Entrepreneur, builder, and traveler based in Cairo, Egypt." />
+  <meta name="twitter:description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt." />
   <meta name="twitter:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
   <link rel="canonical" href="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23080808'/><rect width='100' height='100' rx='14' fill='none' stroke='%23333' stroke-width='3'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Georgia,serif' font-weight='400' letter-spacing='3' fill='%23f0f0f0'>ML</text><line x1='18' y1='72' x2='82' y2='72' stroke='%238b0000' stroke-width='2.5'/></svg>" />
@@ -23,6 +23,14 @@
 
     :root {
       --black: #080808;
+      --black-2: #0e0e0e;
+      --black-3: #050505;
+      --border-subtle: #1a1a1a;
+      --border-mid: #222;
+      --border-dark: #111;
+      --border-contact: #333;
+      --text-muted: #bbb;
+      --text-footer: #444;
       --red: #8b0000;
       --red-bright: #b01010;
       --white: #f0f0f0;
@@ -36,6 +44,13 @@
       .fade-in { transition: none; }
       .scroll-indicator { animation: none; }
       .scroll-indicator::after { animation: none; }
+    }
+
+    /* Focus styles */
+    :focus-visible {
+      outline: 2px solid var(--red-bright);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     body {
@@ -83,6 +98,7 @@
     #hero {
       position: relative;
       height: 100vh;
+      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -204,6 +220,7 @@
     }
 
     .section-label {
+      display: block;
       font-size: 0.7rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
@@ -229,7 +246,7 @@
 
     /* STORY */
     #story {
-      border-left: 1px solid #1a1a1a;
+      border-left: 1px solid var(--border-subtle);
       padding-left: 60px;
     }
 
@@ -243,7 +260,7 @@
     .story-text p {
       font-size: 1.05rem;
       line-height: 1.9;
-      color: #bbb;
+      color: var(--text-muted);
       margin-bottom: 20px;
     }
 
@@ -302,9 +319,9 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gray);
-      border: 1px solid #222;
+      border: 1px solid var(--border-mid);
       padding: 8px 16px;
-      transition: all 0.3s;
+      transition: border-color 0.3s, color 0.3s;
     }
 
     .location-tag:hover {
@@ -320,10 +337,10 @@
     }
 
     .project-card {
-      background: #0e0e0e;
+      background: var(--black-2);
       padding: 40px 32px;
-      border-top: 1px solid #1a1a1a;
-      transition: all 0.3s;
+      border-top: 1px solid var(--border-subtle);
+      transition: background 0.3s;
       cursor: default;
       position: relative;
       overflow: hidden;
@@ -341,12 +358,12 @@
     }
 
     .project-card:hover::before { transform: scaleX(1); }
-    .project-card:hover { background: #111; }
+    .project-card:hover { background: var(--border-dark); }
 
     .project-number {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 3rem;
-      color: #1e1e1e;
+      color: #3a3a3a;
       line-height: 1;
       margin-bottom: 16px;
     }
@@ -386,7 +403,7 @@
     .now-content p {
       font-size: 1.1rem;
       line-height: 1.9;
-      color: #bbb;
+      color: var(--text-muted);
       margin-bottom: 20px;
     }
 
@@ -402,7 +419,7 @@
     /* CONTACT */
     #contact {
       text-align: center;
-      border-top: 1px solid #111;
+      border-top: 1px solid var(--border-dark);
     }
 
     .contact-line {
@@ -418,9 +435,9 @@
       font-size: clamp(2rem, 5vw, 4rem);
       color: var(--white);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.3s, border-color 0.3s;
       display: inline-block;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border-contact);
       padding-bottom: 8px;
     }
 
@@ -447,11 +464,11 @@
     footer {
       text-align: center;
       padding: 40px;
-      color: #333;
+      color: var(--text-footer);
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      border-top: 1px solid #111;
+      border-top: 1px solid var(--border-dark);
     }
 
     /* CURSOR TRAIL */
@@ -485,24 +502,35 @@
     .nav-hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
+      padding: 0;
+      width: 44px;
+      height: 44px;
     }
     .nav-hamburger span {
       display: block;
       width: 22px;
       height: 1px;
       background: var(--white);
-      transition: all 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
     }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE — tablet */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .hero-photo-wrap { width: 320px; height: 380px; }
+      section { padding: 100px 32px; }
+      #story { padding-left: 40px; }
+    }
+
+    /* RESPONSIVE — mobile */
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .nav-hamburger { display: flex; }
@@ -546,6 +574,9 @@
   <!-- HERO -->
   <section id="hero">
     <canvas id="globe-canvas"></canvas>
+    <div id="globe-fallback" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;z-index:0;">
+      <div style="width:400px;height:400px;border-radius:50%;border:1px solid rgba(255,255,255,0.07);"></div>
+    </div>
     <div class="hero-content">
       <div class="hero-photo-wrap">
         <img class="hero-photo" src="assets/michael.jpg" alt="Michael Steven Langer" />
@@ -560,7 +591,7 @@
 
   <!-- STORY -->
   <section id="story" class="fade-in">
-    <p class="section-label">The Story</p>
+    <span class="section-label">The Story</span>
     <h2 class="section-title">Many Lives.<br/>One Direction.</h2>
     <div class="divider"></div>
     <div class="story-grid">
@@ -572,7 +603,7 @@
       <div class="stats">
         <div class="stat">
           <div class="stat-number">44</div>
-          <div class="stat-label">Years old & just getting started</div>
+          <div class="stat-label">Years old and just getting started</div>
         </div>
         <div class="stat">
           <div class="stat-number">21</div>
@@ -580,7 +611,7 @@
         </div>
         <div class="stat">
           <div class="stat-number">3</div>
-          <div class="stat-label">Continents. More coming.</div>
+          <div class="stat-label">3 continents. More coming.</div>
         </div>
       </div>
     </div>
@@ -589,11 +620,14 @@
   <!-- MAP -->
   <section id="map" style="max-width:100%;padding:120px 0;">
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
-      <p class="section-label fade-in">The World</p>
+      <span class="section-label fade-in">The World</span>
       <h2 class="section-title fade-in">Everywhere<br/>I've Been.</h2>
       <div class="divider fade-in"></div>
     </div>
     <canvas id="map-globe"></canvas>
+    <div id="map-fallback" style="display:none;height:clamp(300px,55vw,620px);align-items:center;justify-content:center;">
+      <span style="color:var(--gray);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;">Globe unavailable</span>
+    </div>
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
       <div class="locations-list fade-in">
         <span class="location-tag">Middletown, NY</span>
@@ -612,7 +646,7 @@
         <span class="location-tag">Sacramento, CA</span>
         <span class="location-tag">Carlsbad, CA</span>
         <span class="location-tag">Oceanside, CA</span>
-        <span class="location-tag">Cairo, Egypt</span>
+        <span class="location-tag">Alexandria, Egypt</span>
         <span class="location-tag">Giza, Egypt</span>
         <span class="location-tag">Alexandria, Egypt</span>
         <span class="location-tag">Istanbul, Turkey</span>
@@ -622,9 +656,9 @@
   </section>
 
   <!-- WORK -->
-  <section id="work" style="max-width:100%;padding:120px 0;background:#050505;">
+  <section id="work" style="max-width:100%;padding:120px 0;background:var(--black-3);">
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
-      <p class="section-label fade-in">The Work</p>
+      <span class="section-label fade-in">The Work</span>
       <h2 class="section-title fade-in">Ideas Don't<br/>Wait.</h2>
       <div class="divider fade-in"></div>
       <p class="fade-in" style="color:#888;font-size:0.95rem;line-height:1.8;max-width:680px;margin-bottom:60px;">I don't sit on ideas. I build them — fast, lean, and real. From a sales floor in Cairo to shipping code at midnight, the gap between concept and live product keeps shrinking. Here's what's in motion.</p>
@@ -673,11 +707,11 @@
 
   <!-- NOW -->
   <section id="now" class="fade-in">
-    <p class="section-label">Right Now</p>
-    <h2 class="section-title">Cairo.<br/>Building.</h2>
+    <span class="section-label">Right Now</span>
+    <h2 class="section-title">Alexandria.<br/>Building.</h2>
     <div class="divider" style="margin:0 auto 40px;"></div>
     <div class="now-content">
-      <p>Based in Cairo, Egypt. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
+      <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
       <div class="now-highlight">"44 years old.<br/>Just getting started."</div>
       <p>The grind, the travel, the pivots — they all pointed here. The world is wide open and I intend to take full advantage of that.</p>
     </div>
@@ -685,28 +719,30 @@
 
   <!-- CONTACT -->
   <section id="contact" class="fade-in">
-    <p class="section-label">Get In Touch</p>
+    <span class="section-label">Get In Touch</span>
     <h2 class="section-title">Let's Talk.</h2>
     <div class="divider" style="margin:0 auto 40px;"></div>
     <p class="contact-line">Opportunities · Partnerships · Ideas</p>
-    <a href="mailto:hello@michaelstevenlanger.com" class="contact-email">hello@michaelstevenlanger.com</a>
+    <a href="mailto:mikeslanger@outlook.com" class="contact-email">mikeslanger@outlook.com</a>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/michael-langer-8358492b5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer">Book a 7-Min Call</a>
       <a href="https://github.com/oldmanmike518-design" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
   </section>
 
   <footer>
-    &copy; 2026 Michael Steven Langer &nbsp;·&nbsp; Cairo, Egypt
+    &copy; <span id="footer-year"></span> Michael Steven Langer &nbsp;·&nbsp; Alexandria, Egypt
   </footer>
 
   <canvas id="cursor-trail"></canvas>
 
   <!-- THREE.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha384-9EQoUIJYrv09/oYhSxnw1VpLcfPw3BM9dE7+D/3wGUPeLLa7F9Z6OAoD+i/M6FK9" crossorigin="anonymous" onerror="document.getElementById('globe-canvas').style.display='none';document.getElementById('map-globe').style.display='none';document.getElementById('globe-fallback').style.display='flex';document.getElementById('map-fallback').style.display='flex';"></script>
   <script>
     // HERO GLOBE: outer wireframe (mouse parallax) + inner continent globe (auto-spin)
     (function() {
+      if (typeof THREE === 'undefined') return;
       const canvas = document.getElementById('globe-canvas');
       const W = () => canvas.offsetWidth;
       const H = () => canvas.offsetHeight;
@@ -773,7 +809,7 @@
 
       // Inner continent globe
       // Draw continent outlines onto a canvas texture using GeoJSON
-      const texSize = 2048;
+      const texSize = window.innerWidth < 768 ? 1024 : 2048;
       const texCanvas = document.createElement('canvas');
       texCanvas.width  = texSize;
       texCanvas.height = texSize;
@@ -877,13 +913,13 @@
         innerTex.needsUpdate = true;
       }
 
-      // Fetch world GeoJSON (Natural Earth low-res)
-      fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
+      // Fetch world GeoJSON (Natural Earth low-res) with 8s timeout
+      const geoController = new AbortController();
+      const geoTimeout = setTimeout(() => geoController.abort(), 8000);
+      fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson', { signal: geoController.signal })
         .then(r => r.json())
-        .then(drawGeoJSON)
-        .catch(() => {
-          // Fallback: just leave texture empty, inner globe is transparent
-        });
+        .then(data => { clearTimeout(geoTimeout); drawGeoJSON(data); })
+        .catch(() => { /* leave texture empty — globe still renders */ });
 
       // Mouse parallax for outer globe
       let targetX = 0, targetY = 0;
@@ -904,50 +940,61 @@
         }, 100);
       });
 
-      let baseY = 0;
       let innerY = 0;
+      let heroVisible = true;
+      let lastTime = 0;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      function animate() {
+      // Pause loop when hero is off-screen
+      new IntersectionObserver(entries => {
+        heroVisible = entries[0].isIntersecting;
+      }, { threshold: 0 }).observe(canvas);
+
+      function animate(now) {
         requestAnimationFrame(animate);
+        if (!heroVisible) return;
 
-        // Outer: mouse parallax
-        currentX += (targetX - currentX) * 0.04;
-        currentY += (targetY - currentY) * 0.04;
-        outerGlobe.rotation.y = currentX;
-        outerGlobe.rotation.x = currentY;
-        ring.rotation.y       = currentX;
-        ring.rotation.x       = currentY;
+        const dt = Math.min((now - lastTime) / 16.67, 3); // delta normalized to 60fps, capped
+        lastTime = now;
 
-        // Inner: independent slow auto-spin, opposite direction for contrast
-        innerY += 0.0022;
-        innerGlobe.rotation.y = innerY;
-        innerGlobe.rotation.x = 0.15; // slight tilt
-        rimGlow.rotation.y = innerY;
-        rimGlow.rotation.x = 0.15;
+        if (!prefersReducedMotion) {
+          // Outer: mouse parallax
+          currentX += (targetX - currentX) * 0.04 * dt;
+          currentY += (targetY - currentY) * 0.04 * dt;
+          outerGlobe.rotation.y = currentX;
+          outerGlobe.rotation.x = currentY;
+          ring.rotation.y       = currentX;
+          ring.rotation.x       = currentY;
 
-        // Tick particles
-        const pos = particleGeo.attributes.position.array;
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-          pos[i * 3]     += particleVelocities[i].x + currentX * 0.0006;
-          pos[i * 3 + 1] += particleVelocities[i].y - currentY * 0.0006;
-          pos[i * 3 + 2] += particleVelocities[i].z;
-          const dx = pos[i*3], dy = pos[i*3+1], dz = pos[i*3+2];
-          const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-          if (dist > 1.85) {
-            pos[i * 3]     *= 0.85;
-            pos[i * 3 + 1] *= 0.85;
-            pos[i * 3 + 2] *= 0.85;
+          // Inner: independent slow auto-spin
+          innerY += 0.0022 * dt;
+          innerGlobe.rotation.y = innerY;
+          rimGlow.rotation.y    = innerY;
+
+          // Tick particles
+          const pos = particleGeo.attributes.position.array;
+          for (let i = 0; i < PARTICLE_COUNT; i++) {
+            pos[i * 3]     += (particleVelocities[i].x + currentX * 0.0006) * dt;
+            pos[i * 3 + 1] += (particleVelocities[i].y - currentY * 0.0006) * dt;
+            pos[i * 3 + 2] +=  particleVelocities[i].z * dt;
+            const dx = pos[i*3], dy = pos[i*3+1], dz = pos[i*3+2];
+            if (Math.sqrt(dx*dx + dy*dy + dz*dz) > 1.85) {
+              pos[i * 3] *= 0.85; pos[i * 3 + 1] *= 0.85; pos[i * 3 + 2] *= 0.85;
+            }
           }
+          particleGeo.attributes.position.needsUpdate = true;
         }
-        particleGeo.attributes.position.needsUpdate = true;
 
+        innerGlobe.rotation.x = 0.15;
+        rimGlow.rotation.x    = 0.15;
         renderer.render(scene, camera);
       }
-      animate();
+      requestAnimationFrame(animate);
     })();
 
     // Scroll-reactive hero globe: shrinks + fades as user scrolls down
     (function() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const heroCanvas   = document.getElementById('globe-canvas');
       const heroSection  = document.getElementById('hero');
       let scrollY = 0;
@@ -966,6 +1013,7 @@
 
     // MAP GLOBE: bigger, white wireframe, red pins, drag to spin
     (function() {
+      if (typeof THREE === 'undefined') return;
       const canvas = document.getElementById('map-globe');
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -1097,69 +1145,112 @@
       }
       let arcTime = 0;
 
-      // Drag to spin
+      // Drag to spin — unified pointer events (handles mouse, touch, stylus)
       let isDragging = false;
       let prev = { x: 0, y: 0 };
       let vel  = { x: 0, y: 0.003 };
 
-      canvas.addEventListener('mousedown', e => { isDragging = true; prev = { x: e.clientX, y: e.clientY }; canvas.style.cursor = 'grabbing'; });
-      canvas.addEventListener('touchstart', e => { isDragging = true; prev = { x: e.touches[0].clientX, y: e.touches[0].clientY }; });
-      window.addEventListener('mouseup',  () => { isDragging = false; canvas.style.cursor = 'grab'; });
-      window.addEventListener('touchend', () => { isDragging = false; });
-
-      window.addEventListener('mousemove', e => {
+      canvas.style.cursor = 'grab';
+      canvas.addEventListener('pointerdown', e => {
+        isDragging = true;
+        prev = { x: e.clientX, y: e.clientY };
+        canvas.style.cursor = 'grabbing';
+        canvas.setPointerCapture(e.pointerId);
+      });
+      canvas.addEventListener('pointermove', e => {
         if (!isDragging) return;
         vel.y = (e.clientX - prev.x) * 0.006;
         vel.x = (e.clientY - prev.y) * 0.006;
         prev = { x: e.clientX, y: e.clientY };
       });
-      window.addEventListener('touchmove', e => {
-        if (!isDragging) return;
-        vel.y = (e.touches[0].clientX - prev.x) * 0.006;
-        vel.x = (e.touches[0].clientY - prev.y) * 0.006;
-        prev = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      });
-
-      canvas.style.cursor = 'grab';
+      canvas.addEventListener('pointerup', () => { isDragging = false; canvas.style.cursor = 'grab'; });
+      canvas.addEventListener('pointercancel', () => { isDragging = false; canvas.style.cursor = 'grab'; });
 
       window.addEventListener('resize', setSize);
 
-      function animate() {
+      let mapVisible = true;
+      let mapLastTime = 0;
+      const mapReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      new IntersectionObserver(entries => {
+        mapVisible = entries[0].isIntersecting;
+      }, { threshold: 0 }).observe(canvas);
+
+      function animate(now) {
         requestAnimationFrame(animate);
-        globe.rotation.y    += vel.y;
-        globe.rotation.x    += vel.x;
-        pinGroup.rotation.y  = globe.rotation.y;
-        pinGroup.rotation.x  = globe.rotation.x;
-        arcGroup.rotation.y  = globe.rotation.y;
-        arcGroup.rotation.x  = globe.rotation.x;
-        if (!isDragging) {
-          vel.y = vel.y * 0.97 + 0.0018 * (1 - vel.y / 0.02);
-          vel.x *= 0.93;
+        if (!mapVisible) return;
+
+        const dt = Math.min((now - mapLastTime) / 16.67, 3);
+        mapLastTime = now;
+
+        if (!mapReducedMotion) {
+          globe.rotation.y    += vel.y * dt;
+          globe.rotation.x    += vel.x * dt;
+          if (!isDragging) {
+            vel.y = vel.y * 0.97 + 0.0018 * (1 - vel.y / 0.02);
+            vel.x *= 0.93;
+          }
+          arcTime += 0.007 * dt;
+          arcLines.forEach(({ line, phase }) => {
+            line.material.opacity = Math.max(0, Math.min(1, 0.07 + 0.06 * Math.sin(arcTime + phase)));
+          });
         }
-        arcTime += 0.007;
-        arcLines.forEach(({ line, phase }) => {
-          line.material.opacity = 0.07 + 0.06 * Math.sin(arcTime + phase);
-        });
+
+        pinGroup.rotation.y = globe.rotation.y;
+        pinGroup.rotation.x = globe.rotation.x;
+        arcGroup.rotation.y = globe.rotation.y;
+        arcGroup.rotation.x = globe.rotation.x;
         renderer.render(scene, camera);
       }
-      animate();
+      requestAnimationFrame(animate);
     })();
 
     // MOBILE NAV
     (function() {
-      const btn = document.getElementById('nav-hamburger');
+      const btn   = document.getElementById('nav-hamburger');
       const links = document.getElementById('nav-links');
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('open');
-        links.classList.toggle('open');
+      const focusable = () => [...links.querySelectorAll('a')];
+
+      function open() {
+        btn.classList.add('open');
+        links.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        focusable()[0] && focusable()[0].focus();
+      }
+      function close() {
+        btn.classList.remove('open');
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+      }
+
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => links.classList.contains('open') ? close() : open());
+
+      // Close on link click
+      focusable().forEach(a => a.addEventListener('click', close));
+
+      // Escape key closes menu
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && links.classList.contains('open')) close();
       });
-      links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          btn.classList.remove('open');
-          links.classList.remove('open');
-        });
+
+      // Focus trap inside open menu
+      links.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return;
+        const items = focusable();
+        const first = items[0];
+        const last  = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
       });
     })();
+
+    // DYNAMIC YEAR
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     // SCROLL FADE IN
     const observer = new IntersectionObserver(entries => {
@@ -1170,6 +1261,7 @@
     // CURSOR TRAIL
     (function() {
       if (window.matchMedia('(pointer: coarse)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const trailCanvas = document.getElementById('cursor-trail');
       const tc = trailCanvas.getContext('2d');
 
