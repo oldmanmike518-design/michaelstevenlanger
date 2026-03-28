@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Steven Langer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --red: #a00000;
+      --red-glow: #c0000055;
+      --red-bright: #cc1111;
+      --white: #f0f0f0;
+      --gray: #888;
+      --section-pad: 120px 40px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--red-bright); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #globe-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin-bottom: 32px;
+    }
+
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 1px solid rgba(160,0,0,0.6);
+      box-shadow: 0 0 40px var(--red-glow), inset 0 0 40px var(--red-glow);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px var(--red-glow), inset 0 0 30px var(--red-glow); }
+      50% { box-shadow: 0 0 60px #a0000066, inset 0 0 60px #a0000066; }
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%) contrast(1.1);
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      letter-spacing: 0.08em;
+      line-height: 0.9;
+      color: var(--white);
+      text-shadow: 0 0 80px rgba(160,0,0,0.3);
+    }
+
+    .hero-name span {
+      display: block;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.2em;
+    }
+
+    .hero-tagline {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .hero-tagline em {
+      color: var(--white);
+      font-style: normal;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      animation: fadeInUp 2s 1.5s both;
+    }
+    .scroll-indicator::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: var(--section-pad);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--red);
+      margin-bottom: 40px;
+      box-shadow: 0 0 10px var(--red);
+    }
+
+    /* ─── STORY ─── */
+    #story {
+      border-left: 1px solid #1a1a1a;
+      padding-left: 60px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .story-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+
+    .story-text p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .stat {
+      border-left: 2px solid var(--red);
+      padding-left: 20px;
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ─── MAP ─── */
+    #map {
+      text-align: center;
+    }
+
+    #map-globe {
+      width: 100%;
+      height: 500px;
+      margin: 0 auto;
+    }
+
+    .locations-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .location-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border: 1px solid #222;
+      padding: 8px 16px;
+      transition: all 0.3s;
+    }
+
+    .location-tag:hover {
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    /* ─── WORK ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .project-card {
+      background: #0e0e0e;
+      padding: 40px 32px;
+      border-top: 1px solid #1a1a1a;
+      transition: all 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover { background: #111; }
+
+    .project-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: #1e1e1e;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+    }
+
+    /* ─── NOW ─── */
+    #now {
+      text-align: center;
+    }
+
+    .now-content {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .now-content p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+
+    .now-highlight {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin: 48px 0;
+      text-shadow: 0 0 60px rgba(160,0,0,0.4);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      text-align: center;
+      border-top: 1px solid #111;
+    }
+
+    .contact-line {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .contact-email {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+    }
+
+    .contact-email:hover { color: var(--red-bright); border-color: var(--red); }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .social-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover { color: var(--white); }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #333;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-top: 1px solid #111;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px) translateX(-50%); }
+      to { opacity: 1; transform: translateY(0) translateX(-50%); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      #story { padding-left: 24px; }
+      .story-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo-wrap { width: 240px; height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">MSL</a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#map">World</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="globe-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="assets/michael.jpg" alt="Michael Steven Langer" />
+      </div>
+      <h1 class="hero-name">
+        Michael
+        <span>Steven Langer</span>
+      </h1>
+      <p class="hero-tagline"><em>Entrepreneur</em> &nbsp;·&nbsp; Traveler &nbsp;·&nbsp; Builder</p>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" class="fade-in">
+    <p class="section-label">The Story</p>
+    <h2 class="section-title">Many Lives.<br/>One Direction.</h2>
+    <div class="divider"></div>
+    <div class="story-grid">
+      <div class="story-text">
+        <p>Born in <strong>New York</strong>. Raised on hard work and harder lessons. Spent years moving — South Carolina, Virginia, Florida, Texas, Ohio, California — wearing every hat imaginable. Kitchens, door-to-door sales, every kind of grind there is.</p>
+        <p>Then one day, <strong>Egypt</strong>. A new chapter, a new continent, a new mission. Traveling to Turkey, Dubai, Mexico. Building companies. Chasing ideas. Learning that the world is bigger and more full of opportunity than anyone tells you.</p>
+        <p>At 44, most people are winding down. I'm just getting started.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">44</div>
+          <div class="stat-label">Years old & just getting started</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Cities called home</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Continents. More coming.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map" style="max-width:100%;padding:120px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+      <p class="section-label fade-in">The World</p>
+      <h2 class="section-title fade-in">Everywhere<br/>I've Been.</h2>
+      <div class="divider fade-in"></div>
+    </div>
+    <canvas id="map-globe"></canvas>
+    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+      <div class="locations-list fade-in">
+        <span class="location-tag">New York</span>
+        <span class="location-tag">South Carolina</span>
+        <span class="location-tag">Virginia</span>
+        <span class="location-tag">Florida</span>
+        <span class="location-tag">Texas</span>
+        <span class="location-tag">Ohio</span>
+        <span class="location-tag">California</span>
+        <span class="location-tag">Egypt</span>
+        <span class="location-tag">Turkey</span>
+        <span class="location-tag">Dubai</span>
+        <span class="location-tag">Mexico</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" style="max-width:100%;padding:120px 0;background:#050505;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+      <p class="section-label fade-in">The Work</p>
+      <h2 class="section-title fade-in">What I'm<br/>Building.</h2>
+      <div class="divider fade-in"></div>
+    </div>
+    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+      <div class="projects-grid">
+        <div class="project-card fade-in">
+          <div class="project-number">01</div>
+          <div class="project-name">Swivl / M2</div>
+          <p class="project-desc">AI-powered classroom robot acting as an intelligent co-teacher. 140+ languages, real-time engagement tracking, 75,000+ schools.</p>
+          <span class="project-tag">EdTech · Sales</span>
+        </div>
+        <div class="project-card fade-in">
+          <div class="project-number">02</div>
+          <div class="project-name">Prompt Pilot</div>
+          <p class="project-desc">Gamified prompt engineering app for kids ages 6–10. Teaching the next generation to think in AI from the start.</p>
+          <span class="project-tag">AI · EdTech · Founder</span>
+        </div>
+        <div class="project-card fade-in">
+          <div class="project-number">03</div>
+          <div class="project-name">MapFix EG</div>
+          <p class="project-desc">Automated Google Business Profile auditing and outreach for Egyptian SMEs. First pipeline live, scaling now.</p>
+          <span class="project-tag">Automation · Egypt · Growth</span>
+        </div>
+        <div class="project-card fade-in">
+          <div class="project-number">04</div>
+          <div class="project-name">Prompt Duel</div>
+          <p class="project-desc">Voice-first AI battle game. MVP live. Players compete to craft the best prompt. Think rap battle meets machine learning.</p>
+          <span class="project-tag">Gaming · AI · Multiplayer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section id="now" class="fade-in">
+    <p class="section-label">Right Now</p>
+    <h2 class="section-title">Cairo.<br/>Building.</h2>
+    <div class="divider" style="margin:0 auto 40px;"></div>
+    <div class="now-content">
+      <p>Based in Cairo, Egypt. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
+      <div class="now-highlight">"44 years old.<br/>Just getting started."</div>
+      <p>The grind, the travel, the pivots — they all pointed here. The world is wide open and I intend to take full advantage of that.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-in">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's Talk.</h2>
+    <div class="divider" style="margin:0 auto 40px;"></div>
+    <p class="contact-line">Opportunities · Partnerships · Ideas</p>
+    <a href="mailto:hello@michaelstevenlanger.com" class="contact-email">hello@michaelstevenlanger.com</a>
+    <div class="social-links">
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Twitter / X</a>
+      <a href="#" target="_blank">Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Michael Steven Langer &nbsp;·&nbsp; Cairo, Egypt
+  </footer>
+
+  <!-- THREE.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script>
+    // ─── HERO GLOBE (background) ───
+    (function() {
+      const canvas = document.getElementById('globe-canvas');
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
+      camera.position.z = 2.2;
+
+      // Wireframe globe
+      const geo = new THREE.SphereGeometry(1, 36, 36);
+      const mat = new THREE.MeshBasicMaterial({
+        color: 0x330000,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.25,
+      });
+      const globe = new THREE.Mesh(geo, mat);
+      scene.add(globe);
+
+      // Outer glow ring
+      const ringGeo = new THREE.RingGeometry(1.05, 1.08, 64);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x990000, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2;
+      scene.add(ring);
+
+      function resize() {
+        const w = canvas.offsetWidth, h = canvas.offsetHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize', resize);
+
+      let mouseX = 0;
+      document.addEventListener('mousemove', e => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 0.3;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        globe.rotation.y += 0.002 + mouseX * 0.01;
+        globe.rotation.x += 0.0005;
+        ring.rotation.z += 0.001;
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+
+    // ─── MAP GLOBE (world section) ───
+    (function() {
+      const canvas = document.getElementById('map-globe');
+      canvas.width = canvas.offsetWidth || window.innerWidth;
+      canvas.height = 500;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(canvas.width, canvas.height);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height, 0.1, 1000);
+      camera.position.z = 2.8;
+
+      // Globe
+      const geo = new THREE.SphereGeometry(1, 48, 48);
+      const mat = new THREE.MeshBasicMaterial({ color: 0x1a0000, wireframe: true, transparent: true, opacity: 0.5 });
+      const globe = new THREE.Mesh(geo, mat);
+      scene.add(globe);
+
+      // Convert lat/lng to 3D point
+      function latLngToVec3(lat, lng, r) {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lng + 180) * (Math.PI / 180);
+        return new THREE.Vector3(
+          -r * Math.sin(phi) * Math.cos(theta),
+          r * Math.cos(phi),
+          r * Math.sin(phi) * Math.sin(theta)
+        );
+      }
+
+      // Location pins
+      const locations = [
+        { name: 'New York', lat: 40.7, lng: -74.0 },
+        { name: 'South Carolina', lat: 33.8, lng: -81.2 },
+        { name: 'Virginia', lat: 37.4, lng: -78.6 },
+        { name: 'Florida', lat: 27.7, lng: -82.6 },
+        { name: 'Texas', lat: 31.0, lng: -99.0 },
+        { name: 'Ohio', lat: 40.4, lng: -82.9 },
+        { name: 'California', lat: 36.7, lng: -119.4 },
+        { name: 'Egypt', lat: 30.0, lng: 31.2 },
+        { name: 'Turkey', lat: 39.9, lng: 32.8 },
+        { name: 'Dubai', lat: 25.2, lng: 55.3 },
+        { name: 'Mexico', lat: 23.6, lng: -102.5 },
+      ];
+
+      locations.forEach(loc => {
+        const pos = latLngToVec3(loc.lat, loc.lng, 1.02);
+        const dotGeo = new THREE.SphereGeometry(0.018, 8, 8);
+        const dotMat = new THREE.MeshBasicMaterial({ color: 0xcc1111 });
+        const dot = new THREE.Mesh(dotGeo, dotMat);
+        dot.position.copy(pos);
+        scene.add(dot);
+
+        // Pulse ring
+        const pulseGeo = new THREE.RingGeometry(0.025, 0.035, 16);
+        const pulseMat = new THREE.MeshBasicMaterial({ color: 0xff2222, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+        const pulse = new THREE.Mesh(pulseGeo, pulseMat);
+        pulse.position.copy(pos);
+        pulse.lookAt(0, 0, 0);
+        scene.add(pulse);
+      });
+
+      let isDragging = false;
+      let prevMouse = { x: 0, y: 0 };
+      let rotVel = { x: 0, y: 0.003 };
+
+      canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const dx = e.clientX - prevMouse.x;
+        const dy = e.clientY - prevMouse.y;
+        rotVel.y = dx * 0.005;
+        rotVel.x = dy * 0.005;
+        prevMouse = { x: e.clientX, y: e.clientY };
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        globe.rotation.y += rotVel.y;
+        globe.rotation.x += rotVel.x;
+        // Apply same rotation to all children (pins)
+        scene.children.forEach(obj => {
+          if (obj !== globe) {
+            obj.rotation.y = globe.rotation.y;
+            obj.rotation.x = globe.rotation.x;
+          }
+        });
+        if (!isDragging) {
+          rotVel.y *= 0.98;
+          rotVel.y = Math.max(rotVel.y, 0.002);
+          rotVel.x *= 0.95;
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const w = canvas.offsetWidth;
+        renderer.setSize(w, 500);
+        camera.aspect = w / 500;
+        camera.updateProjectionMatrix();
+      });
+    })();
+
+    // ─── SCROLL FADE IN ───
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
