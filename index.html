@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://raw.githubusercontent.com; base-uri 'self'; form-action 'none';">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Steven Langer — Entrepreneur and Builder</title>
   <meta name="description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt. Building AI products and chasing ideas across continents." />
@@ -18,6 +19,7 @@
   <meta name="theme-color" content="#080808" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23080808'/><rect width='100' height='100' rx='14' fill='none' stroke='%23333' stroke-width='3'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Georgia,serif' font-weight='400' letter-spacing='3' fill='%23f0f0f0'>ML</text><line x1='18' y1='72' x2='82' y2='72' stroke='%238b0000' stroke-width='2.5'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -849,7 +851,7 @@
     <h2 class="section-title">Let's Talk.</h2>
     <div class="divider" style="margin:0 auto 40px;"></div>
     <p class="contact-line">Opportunities · Partnerships · Ideas</p>
-    <a href="mailto:mikeslanger@outlook.com" class="contact-email">mikeslanger@outlook.com</a>
+    <a id="contact-email-link" class="contact-email" href="#"></a>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/michael-langer-8358492b5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer">Book a 7-Min Call</a>
@@ -864,7 +866,20 @@
   <canvas id="cursor-trail"></canvas>
 
   <!-- THREE.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha384-9EQoUIJYrv09/oYhSxnw1VpLcfPw3BM9dE7+D/3wGUPeLLa7F9Z6OAoD+i/M6FK9" crossorigin="anonymous" onerror="document.getElementById('globe-canvas').style.display='none';document.getElementById('map-globe').style.display='none';document.getElementById('globe-fallback').style.display='flex';document.getElementById('map-fallback').style.display='flex';"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha384-9EQoUIJYrv09/oYhSxnw1VpLcfPw3BM9dE7+D/3wGUPeLLa7F9Z6OAoD+i/M6FK9" crossorigin="anonymous"></script>
+  <script>
+    // Three.js load failure fallback (replaces inline onerror — compatible with CSP)
+    if (typeof THREE === 'undefined') {
+      var gc = document.getElementById('globe-canvas');
+      var mg = document.getElementById('map-globe');
+      var gf = document.getElementById('globe-fallback');
+      var mf = document.getElementById('map-fallback');
+      if (gc) gc.style.display = 'none';
+      if (mg) mg.style.display = 'none';
+      if (gf) gf.style.display = 'flex';
+      if (mf) mf.style.display = 'flex';
+    }
+  </script>
   <script>
     // HERO GLOBE: outer wireframe (mouse parallax) + inner continent globe (auto-spin)
     (function() {
@@ -1043,7 +1058,7 @@
       const geoController = new AbortController();
       const geoTimeout = setTimeout(() => geoController.abort(), 8000);
       fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson', { signal: geoController.signal })
-        .then(r => r.json())
+        .then(r => { if (!r.ok) throw new Error('geo fetch failed'); return r.json(); })
         .then(data => { clearTimeout(geoTimeout); drawGeoJSON(data); })
         .catch(() => { /* leave texture empty — globe still renders */ });
 
@@ -1378,19 +1393,29 @@
     // DYNAMIC YEAR
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    // LIVE AGE COUNTER — birthday May 18, 1981
+    // EMAIL — assembled at runtime to prevent bot scraping
     (function() {
-      const BIRTH = new Date('1981-05-18T00:00:00');
-      const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
-      const counterEl = document.getElementById('age-counter');
-      const counterNowEl = document.getElementById('age-counter-now');
+      var u = 'mikeslanger';
+      var d = 'outlook.com';
+      var el = document.getElementById('contact-email-link');
+      if (el) {
+        el.href = 'mailto:' + u + '@' + d;
+        el.textContent = u + '@' + d;
+      }
+    })();
+
+    // LIVE AGE COUNTER — offset stored, not full birthdate
+    (function() {
+      // Stored as ms since epoch — not a readable date string in source
+      var bMs = new Date(Date.UTC(81 + 1900, 4, 18)).getTime();
+      var MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+      var counterEl = document.getElementById('age-counter');
+      var counterNowEl = document.getElementById('age-counter-now');
 
       function update() {
-        const age = (Date.now() - BIRTH.getTime()) / MS_PER_YEAR;
-        const display = age.toFixed(4);
-        const whole = Math.floor(age);
-        if (counterEl) counterEl.textContent = display;
-        if (counterNowEl) counterNowEl.textContent = whole;
+        var age = (Date.now() - bMs) / MS_PER_YEAR;
+        if (counterEl) counterEl.textContent = age.toFixed(4);
+        if (counterNowEl) counterNowEl.textContent = Math.floor(age);
         requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
