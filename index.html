@@ -417,6 +417,96 @@
       text-shadow: 0 0 60px rgba(160,0,0,0.4);
     }
 
+    /* SERVICES */
+    #services {
+      background: var(--black-2);
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .services-intro {
+      max-width: 640px;
+      margin: 0 auto 64px;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+      margin-bottom: 64px;
+      text-align: left;
+    }
+
+    .service-card {
+      background: var(--black-3);
+      padding: 36px 28px;
+      border-top: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .service-desc {
+      font-size: 0.83rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .services-cta {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      background: var(--red);
+      padding: 16px 48px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .services-cta:hover { background: var(--red-bright); }
+
+    .services-note {
+      margin-top: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
     /* CONTACT */
     #contact {
       text-align: center;
@@ -565,6 +655,7 @@
       <li><a href="#map">World</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#now">Now</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation">
@@ -647,8 +738,8 @@
         <span class="location-tag">Sacramento, CA</span>
         <span class="location-tag">Carlsbad, CA</span>
         <span class="location-tag">Oceanside, CA</span>
-        <span class="location-tag">Cairo, Egypt</span>
         <span class="location-tag">Giza, Egypt</span>
+        <span class="location-tag">Cairo, Egypt</span>
         <span class="location-tag">Alexandria, Egypt</span>
         <span class="location-tag">Istanbul, Turkey</span>
         <span class="location-tag">Dubai, UAE</span>
@@ -715,6 +806,40 @@
       <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
       <div class="now-highlight">"<span id="age-counter-now">44</span> years old.<br/>Just getting started."</div>
       <p>The grind, the travel, the pivots — they all pointed here. The world is wide open and I intend to take full advantage of that.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" style="max-width:100%;padding:120px 0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+      <span class="section-label fade-in">What I Do</span>
+      <h2 class="section-title fade-in">Hire Me.<br/>Let's Fix It.</h2>
+      <div class="divider fade-in" style="margin:0 auto 40px;"></div>
+      <p class="services-intro fade-in">Custom software. Business automation. Independent sales consulting. Tell me what's broken, what's slow, or what you wish existed — and your budget. I'll build the solution.</p>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <span class="service-icon">⚙️</span>
+          <div class="service-name">Business Automation</div>
+          <p class="service-desc">Eliminate the repetitive. Automate your outreach, follow-ups, data entry, reporting, and workflows. Built on n8n, AI, and whatever gets the job done.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🛠️</span>
+          <div class="service-name">Custom Software & Tools</div>
+          <p class="service-desc">Need something that doesn't exist yet? I build lean, functional tools fast — web apps, internal dashboards, client-facing products, integrations.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">📈</span>
+          <div class="service-name">Sales Consulting</div>
+          <p class="service-desc">Independent sales strategy, outbound systems, and pipeline building. I've sold door-to-door, over the phone, and across continents. I know what moves people.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🤖</span>
+          <div class="service-name">AI Integration</div>
+          <p class="service-desc">Bring AI into your business without the fluff. Automated calling, intelligent outreach, content pipelines, and smart workflows that actually work.</p>
+        </div>
+      </div>
+      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in">Book a Free 7-Min Call</a>
+      <p class="services-note fade-in">No pitch. Just a conversation. Tell me your problem and your budget.</p>
     </div>
   </section>
 
