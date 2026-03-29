@@ -535,6 +535,8 @@
     }
 
     .contact-email:hover { color: var(--red-bright); border-color: var(--red); }
+    .email-s { color: var(--red-bright); transition: color 0.3s; }
+    .contact-email:hover .email-s { color: var(--white); }
 
     .social-links {
       display: flex;
@@ -1400,7 +1402,8 @@
       var el = document.getElementById('contact-email-link');
       if (el) {
         el.href = 'mailto:' + u + '@' + d;
-        el.textContent = u + '@' + d;
+        // "mike" + red S + "langer@outlook.com"
+        el.innerHTML = 'mike<span class="email-s">s</span>langer@' + d;
       }
     })();
 
