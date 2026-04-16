@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://raw.githubusercontent.com; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://raw.githubusercontent.com https://formspree.io; base-uri 'self'; form-action https://formspree.io;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Steven Langer — Entrepreneur and Builder</title>
   <meta name="description" content="Entrepreneur and builder based in Alexandria, Egypt. Creator of Prompt Duel — the AI battle game at promptduelai.com — and Agent Sandbox. Building AI products across continents." />
@@ -757,6 +757,32 @@
       color: var(--gray);
       margin-top: 12px;
     }
+    .email-capture-success {
+      display: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid var(--red);
+      padding: 14px 24px;
+      max-width: 420px;
+      margin: 40px auto 0;
+    }
+    .email-capture-form-error:not(:empty) {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: #cc4444;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .email-field-error:not(:empty) {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: #cc4444;
+      margin-top: 6px;
+      text-align: center;
+    }
 
     /* TESTIMONIAL */
     .testimonial {
@@ -1013,12 +1039,19 @@
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer">Book a 7-Min Call</a>
       <a href="https://github.com/oldmanmike518-design" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
-    <!-- Email capture — sign up at formspree.io, replace YOURFORMID in the action below -->
-    <form class="email-capture fade-in" action="https://formspree.io/f/YOURFORMID" method="POST">
-      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" />
-      <button type="submit">Follow Along</button>
+    <div data-fs-success class="email-capture-success">You're in — I'll update you when something ships.</div>
+    <div data-fs-error class="email-capture-form-error"></div>
+    <form id="email-capture-form" class="email-capture fade-in">
+      <input type="email" id="capture-email" name="email" placeholder="your@email.com" required autocomplete="email" data-fs-field />
+      <button type="submit" data-fs-submit-btn>Follow Along</button>
     </form>
+    <span data-fs-error="email" class="email-field-error"></span>
     <p class="email-capture-note fade-in">No spam. Just updates when something ships.</p>
+    <script>
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      formspree('initForm', { formElement: '#email-capture-form', formId: 'xrerenvn' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   </section>
 
   <footer>
