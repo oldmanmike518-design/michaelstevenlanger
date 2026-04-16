@@ -5,9 +5,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://raw.githubusercontent.com; base-uri 'self'; form-action 'none';">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Steven Langer — Entrepreneur and Builder</title>
-  <meta name="description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt. Building AI products and chasing ideas across continents." />
+  <meta name="description" content="Entrepreneur and builder based in Alexandria, Egypt. Creator of Prompt Duel — the AI battle game at promptduelai.com — and Agent Sandbox. Building AI products across continents." />
   <meta property="og:title" content="Michael Steven Langer — Entrepreneur and Builder" />
-  <meta property="og:description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt. Building AI products and chasing ideas across continents." />
+  <meta property="og:description" content="Entrepreneur and builder based in Alexandria, Egypt. Creator of Prompt Duel and Agent Sandbox. Building AI products across continents." />
   <meta property="og:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
   <meta property="og:url" content="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
   <meta property="og:type" content="website" />
@@ -17,6 +17,21 @@
   <meta name="twitter:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
   <link rel="canonical" href="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
   <meta name="theme-color" content="#080808" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Steven Langer",
+    "url": "https://oldmanmike518-design.github.io/michaelstevenlanger/",
+    "jobTitle": "Entrepreneur and Builder",
+    "description": "Solo founder building AI products. Creator of Prompt Duel and Agent Sandbox. Based in Alexandria, Egypt.",
+    "sameAs": [
+      "https://www.linkedin.com/in/michael-langer-8358492b5/",
+      "https://github.com/oldmanmike518-design"
+    ],
+    "knowsAbout": ["AI", "Business Automation", "Sales Consulting", "Software Development", "Prompt Engineering"]
+  }
+  </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23080808'/><rect width='100' height='100' rx='14' fill='none' stroke='%23333' stroke-width='3'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Georgia,serif' font-weight='400' letter-spacing='3' fill='%23f0f0f0'>ML</text><line x1='18' y1='72' x2='82' y2='72' stroke='%238b0000' stroke-width='2.5'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -663,6 +678,18 @@
     .project-card.coming-soon { opacity: 0.55; }
     .project-card.coming-soon .project-tag { color: var(--gray); }
 
+    .project-poster {
+      width: calc(100% + 64px);
+      margin: -40px -32px 28px;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      height: 220px;
+      opacity: 0.88;
+      transition: opacity 0.4s;
+    }
+    .project-card:hover .project-poster { opacity: 1; }
+
     .now-family {
       display: flex;
       justify-content: center;
@@ -673,6 +700,87 @@
     .now-family-stat { text-align: center; }
     .now-family-stat .stat-number { font-size: 2.4rem; }
     .now-family-stat .stat-label { font-size: 0.68rem; }
+
+    /* NAV ACTIVE */
+    .nav-links a.active { color: var(--white); }
+
+    /* DRAG HINT */
+    .globe-hint {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 16px;
+      opacity: 0.6;
+    }
+
+    /* EMAIL CAPTURE */
+    .email-capture {
+      display: flex;
+      max-width: 420px;
+      margin: 40px auto 0;
+    }
+    .email-capture input[type="email"] {
+      flex: 1;
+      background: var(--black-2);
+      border: 1px solid var(--border-contact);
+      border-right: none;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      padding: 14px 20px;
+      outline: none;
+      transition: border-color 0.3s;
+      -webkit-appearance: none;
+    }
+    .email-capture input[type="email"]::placeholder { color: var(--gray); }
+    .email-capture input[type="email"]:focus { border-color: var(--red); }
+    .email-capture button {
+      background: var(--red);
+      border: none;
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      padding: 14px 24px;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .email-capture button:hover { background: var(--red-bright); }
+    .email-capture-note {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 12px;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      max-width: 640px;
+      margin: 56px auto 0;
+      padding: 28px 32px;
+      border-left: 2px solid var(--red);
+      text-align: left;
+      background: var(--black-3);
+    }
+    .testimonial blockquote {
+      font-size: 0.98rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .testimonial cite {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-style: normal;
+    }
   </style>
 </head>
 <body>
@@ -701,7 +809,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-photo-wrap">
-        <img class="hero-photo" src="assets/michael.jpg" alt="Michael Steven Langer" />
+        <img class="hero-photo" src="assets/michael.jpg" alt="Michael Steven Langer" fetchpriority="high" />
       </div>
       <h1 class="hero-name">
         Michael Steven Langer
@@ -750,6 +858,7 @@
     <div id="map-fallback" style="display:none;height:clamp(300px,55vw,620px);align-items:center;justify-content:center;">
       <span style="color:var(--gray);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;">Globe unavailable</span>
     </div>
+    <p class="globe-hint fade-in">↺ Drag to spin</p>
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
       <div class="locations-list fade-in">
         <span class="location-tag">Middletown, NY</span>
@@ -788,6 +897,8 @@
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
       <div class="projects-grid">
         <div class="project-card fade-in">
+          <!-- Drop assets/prompt-duel-poster.jpg into the assets folder to activate this -->
+          <img class="project-poster" src="assets/prompt-duel-poster.jpg" alt="Prompt Duel" onerror="this.style.display='none'" />
           <div class="project-number">01</div>
           <div class="project-name">Prompt Duel</div>
           <p class="project-desc">Full-stack, voice-first AI battle game. Two players. One prompt challenge. AI referee powered by Groq for low-latency judgment, ElevenLabs for real voice. Built on Next.js, TypeScript, Supabase, and Stripe — solo-built from MVP to V2. Re-imagining AI literacy through gamification.</p>
@@ -880,7 +991,12 @@
           <p class="service-desc">Bring AI into your business without the fluff. Automated calling, intelligent outreach, content pipelines, and smart workflows that actually work.</p>
         </div>
       </div>
-      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in">Book a Free 7-Min Call</a>
+      <!-- Replace quote + attribution with a real client result before launching -->
+      <div class="testimonial fade-in">
+        <blockquote>"[Add a real quote here — one specific result beats general praise every time.]"</blockquote>
+        <cite>— Name, Title / Company</cite>
+      </div>
+      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in" style="margin-top:48px;">Book a Free 7-Min Call</a>
       <p class="services-note fade-in">No pitch. Just a conversation. Tell me your problem and your budget.</p>
     </div>
   </section>
@@ -897,6 +1013,12 @@
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer">Book a 7-Min Call</a>
       <a href="https://github.com/oldmanmike518-design" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
+    <!-- Email capture — sign up at formspree.io, replace YOURFORMID in the action below -->
+    <form class="email-capture fade-in" action="https://formspree.io/f/YOURFORMID" method="POST">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+      <button type="submit">Follow Along</button>
+    </form>
+    <p class="email-capture-note fade-in">No spam. Just updates when something ships.</p>
   </section>
 
   <footer>
@@ -1465,18 +1587,52 @@
     // FAMILY COUNTERS
     (function() {
       var MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+      var MS_PER_DAY  = 24 * 60 * 60 * 1000;
       var sereneMs   = new Date(Date.UTC(2026, 0, 24)).getTime(); // Jan 24, 2026
       var marriageMs = new Date(Date.UTC(2022, 2, 20)).getTime(); // Mar 20, 2022
       var sereneEl   = document.getElementById('serene-counter');
       var marriageEl = document.getElementById('marriage-counter');
 
+      function formatBabyAge(elapsed) {
+        var totalDays = Math.floor(elapsed / MS_PER_DAY);
+        var months = Math.floor(totalDays / 30.4375);
+        var days   = Math.floor(totalDays - months * 30.4375);
+        if (months < 12) return months + 'mo ' + days + 'd';
+        return (elapsed / MS_PER_YEAR).toFixed(2) + ' yrs';
+      }
+
       function update() {
         var now = Date.now();
-        if (sereneEl)   sereneEl.textContent   = ((now - sereneMs)   / MS_PER_YEAR).toFixed(4);
+        if (sereneEl)   sereneEl.textContent   = formatBabyAge(now - sereneMs);
         if (marriageEl) marriageEl.textContent = ((now - marriageMs) / MS_PER_YEAR).toFixed(4);
         requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
+    })();
+
+    // NAV ACTIVE STATE
+    (function() {
+      var sectionIds = ['hero', 'story', 'map', 'work', 'now', 'services', 'contact'];
+      var linkMap = {};
+      sectionIds.forEach(function(id) {
+        var a = document.querySelector('.nav-links a[href="#' + id + '"]');
+        if (a) linkMap[id] = a;
+      });
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            Object.values(linkMap).forEach(function(a) { a.classList.remove('active'); });
+            var id = entry.target.id;
+            if (linkMap[id]) linkMap[id].classList.add('active');
+          }
+        });
+      }, { threshold: 0.35 });
+
+      sectionIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
     })();
 
     // SCROLL FADE IN
