@@ -49,10 +49,11 @@ If you have a problem and a budget — [let's talk](https://calendly.com/mikesla
 
 | | |
 |--|--|
-| **Prompt Pilot** | Gamified prompt engineering for kids 6–10 |
+| **[Prompt Duel](https://promptduelai.com)** | Voice-first AI battle game — V2 live · Next.js · Groq · ElevenLabs · Supabase · Stripe |
+| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Open-source infrastructure for autonomous AI agents — FastAPI · PostgreSQL · Redis |
 | **MapFix EG** | Automated Google Business Profile auditing for Egyptian SMEs |
-| **Prompt Duel** | Voice-first AI battle game — MVP live |
-| **AfterWord** | A project about legacy. Taking shape. |
+| **Prompt Pilot** | Gamified prompt engineering for kids 6–10 — coming soon |
+| **AfterWord** | A project about legacy. Taking shape. — coming soon |
 
 ---
 

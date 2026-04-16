@@ -647,6 +647,32 @@
       .story-grid { grid-template-columns: 1fr; gap: 40px; }
       .hero-photo-wrap { width: 240px; height: 240px; }
     }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .project-link:hover { color: var(--white); }
+
+    .project-card.coming-soon { opacity: 0.55; }
+    .project-card.coming-soon .project-tag { color: var(--gray); }
+
+    .now-family {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin: 48px 0;
+      flex-wrap: wrap;
+    }
+    .now-family-stat { text-align: center; }
+    .now-family-stat .stat-number { font-size: 2.4rem; }
+    .now-family-stat .stat-label { font-size: 0.68rem; }
   </style>
 </head>
 <body>
@@ -763,15 +789,16 @@
       <div class="projects-grid">
         <div class="project-card fade-in">
           <div class="project-number">01</div>
-          <div class="project-name">Swivl</div>
-          <p class="project-desc">Running outbound sales for an AI robotics company bringing intelligent co-teaching into 75,000+ schools. I built my own AI-powered calling system and internal automation stack to run circles around a traditional SDR playbook.</p>
-          <span class="project-tag">EdTech · Sales · Automation</span>
+          <div class="project-name">Prompt Duel</div>
+          <p class="project-desc">Full-stack, voice-first AI battle game. Two players. One prompt challenge. AI referee powered by Groq for low-latency judgment, ElevenLabs for real voice. Built on Next.js, TypeScript, Supabase, and Stripe — solo-built from MVP to V2. Re-imagining AI literacy through gamification.</p>
+          <span class="project-tag">Gaming · AI · Multiplayer</span>
+          <a href="https://promptduelai.com" target="_blank" rel="noopener noreferrer" class="project-link">→ promptduelai.com</a>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">02</div>
-          <div class="project-name">Prompt Pilot</div>
-          <p class="project-desc">Gamified prompt engineering for kids ages 6–10. Six worlds. Dozens of missions. Teaching the next generation to think in AI before they even know what that means.</p>
-          <span class="project-tag">AI · EdTech · Founder</span>
+          <div class="project-name">Swivl</div>
+          <p class="project-desc">Running outbound sales for an AI robotics company bringing intelligent co-teaching into 75,000+ schools. I built my own AI-powered calling system and internal automation stack to run circles around a traditional SDR playbook.</p>
+          <span class="project-tag">EdTech · Sales · Automation</span>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">03</div>
@@ -779,23 +806,24 @@
           <p class="project-desc">Automated Google Business Profile auditing and outreach for Egyptian small businesses. Pipeline built on n8n and WhatsApp. First data pull done. Scaling.</p>
           <span class="project-tag">Automation · Egypt · Growth</span>
         </div>
-        <div class="project-card fade-in">
+        <div class="project-card fade-in coming-soon">
           <div class="project-number">04</div>
-          <div class="project-name">Prompt Duel</div>
-          <p class="project-desc">Voice-first AI battle game. MVP live. Two players. One prompt challenge. Think rap battle meets machine learning — and may the best prompt win.</p>
-          <span class="project-tag">Gaming · AI · Multiplayer</span>
+          <div class="project-name">Prompt Pilot</div>
+          <p class="project-desc">Gamified prompt engineering for kids ages 6–10. Six worlds. Dozens of missions. Teaching the next generation to think in AI before they even know what that means.</p>
+          <span class="project-tag">Coming Soon · AI · EdTech</span>
         </div>
-        <div class="project-card fade-in">
+        <div class="project-card fade-in coming-soon">
           <div class="project-number">05</div>
           <div class="project-name">AfterWord</div>
-          <p class="project-desc">A project about legacy, memory, and what we leave behind. Still taking shape — but some ideas are too important to rush.</p>
-          <span class="project-tag">In Development</span>
+          <p class="project-desc">A project about legacy, memory, and what we leave behind. Some ideas are too important to rush.</p>
+          <span class="project-tag">Coming Soon · In Development</span>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">06</div>
-          <div class="project-name">More Coming</div>
-          <p class="project-desc">There's always another idea. Another gap worth closing. Another thing that should exist but doesn't yet. I'm not slowing down.</p>
-          <span class="project-tag">Always Building</span>
+          <div class="project-name">Agent Sandbox</div>
+          <p class="project-desc">Open-source infrastructure for autonomous AI agents. Agents self-register, exchange messages, and trade credits in a persistent ecosystem. Research-first — every action logged. Async FastAPI, PostgreSQL, Redis. Deploys free.</p>
+          <span class="project-tag">Open Source · AI · Infrastructure</span>
+          <a href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer" class="project-link">→ github.com/oldmanmike518-design</a>
         </div>
       </div>
     </div>
@@ -807,8 +835,18 @@
     <h2 class="section-title">Alexandria.<br/>Building.</h2>
     <div class="divider" style="margin:0 auto 40px;"></div>
     <div class="now-content">
-      <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Father to a two-month-old daughter.</p>
+      <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Married to Ahd. Father to Serene.</p>
       <div class="now-highlight">"<span id="age-counter-now">44</span> years old.<br/>Just getting started."</div>
+      <div class="now-family">
+        <div class="now-family-stat">
+          <div class="stat-number" id="serene-counter">0.0000</div>
+          <div class="stat-label">Serene — years old</div>
+        </div>
+        <div class="now-family-stat">
+          <div class="stat-number" id="marriage-counter">0.0000</div>
+          <div class="stat-label">Years married to Ahd</div>
+        </div>
+      </div>
       <p>The grind, the travel, the pivots — they all pointed here. The world is wide open and I intend to take full advantage of that.</p>
     </div>
   </section>
@@ -1419,6 +1457,23 @@
         var age = (Date.now() - bMs) / MS_PER_YEAR;
         if (counterEl) counterEl.textContent = age.toFixed(4);
         if (counterNowEl) counterNowEl.textContent = Math.floor(age);
+        requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    })();
+
+    // FAMILY COUNTERS
+    (function() {
+      var MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+      var sereneMs   = new Date(Date.UTC(2026, 0, 24)).getTime(); // Jan 24, 2026
+      var marriageMs = new Date(Date.UTC(2022, 2, 20)).getTime(); // Mar 20, 2022
+      var sereneEl   = document.getElementById('serene-counter');
+      var marriageEl = document.getElementById('marriage-counter');
+
+      function update() {
+        var now = Date.now();
+        if (sereneEl)   sereneEl.textContent   = ((now - sereneMs)   / MS_PER_YEAR).toFixed(4);
+        if (marriageEl) marriageEl.textContent = ((now - marriageMs) / MS_PER_YEAR).toFixed(4);
         requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
