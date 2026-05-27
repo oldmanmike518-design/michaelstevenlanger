@@ -20,6 +20,7 @@ I went the other way.
 
 20+ years in sales. Then I started building the tools I wished existed.
 By day: outbound at an AI robotics company. By night: whatever needs building.
+Based in Alexandria with Ahd, Maria, and Serene.
 
 This is my portfolio — one HTML file, two Three.js globes, no framework.
 
