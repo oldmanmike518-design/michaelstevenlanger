@@ -521,6 +521,39 @@
       color: var(--gray);
     }
 
+    .client-note {
+      max-width: 700px;
+      margin: 0 auto 48px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+
+    .client-note-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 16px;
+    }
+
+    .client-note blockquote {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .client-note cite {
+      display: block;
+      color: var(--gray);
+      font-size: 0.78rem;
+      font-style: normal;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     @media (max-width: 768px) {
       .services-grid { grid-template-columns: 1fr; }
     }
@@ -699,9 +732,19 @@
       margin: 48px 0;
       flex-wrap: wrap;
     }
-    .now-family-stat { text-align: center; }
+    .now-family-stat {
+      text-align: center;
+      min-width: 150px;
+    }
     .now-family-stat .stat-number { font-size: 2.4rem; }
     .now-family-stat .stat-label { font-size: 0.68rem; }
+    .stat-meta {
+      margin-top: 6px;
+      color: #555;
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
     /* NAV ACTIVE */
     .nav-links a.active { color: var(--white); }
@@ -865,8 +908,8 @@
     <div class="story-grid">
       <div class="story-text">
         <p>Born in <strong>New York</strong>. Raised on hard work and harder lessons. Spent years moving — South Carolina, Virginia, Florida, Ohio, Texas, California — wearing every hat imaginable. Kitchens, door-to-door sales, every kind of grind there is.</p>
-        <p>Then came the international chapter. <strong>Istanbul. Dubai. Cairo.</strong> Somewhere along the way, Egypt stopped being a destination and became home. I met my wife there — and that changed everything.</p>
-        <p>At 45, most people are winding down. I'm just getting started.</p>
+        <p>Then came the international chapter. <strong>Istanbul. Dubai. Cairo.</strong> Somewhere along the way, Egypt stopped being a destination and became home. I married Ahd here, became stepdad to Maria, and then Serene arrived in 2026. That changed the stakes.</p>
+        <p>At 45, most people are winding down. I'm still learning, still building, and still trying to make the next chapter bigger than the last.</p>
       </div>
       <div class="stats">
         <div class="stat">
@@ -1000,13 +1043,19 @@
     <h2 class="section-title">Alexandria.<br/>Building.</h2>
     <div class="divider" style="margin:0 auto 40px;"></div>
     <div class="now-content">
-      <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Married to Ahd. Father to Serene.</p>
+      <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Married to Ahd. Stepdad to Maria. Father to Serene.</p>
       <p>Lately I've added bug-bounty research on HackerOne, using offensive security practice to become a sharper builder and tester.</p>
       <div class="now-highlight">"<span id="age-counter-now">45</span> years old.<br/>Just getting started."</div>
       <div class="now-family">
         <div class="now-family-stat">
+          <div class="stat-number" id="maria-counter">0.0000</div>
+          <div class="stat-label">Maria — age</div>
+          <div class="stat-meta">Born Sep 10, 2016</div>
+        </div>
+        <div class="now-family-stat">
           <div class="stat-number" id="serene-counter">0.0000</div>
           <div class="stat-label">Serene — age</div>
+          <div class="stat-meta">Born Jan 24, 2026</div>
         </div>
         <div class="now-family-stat">
           <div class="stat-number" id="marriage-counter">0.0000</div>
@@ -1045,6 +1094,11 @@
           <div class="service-name">AI Integration</div>
           <p class="service-desc">Bring AI into your business without the fluff. Automated calling, intelligent outreach, content pipelines, and smart workflows that actually work.</p>
         </div>
+      </div>
+      <div class="client-note fade-in">
+        <div class="client-note-label">The kind of note I work for</div>
+        <blockquote>"Michael helped us turn a messy workflow into simple software our team could actually use. He listened, moved fast, and made the process easy."</blockquote>
+        <cite>Abdullah Hassan, Operations Manager / Software Company</cite>
       </div>
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in" style="margin-top:48px;">Book a Free 7-Min Call</a>
       <p class="services-note fade-in">No pitch. Just a conversation. Tell me your problem and your budget.</p>
@@ -1649,12 +1703,14 @@
     (function() {
       var MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
       var MS_PER_DAY  = 24 * 60 * 60 * 1000;
+      var mariaMs    = new Date(Date.UTC(2016, 8, 10)).getTime(); // Sep 10, 2016
       var sereneMs   = new Date(Date.UTC(2026, 0, 24)).getTime(); // Jan 24, 2026
       var marriageMs = new Date(Date.UTC(2022, 2, 20)).getTime(); // Mar 20, 2022
+      var mariaEl    = document.getElementById('maria-counter');
       var sereneEl   = document.getElementById('serene-counter');
       var marriageEl = document.getElementById('marriage-counter');
 
-      function formatBabyAge(elapsed) {
+      function formatChildAge(elapsed) {
         var totalDays = Math.floor(elapsed / MS_PER_DAY);
         var months = Math.floor(totalDays / 30.4375);
         var days   = Math.floor(totalDays - months * 30.4375);
@@ -1664,7 +1720,8 @@
 
       function update() {
         var now = Date.now();
-        if (sereneEl)   sereneEl.textContent   = formatBabyAge(now - sereneMs);
+        if (mariaEl)    mariaEl.textContent    = formatChildAge(now - mariaMs);
+        if (sereneEl)   sereneEl.textContent   = formatChildAge(now - sereneMs);
         if (marriageEl) marriageEl.textContent = ((now - marriageMs) / MS_PER_YEAR).toFixed(4);
         requestAnimationFrame(update);
       }
