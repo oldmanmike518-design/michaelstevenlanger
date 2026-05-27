@@ -319,10 +319,158 @@
       text-align: center;
     }
 
+    .map-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
     #map-globe {
       display: block;
       width: 100%;
-      height: clamp(300px, 55vw, 620px);
+      height: clamp(420px, 54vw, 660px);
+    }
+
+    .map-panel {
+      position: absolute;
+      top: clamp(24px, 5vw, 56px);
+      left: clamp(24px, 6vw, 80px);
+      z-index: 3;
+      max-width: 320px;
+      padding: 24px 0 24px 24px;
+      border-left: 1px solid var(--red);
+      background: linear-gradient(to right, rgba(8,8,8,0.82), rgba(8,8,8,0.18));
+      backdrop-filter: blur(8px);
+    }
+
+    .map-panel-kicker {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 12px;
+    }
+
+    .map-panel-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .map-panel-text {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .map-metrics {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .map-metric strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .map-metric span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .map-label-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .map-label {
+      position: absolute;
+      transform: translate(-50%, -130%);
+      padding: 6px 9px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8,8,8,0.76);
+      color: var(--white);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .map-label.visible {
+      opacity: 1;
+      transform: translate(-50%, -150%);
+    }
+
+    .map-label.current {
+      border-color: rgba(176,16,16,0.8);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(139,0,0,0.28);
+    }
+
+    .map-label small {
+      display: block;
+      margin-top: 3px;
+      color: var(--gray);
+      font-size: 0.56rem;
+      letter-spacing: 0.14em;
+    }
+
+    .map-legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+      color: var(--gray);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .map-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .map-legend span::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-bright);
+      box-shadow: 0 0 12px rgba(176,16,16,0.8);
+    }
+
+    .map-legend span:nth-child(2)::before {
+      background: #f0f0f0;
+      box-shadow: none;
+    }
+
+    .map-legend span:nth-child(3)::before {
+      width: 18px;
+      height: 1px;
+      border-radius: 0;
+      background: var(--red);
     }
 
     .locations-list {
@@ -696,6 +844,17 @@
       #story { padding-left: 24px; }
       .story-grid { grid-template-columns: 1fr; gap: 40px; }
       .hero-photo-wrap { width: 240px; height: 240px; }
+      #map-globe { height: clamp(360px, 96vw, 540px); }
+      .map-panel {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: none;
+        margin: -12px 24px 32px;
+        padding: 20px 0 20px 20px;
+        background: rgba(8,8,8,0.72);
+      }
+      .map-label { font-size: 0.56rem; }
     }
 
     .project-link {
@@ -935,11 +1094,29 @@
       <h2 class="section-title fade-in">Everywhere<br/>I've Been.</h2>
       <div class="divider fade-in"></div>
     </div>
-    <canvas id="map-globe"></canvas>
-    <div id="map-fallback" style="display:none;height:clamp(300px,55vw,620px);align-items:center;justify-content:center;">
-      <span style="color:var(--gray);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;">Globe unavailable</span>
+    <div class="map-stage fade-in">
+      <canvas id="map-globe" aria-label="Interactive globe marking places Michael has lived, worked, and traveled"></canvas>
+      <div id="map-fallback" style="display:none;height:clamp(360px,58vw,720px);align-items:center;justify-content:center;">
+        <span style="color:var(--gray);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;">Globe unavailable</span>
+      </div>
+      <div id="map-label-layer" class="map-label-layer" aria-hidden="true"></div>
+      <div class="map-panel" aria-live="polite">
+        <div class="map-panel-kicker">Movement map</div>
+        <div class="map-panel-title" id="map-active-place">Alexandria, Egypt</div>
+        <p class="map-panel-text" id="map-active-meta">Current home base on the Mediterranean. The red route tracks the long path here.</p>
+        <div class="map-metrics">
+          <div class="map-metric"><strong>21</strong><span>Places</span></div>
+          <div class="map-metric"><strong>3</strong><span>Continents</span></div>
+          <div class="map-metric"><strong>1</strong><span>Direction</span></div>
+        </div>
+      </div>
     </div>
     <p class="globe-hint fade-in">↺ Drag to spin</p>
+    <div class="map-legend fade-in">
+      <span>Marked places</span>
+      <span>Country lines</span>
+      <span>Route arcs</span>
+    </div>
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
       <div class="locations-list fade-in">
         <span class="location-tag">Middletown, NY</span>
@@ -1429,45 +1606,224 @@
       tickScroll();
     })();
 
-    // MAP GLOBE: bigger, white wireframe, red pins, drag to spin
+    // MAP GLOBE: geographic outlines, route arcs, pins, labels, drag to spin
     (function() {
       if (typeof THREE === 'undefined') return;
       const canvas = document.getElementById('map-globe');
+      const labelLayer = document.getElementById('map-label-layer');
+      const activePlace = document.getElementById('map-active-place');
+      const activeMeta = document.getElementById('map-active-meta');
+      const stage = canvas.parentElement;
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 1000);
+      camera.position.z = 2.55;
 
       const setSize = () => {
-        const w = canvas.parentElement.offsetWidth;
-        const h = canvas.offsetHeight || Math.min(Math.max(300, w * 0.55), 620);
+        const w = stage.offsetWidth;
+        const h = canvas.offsetHeight || Math.min(Math.max(360, w * 0.58), 720);
         renderer.setSize(w, h);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
       };
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 1000);
-      camera.position.z = 2.4;
-
       setSize();
 
-      // White wireframe globe, denser for the map section
-      const geo = new THREE.SphereGeometry(1, 64, 64);
-      const mat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.13,
-      });
-      const globe = new THREE.Mesh(geo, mat);
-      scene.add(globe);
+      const root = new THREE.Group();
+      root.rotation.x = -0.08;
+      root.rotation.y = -3.25;
+      scene.add(root);
 
-      // Group to hold pins so they rotate with the globe
-      const pinGroup = new THREE.Group();
-      scene.add(pinGroup);
+      const RADIUS = 1;
+      const sphereGeo = new THREE.SphereGeometry(RADIUS, 96, 96);
+
+      root.add(new THREE.Mesh(
+        sphereGeo,
+        new THREE.MeshBasicMaterial({
+          color: 0x050505,
+          transparent: true,
+          opacity: 0.94,
+        })
+      ));
+
+      root.add(new THREE.Mesh(
+        new THREE.SphereGeometry(RADIUS * 1.002, 72, 72),
+        new THREE.MeshBasicMaterial({
+          color: 0xffffff,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.018,
+          depthWrite: false,
+        })
+      ));
+
+      const texSize = window.innerWidth < 768 ? 1024 : 2048;
+      const texCanvas = document.createElement('canvas');
+      texCanvas.width = texSize;
+      texCanvas.height = texSize;
+      const ctx = texCanvas.getContext('2d');
+      const mapTex = new THREE.CanvasTexture(texCanvas);
+      mapTex.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+
+      root.add(new THREE.Mesh(
+        new THREE.SphereGeometry(RADIUS * 1.006, 96, 96),
+        new THREE.MeshBasicMaterial({
+          map: mapTex,
+          transparent: true,
+          opacity: 0.98,
+          depthWrite: false,
+        })
+      ));
+
+      root.add(new THREE.Mesh(
+        new THREE.SphereGeometry(RADIUS * 1.055, 96, 96),
+        new THREE.ShaderMaterial({
+          uniforms: {
+            c: { value: 0.35 },
+            p: { value: 3.2 },
+            glowColor: { value: new THREE.Color(0.72, 0.72, 0.72) },
+          },
+          vertexShader: `
+            varying vec3 vNormal;
+            varying vec3 vViewDir;
+            void main() {
+              vNormal = normalize(normalMatrix * normal);
+              vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+              vViewDir = normalize(-mvPos.xyz);
+              gl_Position = projectionMatrix * mvPos;
+            }
+          `,
+          fragmentShader: `
+            uniform float c;
+            uniform float p;
+            uniform vec3 glowColor;
+            varying vec3 vNormal;
+            varying vec3 vViewDir;
+            void main() {
+              float intensity = pow(c - dot(vNormal, vViewDir), p);
+              intensity = clamp(intensity, 0.0, 1.0);
+              gl_FragColor = vec4(glowColor * intensity, intensity * 0.32);
+            }
+          `,
+          side: THREE.BackSide,
+          blending: THREE.AdditiveBlending,
+          transparent: true,
+          depthWrite: false,
+        })
+      ));
+
+      function project(lon, lat) {
+        return [
+          ((lon + 180) / 360) * texSize,
+          ((90 - lat) / 180) * texSize,
+        ];
+      }
+
+      function drawPathForRing(ring, strokeStyle, lineWidth) {
+        if (!ring || ring.length < 2) return;
+        ctx.beginPath();
+        const start = project(ring[0][0], ring[0][1]);
+        ctx.moveTo(start[0], start[1]);
+        for (let i = 1; i < ring.length; i++) {
+          const prev = project(ring[i - 1][0], ring[i - 1][1]);
+          const next = project(ring[i][0], ring[i][1]);
+          if (Math.abs(next[0] - prev[0]) > texSize * 0.45) {
+            ctx.moveTo(next[0], next[1]);
+          } else {
+            ctx.lineTo(next[0], next[1]);
+          }
+        }
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+      }
+
+      function fillRing(ring, fillStyle) {
+        if (!ring || ring.length < 3) return;
+        ctx.beginPath();
+        const start = project(ring[0][0], ring[0][1]);
+        ctx.moveTo(start[0], start[1]);
+        for (let i = 1; i < ring.length; i++) {
+          const point = project(ring[i][0], ring[i][1]);
+          ctx.lineTo(point[0], point[1]);
+        }
+        ctx.closePath();
+        ctx.fillStyle = fillStyle;
+        ctx.fill();
+      }
+
+      function drawGraticule() {
+        ctx.clearRect(0, 0, texSize, texSize);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        for (let lat = -60; lat <= 60; lat += 30) {
+          const ring = [];
+          for (let lon = -180; lon <= 180; lon += 2) ring.push([lon, lat]);
+          drawPathForRing(ring, 'rgba(255,255,255,0.08)', texSize >= 2048 ? 0.9 : 0.65);
+        }
+
+        for (let lon = -150; lon <= 180; lon += 30) {
+          const ring = [];
+          for (let lat = -82; lat <= 82; lat += 2) ring.push([lon, lat]);
+          drawPathForRing(ring, 'rgba(255,255,255,0.06)', texSize >= 2048 ? 0.75 : 0.55);
+        }
+
+        mapTex.needsUpdate = true;
+      }
+
+      function drawGeoJSON(data) {
+        drawGraticule();
+        const features = data.features || (data.type === 'Feature' ? [data] : []);
+        const rings = [];
+
+        features.forEach(feature => {
+          const geom = feature.geometry;
+          if (!geom) return;
+          const polys = geom.type === 'Polygon'
+            ? [geom.coordinates]
+            : geom.type === 'MultiPolygon'
+              ? geom.coordinates
+              : [];
+          polys.forEach(poly => {
+            poly.forEach(ring => rings.push(ring));
+          });
+        });
+
+        rings.forEach(ring => {
+          fillRing(ring, 'rgba(90,10,10,0.16)');
+        });
+        rings.forEach(ring => {
+          drawPathForRing(ring, 'rgba(176,16,16,0.62)', texSize >= 2048 ? 4.4 : 2.8);
+        });
+        rings.forEach(ring => {
+          drawPathForRing(ring, 'rgba(255,255,255,0.78)', texSize >= 2048 ? 0.95 : 0.68);
+        });
+        mapTex.needsUpdate = true;
+      }
+
+      drawGraticule();
+
+      const geoController = new AbortController();
+      const geoTimeout = setTimeout(() => geoController.abort(), 8000);
+      fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson', { signal: geoController.signal })
+        .then(response => {
+          if (!response.ok) throw new Error('geo fetch failed');
+          return response.json();
+        })
+        .then(data => {
+          clearTimeout(geoTimeout);
+          drawGeoJSON(data);
+        })
+        .catch(() => {
+          clearTimeout(geoTimeout);
+        });
 
       function latLngToVec3(lat, lng, r) {
-        const phi   = (90 - lat) * (Math.PI / 180);
+        const phi = (90 - lat) * (Math.PI / 180);
         const theta = (lng + 180) * (Math.PI / 180);
         return new THREE.Vector3(
           -r * Math.sin(phi) * Math.cos(theta),
@@ -1477,96 +1833,222 @@
       }
 
       const locations = [
-        { lat: 41.45,  lng: -74.42  }, // Middletown, NY
-        { lat: 27.95,  lng: -82.46  }, // Tampa, FL
-        { lat: 27.77,  lng: -82.64  }, // St. Petersburg, FL
-        { lat: 29.19,  lng: -82.14  }, // Ocala, FL
-        { lat: 26.56,  lng: -81.95  }, // Cape Coral, FL
-        { lat: 26.12,  lng: -80.14  }, // Fort Lauderdale, FL
-        { lat: 26.35,  lng: -80.08  }, // Boca Raton, FL
-        { lat: 30.33,  lng: -81.66  }, // Jacksonville, FL
-        { lat: 32.78,  lng: -79.93  }, // Charleston, SC
-        { lat: 36.84,  lng: -76.30  }, // Portsmouth, VA
-        { lat: 36.85,  lng: -75.98  }, // Virginia Beach, VA
-        { lat: 39.10,  lng: -84.51  }, // Cincinnati, OH
-        { lat: 30.27,  lng: -97.74  }, // Austin, TX
-        { lat: 38.58,  lng: -121.49 }, // Sacramento, CA
-        { lat: 33.16,  lng: -117.35 }, // Carlsbad, CA
-        { lat: 33.19,  lng: -117.38 }, // Oceanside, CA
-        { lat: 30.04,  lng: 31.24   }, // Cairo, Egypt
-        { lat: 29.99,  lng: 31.21   }, // Giza, Egypt
-        { lat: 31.20,  lng: 29.92   }, // Alexandria, Egypt
-        { lat: 41.01,  lng: 28.95   }, // Istanbul, Turkey
-        { lat: 25.20,  lng: 55.27   }, // Dubai, UAE
+        { id: 'middletown', name: 'Middletown', region: 'New York', lat: 41.45, lng: -74.42, type: 'origin', label: true, meta: 'New York roots.' },
+        { id: 'tampa', name: 'Tampa', region: 'Florida', lat: 27.95, lng: -82.46, type: 'us', label: true, meta: 'Florida sales chapter.' },
+        { id: 'st-pete', name: 'St. Petersburg', region: 'Florida', lat: 27.77, lng: -82.64, type: 'us' },
+        { id: 'ocala', name: 'Ocala', region: 'Florida', lat: 29.19, lng: -82.14, type: 'us' },
+        { id: 'cape-coral', name: 'Cape Coral', region: 'Florida', lat: 26.56, lng: -81.95, type: 'us' },
+        { id: 'fort-lauderdale', name: 'Fort Lauderdale', region: 'Florida', lat: 26.12, lng: -80.14, type: 'us' },
+        { id: 'boca-raton', name: 'Boca Raton', region: 'Florida', lat: 26.35, lng: -80.08, type: 'us' },
+        { id: 'jacksonville', name: 'Jacksonville', region: 'Florida', lat: 30.33, lng: -81.66, type: 'us' },
+        { id: 'charleston', name: 'Charleston', region: 'South Carolina', lat: 32.78, lng: -79.93, type: 'us', meta: 'Southeast chapter.' },
+        { id: 'portsmouth', name: 'Portsmouth', region: 'Virginia', lat: 36.84, lng: -76.30, type: 'us' },
+        { id: 'virginia-beach', name: 'Virginia Beach', region: 'Virginia', lat: 36.85, lng: -75.98, type: 'us' },
+        { id: 'cincinnati', name: 'Cincinnati', region: 'Ohio', lat: 39.10, lng: -84.51, type: 'us' },
+        { id: 'austin', name: 'Austin', region: 'Texas', lat: 30.27, lng: -97.74, type: 'us', label: true, meta: 'Texas chapter.' },
+        { id: 'sacramento', name: 'Sacramento', region: 'California', lat: 38.58, lng: -121.49, type: 'us' },
+        { id: 'carlsbad', name: 'Carlsbad', region: 'California', lat: 33.16, lng: -117.35, type: 'us', label: true, meta: 'California chapter.' },
+        { id: 'oceanside', name: 'Oceanside', region: 'California', lat: 33.19, lng: -117.38, type: 'us' },
+        { id: 'istanbul', name: 'Istanbul', region: 'Turkey', lat: 41.01, lng: 28.95, type: 'international', label: true, meta: 'International chapter.' },
+        { id: 'dubai', name: 'Dubai', region: 'UAE', lat: 25.20, lng: 55.27, type: 'international', label: true, meta: 'International chapter.' },
+        { id: 'cairo', name: 'Cairo', region: 'Egypt', lat: 30.04, lng: 31.24, type: 'international', meta: 'Egypt chapter.' },
+        { id: 'giza', name: 'Giza', region: 'Egypt', lat: 29.99, lng: 31.21, type: 'international' },
+        { id: 'alexandria', name: 'Alexandria', region: 'Egypt', lat: 31.20, lng: 29.92, type: 'current', label: true, meta: 'Current home base on the Mediterranean.' },
       ];
 
-      locations.forEach(loc => {
-        const pos = latLngToVec3(loc.lat, loc.lng, 1.015);
+      const locationById = new Map(locations.map(loc => [loc.id, loc]));
+      const pinGroup = new THREE.Group();
+      const routeGroup = new THREE.Group();
+      root.add(routeGroup);
+      root.add(pinGroup);
 
-        // Red dot
-        const dot = new THREE.Mesh(
-          new THREE.SphereGeometry(0.016, 10, 10),
-          new THREE.MeshBasicMaterial({ color: 0xaa0000 })
-        );
-        dot.position.copy(pos);
-        pinGroup.add(dot);
+      const pinTargets = [];
 
-        // Thin white ring around pin
-        const ring = new THREE.Mesh(
-          new THREE.RingGeometry(0.022, 0.028, 20),
-          new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0.3 })
-        );
-        ring.position.copy(pos);
-        ring.lookAt(0, 0, 0);
-        pinGroup.add(ring);
-      });
+      function addPin(loc) {
+        const surface = latLngToVec3(loc.lat, loc.lng, RADIUS * 1.018);
+        const top = latLngToVec3(loc.lat, loc.lng, RADIUS * (loc.type === 'current' ? 1.12 : 1.075));
+        loc.surface = top.clone();
 
-      // Arc connections between nearby pins
-      const arcGroup = new THREE.Group();
-      scene.add(arcGroup);
-      const arcLines = [];
-      const ARC_THRESHOLD = 0.82; // dot product — only connect nearby pairs
-
-      for (let i = 0; i < locations.length; i++) {
-        for (let j = i + 1; j < locations.length; j++) {
-          const a = latLngToVec3(locations[i].lat, locations[i].lng, 1);
-          const b = latLngToVec3(locations[j].lat, locations[j].lng, 1);
-          if (a.dot(b) < ARC_THRESHOLD) continue;
-
-          const SEGMENTS = 40;
-          const arcPoints = [];
-          const mid = new THREE.Vector3().addVectors(a, b).multiplyScalar(0.5);
-          const lift = 1.0 + (1 - mid.length()) * 0.6;
-          mid.normalize().multiplyScalar(lift);
-
-          for (let t = 0; t <= SEGMENTS; t++) {
-            const u  = t / SEGMENTS;
-            const pt = new THREE.Vector3()
-              .addScaledVector(a,   (1-u)*(1-u))
-              .addScaledVector(mid,  2*(1-u)*u)
-              .addScaledVector(b,    u*u);
-            arcPoints.push(pt);
-          }
-
-          const arcGeo = new THREE.BufferGeometry().setFromPoints(arcPoints);
-          const arcMat = new THREE.LineBasicMaterial({
-            color:       0x8b0000,
+        const pin = new THREE.Group();
+        pin.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([surface, top]),
+          new THREE.LineBasicMaterial({
+            color: loc.type === 'current' ? 0xff1a1a : 0x8b0000,
             transparent: true,
-            opacity:     0.0,
-            depthWrite:  false,
-            blending:    THREE.AdditiveBlending,
-          });
-          const arcLine = new THREE.Line(arcGeo, arcMat);
-          arcGroup.add(arcLine);
-          arcLines.push({ line: arcLine, phase: Math.random() * Math.PI * 2 });
+            opacity: loc.type === 'current' ? 0.9 : 0.5,
+            depthWrite: false,
+          })
+        ));
+
+        const dot = new THREE.Mesh(
+          new THREE.SphereGeometry(loc.type === 'current' ? 0.027 : 0.019, 14, 14),
+          new THREE.MeshBasicMaterial({
+            color: loc.type === 'current' ? 0xff1a1a : 0xb01010,
+            transparent: true,
+            opacity: 0.96,
+          })
+        );
+        dot.position.copy(top);
+        pin.add(dot);
+
+        const halo = new THREE.Mesh(
+          new THREE.RingGeometry(loc.type === 'current' ? 0.043 : 0.03, loc.type === 'current' ? 0.058 : 0.04, 28),
+          new THREE.MeshBasicMaterial({
+            color: loc.type === 'current' ? 0xfff2f2 : 0xffffff,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: loc.type === 'current' ? 0.44 : 0.24,
+            depthWrite: false,
+          })
+        );
+        halo.position.copy(top);
+        halo.lookAt(0, 0, 0);
+        pin.add(halo);
+
+        const hit = new THREE.Mesh(
+          new THREE.SphereGeometry(0.07, 10, 10),
+          new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 })
+        );
+        hit.position.copy(top);
+        hit.userData.location = loc;
+        pin.add(hit);
+        pinTargets.push(hit);
+
+        pinGroup.add(pin);
+
+        if (loc.label && labelLayer) {
+          const label = document.createElement('div');
+          label.className = 'map-label' + (loc.type === 'current' ? ' current' : '');
+          label.innerHTML = loc.name + '<small>' + loc.region + '</small>';
+          labelLayer.appendChild(label);
+          loc.labelEl = label;
         }
       }
-      let arcTime = 0;
 
-      // Drag to spin — unified pointer events (handles mouse, touch, stylus)
+      function makeArc(start, end, index) {
+        const a = latLngToVec3(start.lat, start.lng, 1).normalize();
+        const b = latLngToVec3(end.lat, end.lng, 1).normalize();
+        const total = Math.max(a.angleTo(b), 0.001);
+        const sinTotal = Math.sin(total);
+        const points = [];
+        const segments = 72;
+
+        for (let i = 0; i <= segments; i++) {
+          const t = i / segments;
+          const p = new THREE.Vector3()
+            .addScaledVector(a, Math.sin((1 - t) * total) / sinTotal)
+            .addScaledVector(b, Math.sin(t * total) / sinTotal)
+            .normalize()
+            .multiplyScalar(1.028 + Math.sin(Math.PI * t) * 0.16);
+          points.push(p);
+        }
+
+        const line = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(points),
+          new THREE.LineBasicMaterial({
+            color: 0x8b0000,
+            transparent: true,
+            opacity: 0.16,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+          })
+        );
+        line.userData.phase = index * 0.45;
+        routeGroup.add(line);
+        return line;
+      }
+
+      locations.forEach(addPin);
+
+      const routeIds = [
+        'middletown',
+        'charleston',
+        'portsmouth',
+        'virginia-beach',
+        'jacksonville',
+        'tampa',
+        'st-pete',
+        'ocala',
+        'cape-coral',
+        'fort-lauderdale',
+        'boca-raton',
+        'cincinnati',
+        'austin',
+        'sacramento',
+        'carlsbad',
+        'oceanside',
+        'istanbul',
+        'dubai',
+        'cairo',
+        'giza',
+        'alexandria',
+      ];
+
+      const routeLines = [];
+      routeIds.forEach((id, index) => {
+        const start = locationById.get(id);
+        const end = locationById.get(routeIds[index + 1]);
+        if (start && end) routeLines.push(makeArc(start, end, index));
+      });
+
+      function setActiveLocation(loc) {
+        if (!loc || !activePlace || !activeMeta) return;
+        activePlace.textContent = loc.name + ', ' + loc.region;
+        activeMeta.textContent = loc.meta || (loc.type === 'current'
+          ? 'Current home base.'
+          : loc.type === 'international'
+            ? 'International chapter.'
+            : 'US chapter.');
+      }
+
+      setActiveLocation(locationById.get('alexandria'));
+
+      const raycaster = new THREE.Raycaster();
+      const pointer = new THREE.Vector2();
+
+      function updateHover(event) {
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointer, camera);
+        const hits = raycaster.intersectObjects(pinTargets, false);
+        if (hits.length && hits[0].object.userData.location) {
+          setActiveLocation(hits[0].object.userData.location);
+          canvas.style.cursor = 'pointer';
+        } else if (!isDragging) {
+          canvas.style.cursor = 'grab';
+        }
+      }
+
+      function updateLabels() {
+        if (!labelLayer) return;
+        const rect = canvas.getBoundingClientRect();
+        locations.forEach(loc => {
+          if (!loc.labelEl || !loc.surface) return;
+          const worldPos = loc.surface.clone().applyEuler(root.rotation);
+          const projected = worldPos.clone().project(camera);
+          const visible = worldPos.z > -0.05
+            && projected.x > -1.08
+            && projected.x < 1.08
+            && projected.y > -1.08
+            && projected.y < 1.08;
+
+          if (visible) {
+            const x = canvas.offsetLeft + (projected.x * 0.5 + 0.5) * rect.width;
+            const y = canvas.offsetTop + (-projected.y * 0.5 + 0.5) * rect.height;
+            const underPanel = window.innerWidth > 768 && x < 640 && y > 160;
+            loc.labelEl.classList.toggle('visible', !underPanel);
+            loc.labelEl.style.left = x.toFixed(1) + 'px';
+            loc.labelEl.style.top = y.toFixed(1) + 'px';
+          } else {
+            loc.labelEl.classList.remove('visible');
+          }
+        });
+      }
+
       let isDragging = false;
       let prev = { x: 0, y: 0 };
-      let vel  = { x: 0, y: 0.003 };
+      let vel = { x: 0, y: 0.0024 };
 
       canvas.style.cursor = 'grab';
       canvas.addEventListener('pointerdown', e => {
@@ -1576,18 +2058,34 @@
         canvas.setPointerCapture(e.pointerId);
       });
       canvas.addEventListener('pointermove', e => {
-        if (!isDragging) return;
-        vel.y = (e.clientX - prev.x) * 0.006;
-        vel.x = (e.clientY - prev.y) * 0.006;
+        if (!isDragging) {
+          updateHover(e);
+          return;
+        }
+        vel.y = (e.clientX - prev.x) * 0.0052;
+        vel.x = (e.clientY - prev.y) * 0.0052;
         prev = { x: e.clientX, y: e.clientY };
       });
-      canvas.addEventListener('pointerup', () => { isDragging = false; canvas.style.cursor = 'grab'; });
-      canvas.addEventListener('pointercancel', () => { isDragging = false; canvas.style.cursor = 'grab'; });
+      canvas.addEventListener('pointerleave', () => {
+        if (!isDragging) {
+          canvas.style.cursor = 'grab';
+          setActiveLocation(locationById.get('alexandria'));
+        }
+      });
+      canvas.addEventListener('pointerup', () => {
+        isDragging = false;
+        canvas.style.cursor = 'grab';
+      });
+      canvas.addEventListener('pointercancel', () => {
+        isDragging = false;
+        canvas.style.cursor = 'grab';
+      });
 
       window.addEventListener('resize', setSize);
 
       let mapVisible = true;
       let mapLastTime = 0;
+      let routeTime = 0;
       const mapReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       new IntersectionObserver(entries => {
@@ -1602,22 +2100,20 @@
         mapLastTime = now;
 
         if (!mapReducedMotion) {
-          globe.rotation.y    += vel.y * dt;
-          globe.rotation.x    += vel.x * dt;
+          root.rotation.y += vel.y * dt;
+          root.rotation.x += vel.x * dt;
+          root.rotation.x = Math.max(-0.8, Math.min(0.8, root.rotation.x));
           if (!isDragging) {
-            vel.y = vel.y * 0.97 + 0.0018 * (1 - vel.y / 0.02);
+            vel.y = vel.y * 0.968 + 0.00125 * (1 - vel.y / 0.018);
             vel.x *= 0.93;
           }
-          arcTime += 0.007 * dt;
-          arcLines.forEach(({ line, phase }) => {
-            line.material.opacity = Math.max(0, Math.min(1, 0.07 + 0.06 * Math.sin(arcTime + phase)));
+          routeTime += 0.018 * dt;
+          routeLines.forEach(line => {
+            line.material.opacity = 0.12 + 0.13 * Math.max(0, Math.sin(routeTime - line.userData.phase));
           });
         }
 
-        pinGroup.rotation.y = globe.rotation.y;
-        pinGroup.rotation.x = globe.rotation.x;
-        arcGroup.rotation.y = globe.rotation.y;
-        arcGroup.rotation.x = globe.rotation.x;
+        updateLabels();
         renderer.render(scene, camera);
       }
       requestAnimationFrame(animate);
