@@ -2,7 +2,7 @@
 
 # Michael Steven Langer
 
-[![Live Site](https://img.shields.io/badge/Live_Site-→-black?style=flat-square)](https://oldmanmike518-design.github.io/michaelstevenlanger/)
+[![Live Site](https://img.shields.io/badge/Live_Site-→-black?style=flat-square)](https://mikeslanger.com/)
 &nbsp;
 [![Book a Call](https://img.shields.io/badge/Book_a_7--Min_Call-→-8b0000?style=flat-square)](https://calendly.com/mikeslanger/7min)
 &nbsp;
@@ -49,16 +49,18 @@ If you have a problem and a budget — [let's talk](https://calendly.com/mikesla
 
 | | |
 |--|--|
-| **[Prompt Duel](https://promptduelai.com)** | Voice-first AI battle game — V2 live · Next.js · Groq · ElevenLabs · Supabase · Stripe |
-| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Open-source infrastructure for autonomous AI agents — FastAPI · PostgreSQL · Redis |
-| **MapFix EG** | Automated Google Business Profile auditing for Egyptian SMEs |
-| **Prompt Pilot** | Gamified prompt engineering for kids 6–10 — coming soon |
-| **AfterWord** | A project about legacy. Taking shape. — coming soon |
+| **[Prompt Duel](https://promptduelai.com)** | Live AI battle game · Next.js · Groq · ElevenLabs · Supabase · Stripe |
+| **Swivl SDR Systems** | AI-assisted calling, research, and automation stack for outbound sales work |
+| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Built open-source infrastructure for autonomous AI agents · FastAPI · PostgreSQL · Redis |
+| **[District Coherence Scan](https://github.com/oldmanmike518-design/district-coherence-scan)** | Built sales-intel tool for sourced K-12 district consolidation briefs |
+| **[Paper Stress Tester](https://github.com/oldmanmike518-design/paper-argument-stress-tester2)** | Built argument-pressure tool for papers, claims, evidence, and counterarguments |
+| **[MikesLanger Iceberg](https://github.com/oldmanmike518-design/mikeslanger)** | In-progress personal-site rebuild around the iceberg concept |
+| **Prompt Pilot** | Back-burner AI literacy game for kids 6–10 |
 
 ---
 
 <div align="center">
 
-*44 years old. Just getting started.*
+*45 years old. Just getting started.*
 
 </div>

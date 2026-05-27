@@ -8,26 +8,27 @@
   <meta name="description" content="Entrepreneur and builder based in Alexandria, Egypt. Creator of Prompt Duel — the AI battle game at promptduelai.com — and Agent Sandbox. Building AI products across continents." />
   <meta property="og:title" content="Michael Steven Langer — Entrepreneur and Builder" />
   <meta property="og:description" content="Entrepreneur and builder based in Alexandria, Egypt. Creator of Prompt Duel and Agent Sandbox. Building AI products across continents." />
-  <meta property="og:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
-  <meta property="og:url" content="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
+  <meta property="og:image" content="https://mikeslanger.com/assets/michael.png" />
+  <meta property="og:url" content="https://mikeslanger.com/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Michael Steven Langer" />
   <meta name="twitter:description" content="Entrepreneur, builder, and traveler based in Alexandria, Egypt." />
-  <meta name="twitter:image" content="https://oldmanmike518-design.github.io/michaelstevenlanger/assets/michael.jpg" />
-  <link rel="canonical" href="https://oldmanmike518-design.github.io/michaelstevenlanger/" />
+  <meta name="twitter:image" content="https://mikeslanger.com/assets/michael.png" />
+  <link rel="canonical" href="https://mikeslanger.com/" />
   <meta name="theme-color" content="#080808" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Michael Steven Langer",
-    "url": "https://oldmanmike518-design.github.io/michaelstevenlanger/",
+    "url": "https://mikeslanger.com/",
     "jobTitle": "Entrepreneur and Builder",
     "description": "Solo founder building AI products. Creator of Prompt Duel and Agent Sandbox. Based in Alexandria, Egypt.",
     "sameAs": [
       "https://www.linkedin.com/in/michael-langer-8358492b5/",
-      "https://github.com/oldmanmike518-design"
+      "https://github.com/oldmanmike518-design",
+      "https://hackerone.com/mikeslanger"
     ],
     "knowsAbout": ["AI", "Business Automation", "Sales Consulting", "Software Development", "Prompt Engineering"]
   }
@@ -567,6 +568,7 @@
       color: var(--gray);
       text-decoration: none;
       transition: color 0.3s;
+      white-space: nowrap;
     }
 
     .social-links a:hover { color: var(--white); }
@@ -718,14 +720,19 @@
     /* EMAIL CAPTURE */
     .email-capture {
       display: flex;
-      max-width: 420px;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 520px;
       margin: 40px auto 0;
     }
-    .email-capture input[type="email"] {
+    .email-capture-row {
+      display: flex;
+    }
+    .email-capture input[type="email"],
+    .email-capture textarea {
       flex: 1;
       background: var(--black-2);
       border: 1px solid var(--border-contact);
-      border-right: none;
       color: var(--white);
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
@@ -735,8 +742,19 @@
       transition: border-color 0.3s;
       -webkit-appearance: none;
     }
-    .email-capture input[type="email"]::placeholder { color: var(--gray); }
-    .email-capture input[type="email"]:focus { border-color: var(--red); }
+    .email-capture input[type="email"] {
+      border-right: none;
+    }
+    .email-capture textarea {
+      width: 100%;
+      min-height: 108px;
+      line-height: 1.6;
+      resize: vertical;
+    }
+    .email-capture input[type="email"]::placeholder,
+    .email-capture textarea::placeholder { color: var(--gray); }
+    .email-capture input[type="email"]:focus,
+    .email-capture textarea:focus { border-color: var(--red); }
     .email-capture button {
       background: var(--red);
       border: none;
@@ -768,6 +786,23 @@
       max-width: 420px;
       margin: 40px auto 0;
     }
+    @media (max-width: 520px) {
+      .social-links {
+        flex-wrap: wrap;
+        gap: 18px 22px;
+        padding: 0 20px;
+      }
+      .email-capture-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .email-capture input[type="email"] {
+        border-right: 1px solid var(--border-contact);
+      }
+      .email-capture button {
+        width: 100%;
+      }
+    }
     .email-capture-form-error:not(:empty) {
       font-size: 0.72rem;
       letter-spacing: 0.1em;
@@ -784,29 +819,6 @@
       text-align: center;
     }
 
-    /* TESTIMONIAL */
-    .testimonial {
-      max-width: 640px;
-      margin: 56px auto 0;
-      padding: 28px 32px;
-      border-left: 2px solid var(--red);
-      text-align: left;
-      background: var(--black-3);
-    }
-    .testimonial blockquote {
-      font-size: 0.98rem;
-      line-height: 1.85;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 14px;
-    }
-    .testimonial cite {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-      font-style: normal;
-    }
   </style>
 </head>
 <body>
@@ -835,7 +847,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-photo-wrap">
-        <img class="hero-photo" src="assets/michael.jpg" alt="Michael Steven Langer" fetchpriority="high" />
+        <img class="hero-photo" src="assets/michael.png" alt="Michael Steven Langer" fetchpriority="high" />
       </div>
       <h1 class="hero-name">
         Michael Steven Langer
@@ -854,11 +866,11 @@
       <div class="story-text">
         <p>Born in <strong>New York</strong>. Raised on hard work and harder lessons. Spent years moving — South Carolina, Virginia, Florida, Ohio, Texas, California — wearing every hat imaginable. Kitchens, door-to-door sales, every kind of grind there is.</p>
         <p>Then came the international chapter. <strong>Istanbul. Dubai. Cairo.</strong> Somewhere along the way, Egypt stopped being a destination and became home. I met my wife there — and that changed everything.</p>
-        <p>At 44, most people are winding down. I'm just getting started.</p>
+        <p>At 45, most people are winding down. I'm just getting started.</p>
       </div>
       <div class="stats">
         <div class="stat">
-          <div class="stat-number" id="age-counter">44</div>
+          <div class="stat-number" id="age-counter">45</div>
           <div class="stat-label">Years old and just getting started</div>
         </div>
         <div class="stat">
@@ -918,49 +930,65 @@
       <span class="section-label fade-in">The Work</span>
       <h2 class="section-title fade-in">Ideas Don't<br/>Wait.</h2>
       <div class="divider fade-in"></div>
-      <p class="fade-in" style="color:#888;font-size:0.95rem;line-height:1.8;max-width:680px;margin-bottom:60px;">I don't sit on ideas. I build them — fast, lean, and real. From a sales floor in Cairo to shipping code at midnight, the gap between concept and live product keeps shrinking. Here's what's in motion.</p>
+      <p class="fade-in" style="color:#888;font-size:0.95rem;line-height:1.8;max-width:680px;margin-bottom:60px;">I don't sit on ideas. I build them — fast, lean, and real. This is the current map: live products, built tools, active sales systems, and the few back-burner ideas still earning their place.</p>
     </div>
     <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
       <div class="projects-grid">
         <div class="project-card fade-in">
-          <!-- Drop assets/prompt-duel-poster.jpg into the assets folder to activate this -->
+          <!-- Prompt Duel poster asset -->
           <img class="project-poster" src="assets/prompt-duel-poster.png" alt="Prompt Duel" onerror="this.style.display='none'" />
           <div class="project-number">01</div>
           <div class="project-name">Prompt Duel</div>
-          <p class="project-desc">Full-stack, voice-first AI battle game. Two players. One prompt challenge. AI referee powered by Groq for low-latency judgment, ElevenLabs for real voice. Built on Next.js, TypeScript, Supabase, and Stripe — solo-built from MVP to V2. Re-imagining AI literacy through gamification.</p>
-          <span class="project-tag">Gaming · AI · Multiplayer</span>
+          <p class="project-desc">Live, full-stack AI battle game. Two players answer one prompt challenge, then an AI referee scores the round. Built on Next.js, TypeScript, Supabase, Stripe, Groq, and ElevenLabs — from MVP to live product.</p>
+          <span class="project-tag">Live Product · AI · Multiplayer</span>
           <a href="https://promptduelai.com" target="_blank" rel="noopener noreferrer" class="project-link">→ promptduelai.com</a>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">02</div>
           <div class="project-name">Swivl</div>
-          <p class="project-desc">Running outbound sales for an AI robotics company bringing intelligent co-teaching into 75,000+ schools. I built my own AI-powered calling system and internal automation stack to run circles around a traditional SDR playbook.</p>
-          <span class="project-tag">EdTech · Sales · Automation</span>
+          <p class="project-desc">SDR work for an AI robotics company bringing intelligent co-teaching into schools. I built my own AI-assisted calling, research, and automation stack to prep faster, sharpen outbound, and move pipeline.</p>
+          <span class="project-tag">SDR · EdTech · Sales Systems</span>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">03</div>
-          <div class="project-name">MapFix EG</div>
-          <p class="project-desc">Automated Google Business Profile auditing and outreach for Egyptian small businesses. Pipeline built on n8n and WhatsApp. First data pull done. Scaling.</p>
-          <span class="project-tag">Automation · Egypt · Growth</span>
+          <div class="project-name">Agent Sandbox</div>
+          <p class="project-desc">Open-source infrastructure for autonomous AI agents. Agents self-register, exchange messages, and trade credits in a persistent ecosystem. Research-first — every action logged. Async FastAPI, PostgreSQL, Redis. Deploys free.</p>
+          <span class="project-tag">Built · Open Source · Agents</span>
+          <a href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
         </div>
-        <div class="project-card fade-in coming-soon">
+        <div class="project-card fade-in">
           <div class="project-number">04</div>
-          <div class="project-name">Prompt Pilot</div>
-          <p class="project-desc">Gamified prompt engineering for kids ages 6–10. Six worlds. Dozens of missions. Teaching the next generation to think in AI before they even know what that means.</p>
-          <span class="project-tag">Coming Soon · AI · EdTech</span>
+          <div class="project-name">District Coherence Scan</div>
+          <p class="project-desc">Sales-intel tool for Swivl SDRs and AEs. Enter a US K-12 district and state, then get a sourced consolidation brief so outreach starts with context instead of a pile of tabs.</p>
+          <span class="project-tag">Built · Sales Intel · K-12</span>
+          <a href="https://github.com/oldmanmike518-design/district-coherence-scan" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
         </div>
-        <div class="project-card fade-in coming-soon">
+        <div class="project-card fade-in">
           <div class="project-number">05</div>
-          <div class="project-name">AfterWord</div>
-          <p class="project-desc">A project about legacy, memory, and what we leave behind. Some ideas are too important to rush.</p>
-          <span class="project-tag">Coming Soon · In Development</span>
+          <div class="project-name">Paper Stress Tester</div>
+          <p class="project-desc">Argument-pressure tool for papers and essays. It stress-tests claims, evidence, logic gaps, and counterarguments before the writing goes out into the world.</p>
+          <span class="project-tag">Built · Research · Argument QA</span>
+          <a href="https://github.com/oldmanmike518-design/paper-argument-stress-tester2" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
         </div>
         <div class="project-card fade-in">
           <div class="project-number">06</div>
-          <div class="project-name">Agent Sandbox</div>
-          <p class="project-desc">Open-source infrastructure for autonomous AI agents. Agents self-register, exchange messages, and trade credits in a persistent ecosystem. Research-first — every action logged. Async FastAPI, PostgreSQL, Redis. Deploys free.</p>
-          <span class="project-tag">Open Source · AI · Infrastructure</span>
-          <a href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer" class="project-link">→ github.com/oldmanmike518-design</a>
+          <div class="project-name">MikesLanger Iceberg</div>
+          <p class="project-desc">Personal-site rebuild in progress around the iceberg idea: a deeper map of projects, skills, story, and proof instead of a flat portfolio. This is the next identity layer under active construction.</p>
+          <span class="project-tag">In Progress · Personal Site · Portfolio</span>
+          <a href="https://mikeslanger.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">→ Live preview</a>
+          <a href="https://github.com/oldmanmike518-design/mikeslanger" target="_blank" rel="noopener noreferrer" class="project-link">→ Source repo</a>
+        </div>
+        <div class="project-card fade-in coming-soon">
+          <div class="project-number">07</div>
+          <div class="project-name">Prompt Pilot</div>
+          <p class="project-desc">Gamified prompt engineering for kids ages 6–10. On the back burner, but still moving slowly: worlds, missions, and an AI literacy curriculum that feels like play.</p>
+          <span class="project-tag">Back Burner · AI · EdTech</span>
+        </div>
+        <div class="project-card fade-in coming-soon">
+          <div class="project-number">08</div>
+          <div class="project-name">Parked Ideas</div>
+          <p class="project-desc">MapFix EG and AfterWord are still ideas worth keeping, but they are not active projects right now. They stay in the notebook until they have enough real progress to stand beside the built work.</p>
+          <span class="project-tag">Parked · MapFix EG · AfterWord</span>
         </div>
       </div>
     </div>
@@ -973,11 +1001,12 @@
     <div class="divider" style="margin:0 auto 40px;"></div>
     <div class="now-content">
       <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Married to Ahd. Father to Serene.</p>
-      <div class="now-highlight">"<span id="age-counter-now">44</span> years old.<br/>Just getting started."</div>
+      <p>Lately I've added bug-bounty research on HackerOne, using offensive security practice to become a sharper builder and tester.</p>
+      <div class="now-highlight">"<span id="age-counter-now">45</span> years old.<br/>Just getting started."</div>
       <div class="now-family">
         <div class="now-family-stat">
           <div class="stat-number" id="serene-counter">0.0000</div>
-          <div class="stat-label">Serene — years old</div>
+          <div class="stat-label">Serene — age</div>
         </div>
         <div class="now-family-stat">
           <div class="stat-number" id="marriage-counter">0.0000</div>
@@ -1017,11 +1046,6 @@
           <p class="service-desc">Bring AI into your business without the fluff. Automated calling, intelligent outreach, content pipelines, and smart workflows that actually work.</p>
         </div>
       </div>
-      <!-- Replace quote + attribution with a real client result before launching -->
-      <div class="testimonial fade-in">
-        <blockquote>"[Add a real quote here — one specific result beats general praise every time.]"</blockquote>
-        <cite>— Name, Title / Company</cite>
-      </div>
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in" style="margin-top:48px;">Book a Free 7-Min Call</a>
       <p class="services-note fade-in">No pitch. Just a conversation. Tell me your problem and your budget.</p>
     </div>
@@ -1038,15 +1062,19 @@
       <a href="https://www.linkedin.com/in/michael-langer-8358492b5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer">Book a 7-Min Call</a>
       <a href="https://github.com/oldmanmike518-design" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://hackerone.com/mikeslanger" target="_blank" rel="noopener noreferrer">HackerOne</a>
     </div>
-    <div data-fs-success class="email-capture-success">You're in — I'll update you when something ships.</div>
+    <div data-fs-success class="email-capture-success">You're in — I'll read your note and send updates when something ships.</div>
     <div data-fs-error class="email-capture-form-error"></div>
     <form id="email-capture-form" class="email-capture fade-in">
-      <input type="email" id="capture-email" name="email" placeholder="your@email.com" required autocomplete="email" data-fs-field />
-      <button type="submit" data-fs-submit-btn>Follow Along</button>
+      <div class="email-capture-row">
+        <input type="email" id="capture-email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address" data-fs-field />
+        <button type="submit" data-fs-submit-btn>Follow Along</button>
+      </div>
+      <textarea id="capture-message" name="message" placeholder="Optional note, idea, or question..." aria-label="Optional message" maxlength="1200" data-fs-field></textarea>
     </form>
     <span data-fs-error="email" class="email-field-error"></span>
-    <p class="email-capture-note fade-in">No spam. Just updates when something ships.</p>
+    <p class="email-capture-note fade-in">No spam. Updates when something ships. Notes go straight to me.</p>
     <script>
       window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
       formspree('initForm', { formElement: '#email-capture-form', formId: 'xrerenvn' });
