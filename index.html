@@ -1066,8 +1066,8 @@
     <div class="divider"></div>
     <div class="story-grid">
       <div class="story-text">
-        <p>Born in <strong>New York</strong>. Raised on hard work and harder lessons. Spent years moving — South Carolina, Virginia, Florida, Ohio, Texas, California — wearing every hat imaginable. Kitchens, door-to-door sales, every kind of grind there is.</p>
-        <p>Then came the international chapter. <strong>Istanbul. Dubai. Alexandria. Cairo.</strong> Somewhere along the way, Egypt stopped being a destination and became home. I married Ahd here, became stepdad to Maria, and then Serene arrived in 2026. That changed the stakes.</p>
+        <p>Born in <strong>New York</strong>. Raised on hard work and harder lessons. Spent years moving — South Carolina, Virginia, Florida, Illinois, Ohio, Texas, California, and Mexico — wearing every hat imaginable. Kitchens, door-to-door sales, every kind of grind there is.</p>
+        <p>Then came the international chapter. <strong>Cairo. Giza. Alexandria. Dubai. Pendik. Istanbul.</strong> Somewhere along the way, Egypt stopped being a destination and became home. I married Ahd here, became stepdad to Maria, and then Serene arrived in 2026. That changed the stakes.</p>
         <p>At 45, most people are winding down. I'm still learning, still building, and still trying to make the next chapter bigger than the last.</p>
       </div>
       <div class="stats">
@@ -1076,11 +1076,11 @@
           <div class="stat-label">Years old and just getting started</div>
         </div>
         <div class="stat">
-          <div class="stat-number">21</div>
-          <div class="stat-label">Cities called home</div>
+          <div class="stat-number">28</div>
+          <div class="stat-label">Cities and stops logged</div>
         </div>
         <div class="stat">
-          <div class="stat-number">3</div>
+          <div class="stat-number">4</div>
           <div class="stat-label">Continents. More coming.</div>
         </div>
       </div>
@@ -1105,8 +1105,8 @@
         <div class="map-panel-title" id="map-active-place">Alexandria, Egypt</div>
         <p class="map-panel-text" id="map-active-meta">Current home base on the Mediterranean. The red route tracks the long path here.</p>
         <div class="map-metrics">
-          <div class="map-metric"><strong>21</strong><span>Places</span></div>
-          <div class="map-metric"><strong>3</strong><span>Continents</span></div>
+          <div class="map-metric"><strong>28</strong><span>Places</span></div>
+          <div class="map-metric"><strong>4</strong><span>Continents</span></div>
           <div class="map-metric"><strong>1</strong><span>Direction</span></div>
         </div>
       </div>
@@ -1121,25 +1121,32 @@
       <div class="locations-list fade-in">
         <span class="location-tag">Middletown, NY</span>
         <span class="location-tag">Tampa, FL</span>
+        <span class="location-tag">Clearwater, FL</span>
         <span class="location-tag">St. Petersburg, FL</span>
         <span class="location-tag">Ocala, FL</span>
         <span class="location-tag">Cape Coral, FL</span>
         <span class="location-tag">Fort Lauderdale, FL</span>
         <span class="location-tag">Boca Raton, FL</span>
         <span class="location-tag">Jacksonville, FL</span>
+        <span class="location-tag">Pensacola, FL</span>
         <span class="location-tag">Charleston, SC</span>
+        <span class="location-tag">Norfolk, VA</span>
         <span class="location-tag">Portsmouth, VA</span>
         <span class="location-tag">Virginia Beach, VA</span>
         <span class="location-tag">Cincinnati, OH</span>
+        <span class="location-tag">Waukegan, IL</span>
+        <span class="location-tag">Dallas, TX</span>
         <span class="location-tag">Austin, TX</span>
         <span class="location-tag">Sacramento, CA</span>
         <span class="location-tag">Carlsbad, CA</span>
         <span class="location-tag">Oceanside, CA</span>
-        <span class="location-tag">Giza, Egypt</span>
+        <span class="location-tag">Tijuana, Mexico</span>
         <span class="location-tag">Cairo, Egypt</span>
+        <span class="location-tag">Giza, Egypt</span>
         <span class="location-tag">Alexandria, Egypt</span>
-        <span class="location-tag">Istanbul, Turkey</span>
         <span class="location-tag">Dubai, UAE</span>
+        <span class="location-tag">Pendik, Turkey</span>
+        <span class="location-tag">Istanbul, Turkey</span>
       </div>
     </div>
   </section>
@@ -1833,27 +1840,34 @@
       }
 
       const locations = [
-        { id: 'middletown', name: 'Middletown', region: 'New York', lat: 41.45, lng: -74.42, type: 'origin', label: true, meta: 'New York roots.' },
-        { id: 'tampa', name: 'Tampa', region: 'Florida', lat: 27.95, lng: -82.46, type: 'us', label: true, meta: 'Florida sales chapter.' },
-        { id: 'st-pete', name: 'St. Petersburg', region: 'Florida', lat: 27.77, lng: -82.64, type: 'us' },
-        { id: 'ocala', name: 'Ocala', region: 'Florida', lat: 29.19, lng: -82.14, type: 'us' },
-        { id: 'cape-coral', name: 'Cape Coral', region: 'Florida', lat: 26.56, lng: -81.95, type: 'us' },
-        { id: 'fort-lauderdale', name: 'Fort Lauderdale', region: 'Florida', lat: 26.12, lng: -80.14, type: 'us' },
-        { id: 'boca-raton', name: 'Boca Raton', region: 'Florida', lat: 26.35, lng: -80.08, type: 'us' },
-        { id: 'jacksonville', name: 'Jacksonville', region: 'Florida', lat: 30.33, lng: -81.66, type: 'us' },
-        { id: 'charleston', name: 'Charleston', region: 'South Carolina', lat: 32.78, lng: -79.93, type: 'us', meta: 'Southeast chapter.' },
-        { id: 'portsmouth', name: 'Portsmouth', region: 'Virginia', lat: 36.84, lng: -76.30, type: 'us' },
-        { id: 'virginia-beach', name: 'Virginia Beach', region: 'Virginia', lat: 36.85, lng: -75.98, type: 'us' },
-        { id: 'cincinnati', name: 'Cincinnati', region: 'Ohio', lat: 39.10, lng: -84.51, type: 'us' },
-        { id: 'austin', name: 'Austin', region: 'Texas', lat: 30.27, lng: -97.74, type: 'us', label: true, meta: 'Texas chapter.' },
-        { id: 'sacramento', name: 'Sacramento', region: 'California', lat: 38.58, lng: -121.49, type: 'us' },
-        { id: 'carlsbad', name: 'Carlsbad', region: 'California', lat: 33.16, lng: -117.35, type: 'us', label: true, meta: 'California chapter.' },
-        { id: 'oceanside', name: 'Oceanside', region: 'California', lat: 33.19, lng: -117.38, type: 'us' },
-        { id: 'istanbul', name: 'Istanbul', region: 'Turkey', lat: 41.01, lng: 28.95, type: 'international', label: true, meta: 'International chapter.' },
-        { id: 'dubai', name: 'Dubai', region: 'UAE', lat: 25.20, lng: 55.27, type: 'international', label: true, meta: 'International chapter.' },
-        { id: 'cairo', name: 'Cairo', region: 'Egypt', lat: 30.04, lng: 31.24, type: 'international', meta: 'Egypt chapter.' },
-        { id: 'giza', name: 'Giza', region: 'Egypt', lat: 29.99, lng: 31.21, type: 'international' },
-        { id: 'alexandria', name: 'Alexandria', region: 'Egypt', lat: 31.20, lng: 29.92, type: 'current', label: true, meta: 'Current home base on the Mediterranean.' },
+        { id: "middletown", name: "Middletown", region: "New York", lat: 41.45, lng: -74.42, type: "origin", label: true, meta: "New York roots." },
+        { id: "tampa", name: "Tampa", region: "Florida", lat: 27.95, lng: -82.46, type: "us", label: true, meta: "Florida sales chapter." },
+        { id: "clearwater", name: "Clearwater", region: "Florida", lat: 27.97, lng: -82.80, type: "us", meta: "Florida chapter." },
+        { id: "st-pete", name: "St. Petersburg", region: "Florida", lat: 27.77, lng: -82.64, type: "us" },
+        { id: "ocala", name: "Ocala", region: "Florida", lat: 29.19, lng: -82.14, type: "us" },
+        { id: "cape-coral", name: "Cape Coral", region: "Florida", lat: 26.56, lng: -81.95, type: "us" },
+        { id: "fort-lauderdale", name: "Fort Lauderdale", region: "Florida", lat: 26.12, lng: -80.14, type: "us" },
+        { id: "boca-raton", name: "Boca Raton", region: "Florida", lat: 26.35, lng: -80.08, type: "us" },
+        { id: "jacksonville", name: "Jacksonville", region: "Florida", lat: 30.33, lng: -81.66, type: "us" },
+        { id: "pensacola", name: "Pensacola", region: "Florida", lat: 30.42, lng: -87.22, type: "us" },
+        { id: "charleston", name: "Charleston", region: "South Carolina", lat: 32.78, lng: -79.93, type: "us", meta: "Southeast chapter." },
+        { id: "norfolk", name: "Norfolk", region: "Virginia", lat: 36.85, lng: -76.29, type: "us", meta: "Hampton Roads chapter." },
+        { id: "portsmouth", name: "Portsmouth", region: "Virginia", lat: 36.84, lng: -76.30, type: "us" },
+        { id: "virginia-beach", name: "Virginia Beach", region: "Virginia", lat: 36.85, lng: -75.98, type: "us" },
+        { id: "cincinnati", name: "Cincinnati", region: "Ohio", lat: 39.10, lng: -84.51, type: "us" },
+        { id: "waukegan", name: "Waukegan", region: "Illinois", lat: 42.36, lng: -87.84, type: "us", meta: "Chicago-area chapter." },
+        { id: "dallas", name: "Dallas", region: "Texas", lat: 32.78, lng: -96.80, type: "us", label: true, meta: "Texas chapter." },
+        { id: "austin", name: "Austin", region: "Texas", lat: 30.27, lng: -97.74, type: "us", meta: "Texas chapter." },
+        { id: "sacramento", name: "Sacramento", region: "California", lat: 38.58, lng: -121.49, type: "us" },
+        { id: "carlsbad", name: "Carlsbad", region: "California", lat: 33.16, lng: -117.35, type: "us", label: true, meta: "California chapter." },
+        { id: "oceanside", name: "Oceanside", region: "California", lat: 33.19, lng: -117.38, type: "us" },
+        { id: "tijuana", name: "Tijuana", region: "Mexico", lat: 32.51, lng: -117.04, type: "international", meta: "Mexico chapter." },
+        { id: "cairo", name: "Cairo", region: "Egypt", lat: 30.04, lng: 31.24, type: "international", meta: "Egypt chapter." },
+        { id: "giza", name: "Giza", region: "Egypt", lat: 29.99, lng: 31.21, type: "international" },
+        { id: "alexandria", name: "Alexandria", region: "Egypt", lat: 31.20, lng: 29.92, type: "current", label: true, meta: "Current home base on the Mediterranean." },
+        { id: "dubai", name: "Dubai", region: "UAE", lat: 25.20, lng: 55.27, type: "international", label: true, meta: "International chapter." },
+        { id: "pendik", name: "Pendik", region: "Turkey", lat: 40.88, lng: 29.23, type: "international", meta: "Istanbul Asian-side chapter." },
+        { id: "istanbul", name: "Istanbul", region: "European Side, Turkey", lat: 41.01, lng: 28.95, type: "international", label: true, meta: "European side chapter." },
       ];
 
       const locationById = new Map(locations.map(loc => [loc.id, loc]));
@@ -1939,17 +1953,18 @@
             .addScaledVector(a, Math.sin((1 - t) * total) / sinTotal)
             .addScaledVector(b, Math.sin(t * total) / sinTotal)
             .normalize()
-            .multiplyScalar(1.028 + Math.sin(Math.PI * t) * 0.16);
+            .multiplyScalar(1.04 + Math.sin(Math.PI * t) * 0.22);
           points.push(p);
         }
 
         const line = new THREE.Line(
           new THREE.BufferGeometry().setFromPoints(points),
           new THREE.LineBasicMaterial({
-            color: 0x8b0000,
+            color: 0xb01010,
             transparent: true,
-            opacity: 0.16,
+            opacity: 0.34,
             depthWrite: false,
+            depthTest: false,
             blending: THREE.AdditiveBlending,
           })
         );
@@ -1961,27 +1976,40 @@
       locations.forEach(addPin);
 
       const routeIds = [
-        'middletown',
-        'charleston',
-        'portsmouth',
-        'virginia-beach',
-        'jacksonville',
-        'tampa',
-        'st-pete',
-        'ocala',
-        'cape-coral',
-        'fort-lauderdale',
-        'boca-raton',
-        'cincinnati',
-        'austin',
-        'sacramento',
-        'carlsbad',
-        'oceanside',
-        'istanbul',
-        'dubai',
-        'cairo',
-        'giza',
-        'alexandria',
+        "middletown",
+        "tampa",
+        "clearwater",
+        "cincinnati",
+        "waukegan",
+        "sacramento",
+        "carlsbad",
+        "oceanside",
+        "tijuana",
+        "middletown",
+        "boca-raton",
+        "fort-lauderdale",
+        "cape-coral",
+        "ocala",
+        "dallas",
+        "austin",
+        "jacksonville",
+        "st-pete",
+        "clearwater",
+        "pensacola",
+        "charleston",
+        "jacksonville",
+        "norfolk",
+        "portsmouth",
+        "virginia-beach",
+        "middletown",
+        "cairo",
+        "giza",
+        "alexandria",
+        "dubai",
+        "alexandria",
+        "pendik",
+        "istanbul",
+        "alexandria",
       ];
 
       const routeLines = [];
@@ -2109,7 +2137,7 @@
           }
           routeTime += 0.018 * dt;
           routeLines.forEach(line => {
-            line.material.opacity = 0.12 + 0.13 * Math.max(0, Math.sin(routeTime - line.userData.phase));
+            line.material.opacity = 0.24 + 0.24 * Math.max(0, Math.sin(routeTime - line.userData.phase));
           });
         }
 
@@ -2168,13 +2196,13 @@
 
     // EMAIL — assembled at runtime to prevent bot scraping
     (function() {
-      var u = 'mikeslanger';
-      var d = 'outlook.com';
+      var u = "michael";
+      var d = "mikeslanger.com";
       var el = document.getElementById('contact-email-link');
       if (el) {
         el.href = 'mailto:' + u + '@' + d;
-        // "mike" + red S + "langer@outlook.com"
-        el.innerHTML = 'mike<span class="email-s">s</span>langer@' + d;
+        // Keep the S in mikeslanger.com red while using the custom address.
+        el.innerHTML = "michael@mike<span class=\"email-s\">s</span>langer.com";
       }
     })();
 
