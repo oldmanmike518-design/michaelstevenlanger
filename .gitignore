@@ -1,0 +1,9 @@
+# Local-only working files — notes, logs, test harnesses (never published)
+_local/
+*.local.md
+
+# Editor / local tooling config
+.claude/
+
+# macOS
+.DS_Store
