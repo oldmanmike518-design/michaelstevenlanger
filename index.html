@@ -2501,10 +2501,11 @@
     (function() {
       var MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
       var MS_PER_DAY  = 24 * 60 * 60 * 1000;
-      // Offsets stored, not readable dates in source (see age counter above).
-      var mariaMs    = new Date(Date.UTC(116 + 1900, 8, 15)).getTime();
-      var sereneMs   = new Date(Date.UTC(126 + 1900, 0, 15)).getTime();
-      var marriageMs = new Date(Date.UTC(122 + 1900, 2, 15)).getTime();
+      // Month precision only (mid-month). The page shows whole years / months,
+      // so the source never needs, or reveals, the exact dates.
+      var mariaMs    = Date.UTC(2016, 8, 15);
+      var sereneMs   = Date.UTC(2026, 0, 15);
+      var marriageMs = Date.UTC(2022, 2, 15);
       var mariaEl    = document.getElementById('maria-counter');
       var sereneEl   = document.getElementById('serene-counter');
       var marriageEl = document.getElementById('marriage-counter');
