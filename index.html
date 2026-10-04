@@ -5,16 +5,19 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://raw.githubusercontent.com https://formspree.io; base-uri 'self'; form-action https://formspree.io;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Steven Langer — Entrepreneur and Builder</title>
-  <meta name="description" content="Entrepreneur and builder in Alexandria, Egypt. Creator of Prompt Duel and Agent Sandbox, and builder of AI automation and outbound sales systems. Open to full-time roles." />
+  <meta name="description" content="Entrepreneur and builder in Alexandria, Egypt. I build practical AI tools from first idea to live product: Prompt Duel, Agent Sandbox, and the outbound systems behind a K-12 sales team. Open to full-time roles." />
   <meta property="og:title" content="Michael Steven Langer — Entrepreneur and Builder" />
-  <meta property="og:description" content="Entrepreneur and builder in Alexandria, Egypt. Creator of Prompt Duel and Agent Sandbox, and builder of AI automation and outbound sales systems. Open to full-time roles." />
-  <meta property="og:image" content="https://mikeslanger.com/assets/michael.jpg" />
+  <meta property="og:description" content="I build practical AI tools from first idea to live product: Prompt Duel, Agent Sandbox, and outbound sales systems. Alexandria, Egypt. Open to full-time roles." />
+  <meta property="og:image" content="https://mikeslanger.com/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Michael Steven Langer — Entrepreneur, Traveler, Builder" />
   <meta property="og:url" content="https://mikeslanger.com/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Michael Steven Langer" />
-  <meta name="twitter:description" content="Entrepreneur and builder in Alexandria, Egypt. Open to full-time roles." />
-  <meta name="twitter:image" content="https://mikeslanger.com/assets/michael.jpg" />
+  <meta name="twitter:title" content="Michael Steven Langer — Entrepreneur and Builder" />
+  <meta name="twitter:description" content="I build practical AI tools from first idea to live product. Alexandria, Egypt. Open to full-time roles." />
+  <meta name="twitter:image" content="https://mikeslanger.com/assets/og.jpg" />
   <link rel="canonical" href="https://mikeslanger.com/" />
   <meta name="theme-color" content="#080808" />
   <script type="application/ld+json">
@@ -23,14 +26,16 @@
     "@type": "Person",
     "name": "Michael Steven Langer",
     "url": "https://mikeslanger.com/",
+    "image": "https://mikeslanger.com/assets/michael.jpg",
     "jobTitle": "Entrepreneur and Builder",
     "description": "Builder of AI products, automation, and outbound sales systems. Creator of Prompt Duel and Agent Sandbox. Based in Alexandria, Egypt. Open to full-time roles.",
+    "homeLocation": { "@type": "Place", "name": "Alexandria, Egypt" },
     "sameAs": [
       "https://www.linkedin.com/in/michael-langer-8358492b5/",
       "https://github.com/oldmanmike518-design",
       "https://hackerone.com/mikeslanger"
     ],
-    "knowsAbout": ["AI", "Business Automation", "Outbound Sales Systems", "Software Development", "Prompt Engineering"]
+    "knowsAbout": ["AI products", "Voice AI", "AI agents", "Business automation", "Outbound sales systems", "Software development"]
   }
   </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23080808'/><rect width='100' height='100' rx='14' fill='none' stroke='%23333' stroke-width='3'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Georgia,serif' font-weight='400' letter-spacing='3' fill='%23f0f0f0'>ML</text><line x1='18' y1='72' x2='82' y2='72' stroke='%238b0000' stroke-width='2.5'/></svg>" />
@@ -53,7 +58,7 @@
       --red: #8b0000;
       --red-bright: #b01010;
       --white: #f0f0f0;
-      --gray: #777;
+      --gray: #8a8a8a;
       --section-pad: 120px 40px;
     }
 
@@ -90,7 +95,26 @@
       align-items: center;
       padding: 24px 48px;
       background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+      transition: padding 0.3s;
     }
+    /* Solid bar once the page scrolls, so section copy never shows through the
+       links. Blur lives on a pseudo-element: backdrop-filter on <nav> itself
+       would trap the fixed mobile menu inside the bar. */
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(8,8,8,0.88);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    nav.scrolled { padding-top: 16px; padding-bottom: 16px; }
+    nav.scrolled::before { opacity: 1; }
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.4rem;
@@ -202,6 +226,47 @@
       font-style: normal;
     }
 
+    .hero-lede {
+      margin-top: 18px;
+      max-width: 520px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-primary { background: var(--red); border: 1px solid var(--red); color: var(--white); }
+    .btn-primary:hover { background: var(--red-bright); border-color: var(--red-bright); }
+    .btn-ghost { border: 1px solid var(--border-contact); color: var(--white); }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    .hero-availability {
+      margin-top: 20px;
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #7fce9b;
+    }
+
     .scroll-indicator {
       position: absolute;
       bottom: 32px;
@@ -234,16 +299,25 @@
        screen and crowd the scroll cue. Trim them and reserve bottom space so the
        composition stays clear. On very short screens, drop the cue entirely. */
     @media (min-width: 769px) and (max-height: 980px) {
-      #hero { padding-bottom: 40px; }
-      .hero-photo-wrap { width: 320px; height: 400px; margin-bottom: 16px; }
-      .hero-name { font-size: clamp(3.25rem, 6vw, 6rem); }
+      #hero { padding-top: 72px; padding-bottom: 56px; }
+      .hero-photo-wrap { width: 280px; height: 340px; margin-bottom: 12px; }
+      .hero-name { font-size: clamp(3.25rem, 6vw, 5.5rem); }
       .hero-tagline { margin-top: 12px; }
+      .hero-lede { margin-top: 12px; }
+      .hero-actions { margin-top: 20px; }
+      .hero-availability { margin-top: 16px; }
+    }
+    @media (min-width: 769px) and (max-height: 800px) {
+      .hero-photo-wrap { width: 210px; height: 250px; }
+      .hero-name { font-size: clamp(3rem, 5vw, 4.5rem); }
+      .scroll-indicator { display: none; }
     }
     @media (max-height: 640px) {
       .scroll-indicator { display: none; }
     }
 
     /* SECTIONS */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
     section {
       padding: var(--section-pad);
       max-width: 1100px;
@@ -330,6 +404,7 @@
     #map {
       text-align: center;
     }
+    #map .divider { margin: 0 auto 40px; }
 
     .map-stage {
       position: relative;
@@ -505,9 +580,17 @@
     }
 
     /* WORK */
+    .work-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 60px;
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2px;
     }
 
@@ -519,6 +602,138 @@
       cursor: default;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Flagship card: poster on the left, story on the right */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      padding: 0;
+    }
+    .project-media {
+      position: relative;
+      min-height: 440px;
+      overflow: hidden;
+      background: #000;
+    }
+    .project-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      opacity: 0.9;
+      transition: opacity 0.4s, transform 0.8s ease;
+    }
+    .project-card.featured:hover .project-media img { opacity: 1; transform: scale(1.03); }
+    .project-body {
+      display: flex;
+      flex-direction: column;
+      padding: 48px 44px;
+    }
+    .project-card.featured .project-name { font-size: 2.6rem; }
+    .project-card.featured .project-desc { font-size: 0.95rem; color: var(--text-muted); }
+    .project-desc + .project-desc { margin-top: 14px; }
+
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .project-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+    }
+    .project-status.live { color: #7fce9b; }
+    .project-status.live::before { background: currentColor; box-shadow: 0 0 10px rgba(127,206,155,0.6); }
+    .project-status.prod { color: var(--white); }
+    .project-status.prod::before { background: var(--red-bright); border-color: var(--red-bright); }
+
+    .project-meta {
+      margin-top: auto;
+      padding-top: 24px;
+    }
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 22px;
+      margin-top: 14px;
+    }
+    .project-note {
+      margin-top: 14px;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      color: var(--gray);
+      font-style: italic;
+    }
+
+    /* "Also built" strip under the main cards */
+    .also-built {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+      gap: 40px;
+      margin-top: 2px;
+      padding: 40px 32px;
+      background: var(--black-2);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .also-built-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .also-built-head p {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--gray);
+    }
+    .also-built-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 36px;
+    }
+    .also-built-list strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .also-built-list span {
+      display: block;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-template-columns: 1fr; }
+      /* Show the whole poster (title included) rather than a crop */
+      .project-media { min-height: 0; aspect-ratio: 4 / 5; max-height: 520px; }
+      .project-media img { object-fit: contain; }
+      .project-body { padding: 36px 28px 40px; }
+      .project-card.featured .project-name { font-size: 2.2rem; }
+      .also-built { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; }
+    }
+    @media (max-width: 560px) {
+      .also-built-list { grid-template-columns: 1fr; }
     }
 
     .project-card::before {
@@ -545,8 +760,10 @@
 
     .project-name {
       font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
       font-size: 1.8rem;
       letter-spacing: 0.05em;
+      line-height: 1.05;
       margin-bottom: 12px;
     }
 
@@ -557,8 +774,8 @@
     }
 
     .project-tag {
-      display: inline-block;
-      margin-top: 20px;
+      display: block;
+      line-height: 1.8;
       font-size: 0.65rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -581,6 +798,39 @@
       color: var(--text-muted);
       margin-bottom: 20px;
     }
+
+    .now-content .ships-label {
+      margin: 44px 0 4px;
+      line-height: 1.6;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .ships {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ships li {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    .ships time {
+      padding-top: 3px;
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+    }
+    .ships strong { color: var(--white); font-weight: 500; }
 
     .now-highlight {
       font-family: 'Bebas Neue', sans-serif;
@@ -608,7 +858,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2px;
       margin-bottom: 64px;
       text-align: left;
@@ -636,10 +886,13 @@
     .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
-      font-size: 1.4rem;
-      margin-bottom: 16px;
       display: block;
+      width: 26px;
+      height: 26px;
+      margin-bottom: 20px;
+      color: var(--red-bright);
     }
+    .service-icon svg { display: block; width: 100%; height: 100%; }
 
     .service-name {
       font-family: 'Bebas Neue', sans-serif;
@@ -677,38 +930,6 @@
       color: var(--gray);
     }
 
-    .client-note {
-      max-width: 700px;
-      margin: 0 auto 48px;
-      padding: 28px 0;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      text-align: left;
-    }
-
-    .client-note-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-      margin-bottom: 16px;
-    }
-
-    .client-note blockquote {
-      color: var(--text-muted);
-      font-size: 1.02rem;
-      line-height: 1.8;
-      margin-bottom: 14px;
-    }
-
-    .client-note cite {
-      display: block;
-      color: var(--gray);
-      font-size: 0.78rem;
-      font-style: normal;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
 
     @media (max-width: 768px) {
       .services-grid { grid-template-columns: 1fr; }
@@ -837,11 +1058,13 @@
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .nav-hamburger { display: flex; }
+      /* Keep the logo and close button above the open menu overlay */
+      .nav-logo, .nav-hamburger { position: relative; z-index: 100; }
       .nav-links {
         display: none;
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(8,8,8,0.97);
+        background: var(--black);
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -850,10 +1073,19 @@
       }
       .nav-links.open { display: flex; }
       .nav-links a { font-size: 1rem; letter-spacing: 0.3em; }
-      section { padding: 80px 24px; }
-      #story { padding-left: 24px; }
+      section { padding: 80px 20px; }
+      #story { padding-left: 20px; }
+      .wrap { padding: 0 20px; }
+      .project-card { padding: 32px 24px; }
+      .project-body { padding: 32px 24px 36px; }
+      .also-built { padding: 32px 24px; }
       .story-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero-photo-wrap { width: 240px; height: 240px; }
+      .hero-photo-wrap { width: 220px; height: 230px; margin-bottom: 16px; }
+      .hero-name { font-size: 3.7rem; }
+      .hero-lede { font-size: 0.92rem; margin-top: 14px; }
+      .hero-actions { margin-top: 20px; gap: 10px; }
+      .hero-actions .btn { padding: 11px 20px; font-size: 1rem; }
+      .scroll-indicator { display: none; }
       #map-globe { height: clamp(360px, 96vw, 540px); }
       .map-panel {
         position: relative;
@@ -869,7 +1101,6 @@
 
     .project-link {
       display: inline-block;
-      margin-top: 14px;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -879,20 +1110,6 @@
     }
     .project-link:hover { color: var(--white); }
 
-    .project-card.coming-soon { opacity: 0.55; }
-    .project-card.coming-soon .project-tag { color: var(--gray); }
-
-    .project-poster {
-      width: calc(100% + 64px);
-      margin: -40px -32px 28px;
-      display: block;
-      object-fit: cover;
-      object-position: top center;
-      height: 220px;
-      opacity: 0.88;
-      transition: opacity 0.4s;
-    }
-    .project-card:hover .project-poster { opacity: 1; }
 
     .now-family {
       display: flex;
@@ -1039,7 +1256,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -1058,7 +1275,12 @@
         Michael Steven Langer
       </h1>
       <p class="hero-tagline"><em>Entrepreneur</em> &nbsp;·&nbsp; Traveler &nbsp;·&nbsp; Builder</p>
-      <p class="hero-availability" style="margin-top:16px;font-size:0.68rem;letter-spacing:0.26em;text-transform:uppercase;color:#7fce9b;">● Open to full-time roles</p>
+      <p class="hero-lede">I build practical tools with AI — from first idea to live product.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">See the work</a>
+        <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Book a call</a>
+      </div>
+      <p class="hero-availability">● Open to full-time roles</p>
     </div>
     <div class="scroll-indicator">Scroll</div>
   </section>
@@ -1093,7 +1315,7 @@
 
   <!-- MAP -->
   <section id="map" style="max-width:100%;padding:120px 0;">
-    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <div class="wrap">
       <span class="section-label fade-in">The World</span>
       <h2 class="section-title fade-in">Everywhere<br/>I've Been.</h2>
       <div class="divider fade-in"></div>
@@ -1120,7 +1342,7 @@
       <span>Marked places</span>
       <span>Route arcs</span>
     </div>
-    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <div class="wrap">
       <div class="locations-list fade-in">
         <span class="location-tag">Middletown, NY</span>
         <span class="location-tag">Tampa, FL</span>
@@ -1156,70 +1378,70 @@
 
   <!-- WORK -->
   <section id="work" style="max-width:100%;padding:120px 0;background:var(--black-3);">
-    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <div class="wrap">
       <span class="section-label fade-in">The Work</span>
       <h2 class="section-title fade-in">Ideas Don't<br/>Wait.</h2>
       <div class="divider fade-in"></div>
-      <p class="fade-in" style="color:#888;font-size:0.95rem;line-height:1.8;max-width:680px;margin-bottom:60px;">I don't sit on ideas. I build them — fast, lean, and real. This is the current map: live products, built tools, active sales systems, and the few back-burner ideas still earning their place.</p>
+      <p class="work-intro fade-in">I don't sit on ideas. I build them — fast, lean, and real. Some ship, some become tools a team relies on every day, and the rest teach me something. These are the ones worth showing.</p>
     </div>
-    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <div class="wrap">
       <div class="projects-grid">
-        <div class="project-card fade-in">
-          <!-- Prompt Duel poster asset -->
-          <img class="project-poster" src="assets/prompt-duel-poster.png" alt="Prompt Duel" onerror="this.style.display='none'" />
-          <div class="project-number">01</div>
-          <div class="project-name">Prompt Duel</div>
-          <p class="project-desc">Live, full-stack voice-first AI battle game. Talk your way through Duels, Interrogations, and Tribunals against AI opponents, climbing a leaderboard across two worlds of challengers. Built on Next.js, TypeScript, Supabase, Stripe, Groq, and ElevenLabs — from MVP to live product.</p>
-          <span class="project-tag">Live Product · AI · Voice</span>
-          <a href="https://promptduelai.com" target="_blank" rel="noopener noreferrer" class="project-link">→ promptduelai.com</a>
-        </div>
-        <div class="project-card fade-in">
+        <article class="project-card featured fade-in">
+          <div class="project-media">
+            <picture>
+              <source srcset="assets/prompt-duel-poster.webp" type="image/webp" />
+              <img src="assets/prompt-duel-poster.jpg" alt="Prompt Duel poster: a hooded figure facing a glowing AI opponent" width="720" height="900" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="project-body">
+            <div class="project-number">01</div>
+            <span class="project-status live">Live product</span>
+            <h3 class="project-name">Prompt Duel</h3>
+            <p class="project-desc">A voice-first AI battle game where words are the weapon. Speak your move in Arena duels, outwit Graves in a five-round Interrogation thriller, or win the room in a six-round Tribunal — ten AI opponents across two worlds, judged on tactics and creativity, not word count.</p>
+            <p class="project-desc">Built solo, end to end: game design, server-validated AI judging that resists prompt injection, guest-to-account progress, Stripe subscriptions, voice quotas, and tested, security-reviewed releases.</p>
+            <div class="project-meta">
+              <span class="project-tag">Groq · ElevenLabs · Firebase · Stripe · Vercel</span>
+              <div class="project-links">
+                <a href="https://promptduelai.com" target="_blank" rel="noopener noreferrer" class="project-link">→ Play at promptduelai.com</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="project-card fade-in">
           <div class="project-number">02</div>
-          <div class="project-name">Swivl</div>
-          <p class="project-desc">Built the full outbound engine for an AI robotics company reaching 75,000+ schools — an AI calling system, personalized one-pagers, automated booking, promo and marketing content, a post-discovery cadence builder, and a 12-tool SDR AI toolkit. All to prep faster, sharpen outbound, and move pipeline.</p>
-          <span class="project-tag">EdTech · Sales Automation · AI Voice</span>
-        </div>
-        <div class="project-card fade-in">
+          <span class="project-status live">Live · Open source</span>
+          <h3 class="project-name">Agent Sandbox</h3>
+          <p class="project-desc">Interoperability checks for autonomous AI agents. Point an agent at a neutral conformance partner over a public API and get a permanent, citable report plus a README badge. It scores what breaks when agents meet software they didn't grow up with: cursor discipline, duplicate suppression, and treating hostile payloads as data, not instructions.</p>
+          <div class="project-meta">
+            <span class="project-tag">Python · FastAPI · PostgreSQL · Redis</span>
+            <div class="project-links">
+              <a href="https://agent-sandbox-xvx2.onrender.com" target="_blank" rel="noopener noreferrer" class="project-link">→ Live service</a>
+              <a href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card fade-in">
           <div class="project-number">03</div>
-          <div class="project-name">Agent Sandbox</div>
-          <p class="project-desc">Open-source infrastructure for autonomous AI agents. Agents self-register, exchange messages, and trade credits in a persistent ecosystem. Research-first — every action logged. Async FastAPI, PostgreSQL, and Redis, wired to Prometheus + Grafana. Deploys free.</p>
-          <span class="project-tag">Built · Open Source · Agents</span>
-          <a href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
+          <span class="project-status prod">In daily use · Swivl</span>
+          <h3 class="project-name">Swivl Outbound Engine</h3>
+          <p class="project-desc">The outbound system behind an AI robotics company selling to 75,000+ U.S. schools: AI calling, personalized one-pagers, automated booking, a post-discovery cadence and triage system, a national territory map on live Salesforce data, a district research tool that turns any K-12 district into a sourced brief, and a 12-tool SDR AI toolkit.</p>
+          <div class="project-meta">
+            <span class="project-tag">Salesforce · AI Voice · Sales Automation</span>
+            <p class="project-note">Internal tools — glad to walk through them on a call.</p>
+          </div>
+        </article>
+      </div>
+      <div class="also-built fade-in">
+        <div class="also-built-head">
+          <h3 class="also-built-title">Also Built</h3>
+          <p>Smaller tools, most in private repos. Happy to demo any of them.</p>
         </div>
-        <div class="project-card fade-in">
-          <div class="project-number">04</div>
-          <div class="project-name">District Coherence Scan</div>
-          <p class="project-desc">Sales-intel tool for Swivl SDRs and AEs. Enter a US K-12 district and state, then get a sourced consolidation brief so outreach starts with context instead of a pile of tabs.</p>
-          <span class="project-tag">Built · Sales Intel · K-12</span>
-          <a href="https://github.com/oldmanmike518-design/district-coherence-scan" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
-        </div>
-        <div class="project-card fade-in">
-          <div class="project-number">05</div>
-          <div class="project-name">Paper Stress Tester</div>
-          <p class="project-desc">Argument-pressure tool for papers and essays. It stress-tests claims, evidence, logic gaps, and counterarguments before the writing goes out into the world.</p>
-          <span class="project-tag">Built · Research · Argument QA</span>
-          <a href="https://github.com/oldmanmike518-design/paper-argument-stress-tester2" target="_blank" rel="noopener noreferrer" class="project-link">→ GitHub repo</a>
-        </div>
-        <div class="project-card fade-in">
-          <div class="project-number">06</div>
-          <div class="project-name">MikesLanger Iceberg</div>
-          <p class="project-desc">Personal-site rebuild in progress around the iceberg idea: a deeper map of projects, skills, story, and proof instead of a flat portfolio. This is the next identity layer under active construction.</p>
-          <span class="project-tag">In Progress · Personal Site · Portfolio</span>
-          <a href="https://mikeslanger.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">→ Live preview</a>
-          <a href="https://github.com/oldmanmike518-design/mikeslanger" target="_blank" rel="noopener noreferrer" class="project-link">→ Source repo</a>
-        </div>
-        <div class="project-card fade-in coming-soon">
-          <div class="project-number">07</div>
-          <div class="project-name">Prompt Pilot</div>
-          <p class="project-desc">Gamified prompt engineering for kids ages 6–10. On the back burner, but still moving slowly: worlds, missions, and an AI literacy curriculum that feels like play.</p>
-          <span class="project-tag">Back Burner · AI · EdTech</span>
-        </div>
-        <div class="project-card fade-in coming-soon">
-          <div class="project-number">08</div>
-          <div class="project-name">Parked Ideas</div>
-          <p class="project-desc">MapFix EG and AfterWord are still ideas worth keeping, but they are not active projects right now. They stay in the notebook until they have enough real progress to stand beside the built work.</p>
-          <span class="project-tag">Parked · MapFix EG · AfterWord</span>
-        </div>
+        <ul class="also-built-list">
+          <li><strong>Paper Stress Tester</strong><span>Pressure-tests an essay's claims, evidence, logic gaps, and counterarguments before it goes out.</span></li>
+          <li><strong>District ROI Simulator</strong><span>Cohort-based ROI model for school-district professional-development budgets.</span></li>
+          <li><strong>SDR Meeting Companion</strong><span>Guides a live discovery call step by step, then writes the account-manager handoff.</span></li>
+          <li><strong>Team Map</strong><span>One-file org canvas that shows where handoffs work and where they break.</span></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -1232,6 +1454,12 @@
     <div class="now-content">
       <p>Based in Alexandria, Egypt — on the Mediterranean. Running outbound sales for an AI robotics company by day. Building my own companies by night. Married to Ahd. Stepdad to Maria. Father to Serene.</p>
       <p>Lately I've added bug-bounty research on HackerOne, using offensive security practice to become a sharper builder and tester.</p>
+      <p class="ships-label">Shipped lately</p>
+      <ul class="ships">
+        <li><time datetime="2026-09">Sep 2026</time><span><strong>Prompt Duel</strong> — story-mode redesign with illustrated Interrogation and Tribunal showdowns, plus a billing and voice-quota security release.</span></li>
+        <li><time datetime="2026-09">Sep 2026</time><span><strong>Agent Sandbox</strong> — relaunched as interoperability verification for AI agents, with permanent public reports and badges.</span></li>
+        <li><time datetime="2026-08">Aug 2026</time><span><strong>Swivl</strong> — post-discovery cadence and triage system: flow canvas, opportunity triage, and process editor in one app.</span></li>
+      </ul>
       <div class="now-highlight">"<span id="age-counter-now">45</span> years old.<br/>Just getting started."</div>
       <div class="now-family">
         <div class="now-family-stat">
@@ -1253,39 +1481,34 @@
 
   <!-- SERVICES -->
   <section id="services" style="max-width:100%;padding:120px 0;">
-    <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <div class="wrap">
       <span class="section-label fade-in">What I Do</span>
       <h2 class="section-title fade-in">Hire Me.<br/>Let's Fix It.</h2>
       <div class="divider fade-in" style="margin:0 auto 40px;"></div>
       <p class="services-intro fade-in">Custom software, business automation, outbound and sales systems, and AI integration — built end to end. Open to full-time roles, and open to the right project.</p>
       <div class="services-grid">
         <div class="service-card fade-in">
-          <span class="service-icon">⚙️</span>
+          <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h4a3 3 0 0 1 3 3v6"/><path d="m13.5 12.5 2.5 2.5 2.5-2.5"/></svg></span>
           <div class="service-name">Business Automation</div>
           <p class="service-desc">Eliminate the repetitive. Automate your outreach, follow-ups, data entry, reporting, and workflows. Built on n8n, AI, and whatever gets the job done.</p>
         </div>
         <div class="service-card fade-in">
-          <span class="service-icon">🛠️</span>
-          <div class="service-name">Custom Software & Tools</div>
+          <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m13.5 4-3 16"/></svg></span>
+          <div class="service-name">Custom Software &amp; Tools</div>
           <p class="service-desc">Need something that doesn't exist yet? I build lean, functional tools fast — web apps, internal dashboards, client-facing products, integrations.</p>
         </div>
         <div class="service-card fade-in">
-          <span class="service-icon">📈</span>
-          <div class="service-name">Outbound & Sales Systems</div>
+          <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="m4 15 5-5 4 4 7-7"/><path d="M15 7h5v5"/></svg></span>
+          <div class="service-name">Outbound &amp; Sales Systems</div>
           <p class="service-desc">Outbound systems, pipeline building, and real sales strategy. I've sold door-to-door, over the phone, and across three continents — I know what moves people.</p>
         </div>
         <div class="service-card fade-in">
-          <span class="service-icon">🤖</span>
+          <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m12 8 1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2Z"/><path d="m5.6 5.6 1.4 1.4"/><path d="m17 17 1.4 1.4"/></svg></span>
           <div class="service-name">AI Integration</div>
           <p class="service-desc">Bring AI into your business without the fluff. Automated calling, intelligent outreach, content pipelines, and smart workflows that actually work.</p>
         </div>
       </div>
-      <div class="client-note fade-in">
-        <div class="client-note-label">The kind of note I work for</div>
-        <blockquote>"Michael helped us turn a messy workflow into simple software our team could actually use. He listened, moved fast, and made the process easy."</blockquote>
-        <cite>Abdullah Hassan, Operations Manager / Software Company</cite>
-      </div>
-      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in" style="margin-top:48px;">Book a Call</a>
+      <a href="https://calendly.com/mikeslanger/7min" target="_blank" rel="noopener noreferrer" class="services-cta fade-in">Book a Call</a>
       <p class="services-note fade-in">No pitch — just a conversation about roles, projects, or a hard problem you're stuck on.</p>
     </div>
   </section>
@@ -1351,12 +1574,23 @@
       const H = () => canvas.offsetHeight;
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(W(), H());
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, W() / H(), 0.1, 1000);
-      camera.position.z = 1.55;
+
+      // Landscape keeps the close, full-bleed globe. Portrait (phones) pulls the
+      // camera back until the globe spans the screen width instead of flooding it.
+      function fitCamera() {
+        const aspect = W() / H();
+        camera.aspect = aspect;
+        camera.position.z = aspect < 1
+          ? Math.max(1.55, 0.95 / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect))
+          : 1.55;
+        camera.updateProjectionMatrix();
+      }
+      fitCamera();
 
       // Outer wireframe sphere (mouse-reactive)
       const outerGeo = new THREE.SphereGeometry(1, 48, 48);
@@ -1538,8 +1772,7 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           renderer.setSize(W(), H());
-          camera.aspect = W() / H();
-          camera.updateProjectionMatrix();
+          fitCamera();
         }, 100);
       });
 
@@ -2224,6 +2457,14 @@
       });
     })();
 
+    // NAV SCROLLED STATE
+    (function() {
+      var nav = document.querySelector('nav');
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
     // DYNAMIC YEAR
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
@@ -2251,9 +2492,9 @@
         var age = (Date.now() - bMs) / MS_PER_YEAR;
         if (counterEl) counterEl.textContent = age.toFixed(4);
         if (counterNowEl) counterNowEl.textContent = Math.floor(age);
-        requestAnimationFrame(update);
       }
-      requestAnimationFrame(update);
+      update();
+      setInterval(update, 60000);
     })();
 
     // FAMILY COUNTERS
@@ -2268,22 +2509,22 @@
       var sereneEl   = document.getElementById('serene-counter');
       var marriageEl = document.getElementById('marriage-counter');
 
+      // Whole years / months only: finer precision would let anyone work
+      // back to the kids' exact birth dates.
       function formatChildAge(elapsed) {
-        var totalDays = Math.floor(elapsed / MS_PER_DAY);
-        var months = Math.floor(totalDays / 30.4375);
-        var days   = Math.floor(totalDays - months * 30.4375);
-        if (months < 12) return months + 'mo ' + days + 'd';
-        return (elapsed / MS_PER_YEAR).toFixed(2) + ' yrs';
+        var months = Math.floor(elapsed / MS_PER_DAY / 30.4375);
+        if (months < 12) return months + ' mo';
+        return Math.floor(elapsed / MS_PER_YEAR) + ' yrs';
       }
 
       function update() {
         var now = Date.now();
         if (mariaEl)    mariaEl.textContent    = formatChildAge(now - mariaMs);
         if (sereneEl)   sereneEl.textContent   = formatChildAge(now - sereneMs);
-        if (marriageEl) marriageEl.textContent = ((now - marriageMs) / MS_PER_YEAR).toFixed(2) + ' yrs';
-        requestAnimationFrame(update);
+        if (marriageEl) marriageEl.textContent = (Math.floor((now - marriageMs) / MS_PER_YEAR * 2) / 2).toFixed(1) + ' yrs';
       }
-      requestAnimationFrame(update);
+      update();
+      setInterval(update, 60000);
     })();
 
     // NAV ACTIVE STATE

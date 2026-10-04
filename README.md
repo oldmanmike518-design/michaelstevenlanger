@@ -46,17 +46,13 @@ If you have a problem and a budget — [let's talk](https://calendly.com/mikesla
 
 ---
 
-## Active Projects
+## Selected Work
 
 | | |
 |--|--|
-| **[Prompt Duel](https://promptduelai.com)** | Live AI battle game · Next.js · Groq · ElevenLabs · Supabase · Stripe |
-| **Swivl SDR Systems** | AI-assisted calling, research, and automation stack for outbound sales work |
-| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Built open-source infrastructure for autonomous AI agents · FastAPI · PostgreSQL · Redis |
-| **[District Coherence Scan](https://github.com/oldmanmike518-design/district-coherence-scan)** | Built sales-intel tool for sourced K-12 district consolidation briefs |
-| **[Paper Stress Tester](https://github.com/oldmanmike518-design/paper-argument-stress-tester2)** | Built argument-pressure tool for papers, claims, evidence, and counterarguments |
-| **[MikesLanger Iceberg](https://github.com/oldmanmike518-design/mikeslanger)** | In-progress personal-site rebuild around the iceberg concept |
-| **Prompt Pilot** | Back-burner AI literacy game for kids 6–10 |
+| **[Prompt Duel](https://promptduelai.com)** | Live voice-first AI battle game · Groq · ElevenLabs · Firebase · Stripe · Vercel |
+| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Live, open-source interoperability verification for AI agents · FastAPI · PostgreSQL · Redis |
+| **Swivl Outbound Engine** | AI calling, research, territory mapping, and cadence systems for a K-12 sales team (internal) |
 
 ---
 
