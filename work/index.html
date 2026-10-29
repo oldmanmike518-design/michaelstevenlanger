@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work | Michael Steven Langer</title>
+  <meta name="description" content="Selected projects by Michael Langer: Prompt Duel, Agent Sandbox, and tools built at Swivl. What each one does, what I built, and what you can check." />
+  <link rel="canonical" href="https://mikeslanger.com/work/" />
+  <meta property="og:site_name" content="Michael Steven Langer" />
+  <meta property="og:title" content="Work | Michael Steven Langer" />
+  <meta property="og:description" content="Selected projects by Michael Langer: Prompt Duel, Agent Sandbox, and tools built at Swivl. What each one does, what I built, and what you can check." />
+  <meta property="og:image" content="https://mikeslanger.com/assets/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Michael Steven Langer. I work in sales. I build tools that make the work better." />
+  <meta property="og:url" content="https://mikeslanger.com/work/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Work | Michael Steven Langer" />
+  <meta name="twitter:description" content="Selected projects by Michael Langer: Prompt Duel, Agent Sandbox, and tools built at Swivl. What each one does, what I built, and what you can check." />
+  <meta name="twitter:image" content="https://mikeslanger.com/assets/images/og.jpg" />
+  <meta name="twitter:image:alt" content="Michael Steven Langer. I work in sales. I build tools that make the work better." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/assets/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <script src="/assets/js/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="nav-logo" href="/" aria-label="Michael Steven Langer, home">MSL</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/work/" aria-current="page">Work</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <header class="container page-head">
+      <span class="section-label">Work</span>
+      <h1 class="page-title">Selected work</h1>
+      <div class="divider"></div>
+      <p class="lede">These are the projects I would point you to. For each one I say what problem it addresses, what I did, and what you can check yourself. Where something is private, I say so.</p>
+    </header>
+
+    <section class="section" aria-label="Projects">
+      <div class="container">
+        <article class="project" id="prompt-duel" aria-labelledby="prompt-duel-name">
+          <div class="project-media">
+            <picture>
+              <source srcset="/assets/images/prompt-duel-poster.webp" type="image/webp" />
+              <img src="/assets/images/prompt-duel-poster.jpg" alt="Prompt Duel poster: a silhouetted man in a suit with a target reticle over his face, above the title." width="720" height="900" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="project-body">
+            <span class="status status-live">Live product</span>
+            <h2 class="project-name" id="prompt-duel-name">Prompt Duel</h2>
+            <span class="project-stack">Groq · ElevenLabs · Firebase · Stripe · Vercel</span>
+            <dl class="facts">
+              <div>
+                <dt>What it is</dt>
+                <dd>A voice game where you speak your moves against AI opponents. You can play Arena duels, a five round Interrogation against an opponent named Graves, or a six round Tribunal. There are ten AI opponents across two worlds, and the judging looks at tactics and creativity, not word count.</dd>
+              </div>
+              <div>
+                <dt>The problem it addresses</dt>
+                <dd>A game built on spoken moves needs a fair judge. The scoring has to reward tactics instead of length, and it has to run on the server rather than in the player’s browser. It also has to handle accounts, payments, and voice usage for real players.</dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>I designed and built it on my own: the game design, the AI judging, progress from guest play to a full account, Stripe subscriptions, voice quotas, testing, and releases.</dd>
+              </div>
+              <div>
+                <dt>What you can check</dt>
+                <dd>The product is live and open to play. The latest release, in September 2026, was a story mode redesign with illustrated Interrogation and Tribunal showdowns, plus a security release for billing and voice quotas.</dd>
+                <dd class="project-links"><a class="project-link" href="https://promptduelai.com" target="_blank" rel="noopener noreferrer">Play at promptduelai.com<span class="sr-only"> (opens in a new tab)</span></a></dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="project no-media" id="agent-sandbox" aria-labelledby="agent-sandbox-name">
+          <div class="project-body">
+            <span class="status status-live">Live service, open source</span>
+            <h2 class="project-name" id="agent-sandbox-name">Agent Sandbox</h2>
+            <span class="project-stack">Python · FastAPI · PostgreSQL · Redis</span>
+            <dl class="facts">
+              <div>
+                <dt>What it is</dt>
+                <dd>An interoperability check for autonomous AI agents. You point an agent at a neutral conformance partner over a public API, and you get back a permanent report you can cite, plus a badge for your README.</dd>
+              </div>
+              <div>
+                <dt>The problem it addresses</dt>
+                <dd>Agents can fail in ordinary ways when they meet software they were not built around. Agent Sandbox tests for a few of those: how an agent handles cursors, whether it avoids duplicate actions, and whether it treats hostile payloads as data instead of instructions.</dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>I built the service and wrote the checks.</dd>
+              </div>
+              <div>
+                <dt>What you can check</dt>
+                <dd>The service is public and the source code is open. It was relaunched in September 2026 as interoperability verification, with permanent public reports and badges.</dd>
+                <dd class="project-links">
+                  <a class="project-link" href="https://agent-sandbox-xvx2.onrender.com" target="_blank" rel="noopener noreferrer">Live service<span class="sr-only"> (opens in a new tab)</span></a>
+                  <a class="project-link" href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer">Source on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="project no-media" id="swivl" aria-labelledby="swivl-name">
+          <div class="project-body">
+            <span class="status status-private">Internal tools, not public</span>
+            <h2 class="project-name" id="swivl-name">Swivl</h2>
+            <span class="project-stack">CRM data · AI voice · Sales workflows</span>
+            <dl class="facts">
+              <div>
+                <dt>What it is</dt>
+                <dd>Swivl is an AI robotics company that sells to schools. I work in sales there, and I have built a set of tools, scripts, and workflows for the team.</dd>
+              </div>
+              <div>
+                <dt>The problem it addresses</dt>
+                <dd>Outbound sales has a lot of repeated work: researching districts, placing calls, booking meetings, and following up after discovery calls. I look for the parts that repeat and build tools for them.</dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>These are specific pieces I built and contributed to the team, alongside the rest of the sales process:
+                  <ul>
+                    <li>An AI calling workflow</li>
+                    <li>Personalized one pagers for prospects</li>
+                    <li>Automated meeting booking</li>
+                    <li>A cadence and triage tool for follow up after discovery calls, with a flow canvas, opportunity triage, and a process editor in one app</li>
+                    <li>A territory map built on CRM data</li>
+                    <li>A district research tool that turns a school district into a sourced brief</li>
+                    <li>A set of AI tools for sales development reps</li>
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt>What you can check</dt>
+                <dd>These are internal tools, so there is no public link. I do not publish screenshots, customer names, or customer data.</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <section class="small-tools" aria-labelledby="small-tools-title">
+          <h2 id="small-tools-title">Smaller tools</h2>
+          <p>Private projects with no public links.</p>
+          <ul>
+            <li><strong>Paper Stress Tester</strong><span>Checks an essay’s claims, evidence, logic gaps, and counterarguments before it goes out.</span></li>
+            <li><strong>District ROI Simulator</strong><span>A model of return on investment for school district professional development budgets, built around cohorts.</span></li>
+            <li><strong>SDR Meeting Companion</strong><span>Walks through a live discovery call step by step, then writes the handoff to the account manager.</span></li>
+            <li><strong>Team Map</strong><span>A single file canvas of an organization that shows where handoffs work and where they break.</span></li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="section centered" aria-labelledby="work-contact-title">
+      <div class="container">
+        <h2 class="section-title" id="work-contact-title">Want to talk about any of this?</h2>
+        <div class="divider"></div>
+        <p class="contact-actions"><a class="btn btn-primary" href="/#contact">Get in touch</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="footer-year">2026</span> Michael Steven Langer &nbsp;·&nbsp; Alexandria, Egypt</p>
+    <ul class="footer-links">
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

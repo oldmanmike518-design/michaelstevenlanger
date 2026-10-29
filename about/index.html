@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Michael Steven Langer</title>
+  <meta name="description" content="Michael Langer is a sales professional and builder, originally from New York and now living in Alexandria, Egypt. Background, and a map of places I have visited or spent time in." />
+  <link rel="canonical" href="https://mikeslanger.com/about/" />
+  <meta property="og:site_name" content="Michael Steven Langer" />
+  <meta property="og:title" content="About | Michael Steven Langer" />
+  <meta property="og:description" content="Michael Langer is a sales professional and builder, originally from New York and now living in Alexandria, Egypt. Background, and a map of places I have visited or spent time in." />
+  <meta property="og:image" content="https://mikeslanger.com/assets/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Michael Steven Langer. I work in sales. I build tools that make the work better." />
+  <meta property="og:url" content="https://mikeslanger.com/about/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About | Michael Steven Langer" />
+  <meta name="twitter:description" content="Michael Langer is a sales professional and builder, originally from New York and now living in Alexandria, Egypt. Background, and a map of places I have visited or spent time in." />
+  <meta name="twitter:image" content="https://mikeslanger.com/assets/images/og.jpg" />
+  <meta name="twitter:image:alt" content="Michael Steven Langer. I work in sales. I build tools that make the work better." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/assets/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/about.css" />
+  <script src="/assets/js/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="nav-logo" href="/" aria-label="Michael Steven Langer, home">MSL</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/work/">Work</a></li>
+        <li><a href="/about/" aria-current="page">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <header class="container page-head">
+      <span class="section-label">About</span>
+      <h1 class="page-title">Sales first. Then I build.</h1>
+      <div class="divider"></div>
+      <p class="lede">I’m originally from New York and now live in Alexandria, Egypt, with my family.</p>
+    </header>
+
+    <section class="section" id="background" aria-labelledby="background-title">
+      <div class="container prose">
+        <h2 class="sr-only" id="background-title">Background</h2>
+        <p>Most of my working life has been in sales. I have sold door to door and over the phone, and today I work in sales at Swivl, an AI robotics company that sells to schools.</p>
+        <p>The building started with that work. When I ran into a repeated task or a handoff that kept breaking, I wrote a script or a small tool for it. Some of those tools stayed small. Others turned into larger projects, including Prompt Duel and Agent Sandbox, which I built on my own time. You can read about them on the <a href="/work/">work page</a>.</p>
+        <p>I also do bug bounty research on HackerOne. It makes me a more careful builder and tester.</p>
+        <p>After years of moving around the United States, I spent time in Egypt, Turkey, and the UAE. Egypt became home, and Alexandria is where I live now.</p>
+      </div>
+    </section>
+
+    <section class="section map-section" id="map" aria-labelledby="map-title">
+      <div class="container">
+        <span class="section-label">Places</span>
+        <h2 class="section-title" id="map-title">Where I have spent time.</h2>
+        <div class="divider"></div>
+        <div class="prose">
+          <p>These are places I have visited or spent time in. Not every stop is somewhere I lived.</p>
+        </div>
+      </div>
+
+      <div class="map-stage">
+        <canvas id="map-globe" tabindex="0" role="img" aria-label="Interactive globe marking places I have visited or spent time in. Use the arrow keys to turn it." aria-describedby="map-help"></canvas>
+        <div id="map-label-layer" class="map-label-layer" aria-hidden="true"></div>
+        <div class="map-panel" id="map-panel">
+          <div class="map-panel-kicker">Selected place</div>
+          <div class="map-panel-title" id="map-active-place">Alexandria, Egypt</div>
+          <p class="map-panel-text" id="map-active-meta">Where I live now, on the Mediterranean coast.</p>
+          <div class="map-metrics">
+            <div class="map-metric"><strong id="map-metric-places">28</strong><span>Places</span></div>
+            <div class="map-metric"><strong id="map-metric-countries">5</strong><span>Countries</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <p id="map-fallback-note" class="map-fallback-note" hidden>The interactive globe could not load in this browser. The full list of places is below.</p>
+        <p class="map-help" id="map-help">Drag the globe to turn it, or focus it and use the arrow keys. Select a pin, or a place in the list below, to bring it to the front. The arcs between pins are decorative. They are not exact routes or dates.</p>
+        <div class="map-controls" id="map-controls" role="group" aria-label="Globe controls" hidden>
+          <button type="button" id="map-toggle" aria-pressed="false">Pause rotation</button>
+          <button type="button" id="map-reset">Reset view</button>
+        </div>
+        <div class="map-legend" aria-hidden="true"><span>Marked places</span><span>Decorative arcs</span></div>
+        <p id="map-status" class="sr-only" role="status"></p>
+
+        <div class="locations" id="place-groups">
+          <h2 class="sr-only">All places</h2>
+        <h3>United States</h3>
+        <ul class="place-list">
+          <li data-id="middletown" data-name="Middletown" data-region="New York" data-lat="41.45" data-lng="-74.42" data-type="origin" data-country="United States" data-label>Middletown, NY</li>
+          <li data-id="tampa" data-name="Tampa" data-region="Florida" data-lat="27.95" data-lng="-82.46" data-type="us" data-country="United States" data-label>Tampa, FL</li>
+          <li data-id="clearwater" data-name="Clearwater" data-region="Florida" data-lat="27.97" data-lng="-82.8" data-type="us" data-country="United States">Clearwater, FL</li>
+          <li data-id="st-pete" data-name="St. Petersburg" data-region="Florida" data-lat="27.77" data-lng="-82.64" data-type="us" data-country="United States">St. Petersburg, FL</li>
+          <li data-id="ocala" data-name="Ocala" data-region="Florida" data-lat="29.19" data-lng="-82.14" data-type="us" data-country="United States">Ocala, FL</li>
+          <li data-id="cape-coral" data-name="Cape Coral" data-region="Florida" data-lat="26.56" data-lng="-81.95" data-type="us" data-country="United States">Cape Coral, FL</li>
+          <li data-id="fort-lauderdale" data-name="Fort Lauderdale" data-region="Florida" data-lat="26.12" data-lng="-80.14" data-type="us" data-country="United States">Fort Lauderdale, FL</li>
+          <li data-id="boca-raton" data-name="Boca Raton" data-region="Florida" data-lat="26.35" data-lng="-80.08" data-type="us" data-country="United States">Boca Raton, FL</li>
+          <li data-id="jacksonville" data-name="Jacksonville" data-region="Florida" data-lat="30.33" data-lng="-81.66" data-type="us" data-country="United States">Jacksonville, FL</li>
+          <li data-id="pensacola" data-name="Pensacola" data-region="Florida" data-lat="30.42" data-lng="-87.22" data-type="us" data-country="United States">Pensacola, FL</li>
+          <li data-id="charleston" data-name="Charleston" data-region="South Carolina" data-lat="32.78" data-lng="-79.93" data-type="us" data-country="United States">Charleston, SC</li>
+          <li data-id="norfolk" data-name="Norfolk" data-region="Virginia" data-lat="36.85" data-lng="-76.29" data-type="us" data-country="United States">Norfolk, VA</li>
+          <li data-id="portsmouth" data-name="Portsmouth" data-region="Virginia" data-lat="36.84" data-lng="-76.3" data-type="us" data-country="United States">Portsmouth, VA</li>
+          <li data-id="virginia-beach" data-name="Virginia Beach" data-region="Virginia" data-lat="36.85" data-lng="-75.98" data-type="us" data-country="United States">Virginia Beach, VA</li>
+          <li data-id="cincinnati" data-name="Cincinnati" data-region="Ohio" data-lat="39.1" data-lng="-84.51" data-type="us" data-country="United States">Cincinnati, OH</li>
+          <li data-id="waukegan" data-name="Waukegan" data-region="Illinois" data-lat="42.36" data-lng="-87.84" data-type="us" data-country="United States">Waukegan, IL</li>
+          <li data-id="dallas" data-name="Dallas" data-region="Texas" data-lat="32.78" data-lng="-96.8" data-type="us" data-country="United States" data-label>Dallas, TX</li>
+          <li data-id="austin" data-name="Austin" data-region="Texas" data-lat="30.27" data-lng="-97.74" data-type="us" data-country="United States">Austin, TX</li>
+          <li data-id="sacramento" data-name="Sacramento" data-region="California" data-lat="38.58" data-lng="-121.49" data-type="us" data-country="United States">Sacramento, CA</li>
+          <li data-id="carlsbad" data-name="Carlsbad" data-region="California" data-lat="33.16" data-lng="-117.35" data-type="us" data-country="United States" data-label>Carlsbad, CA</li>
+          <li data-id="oceanside" data-name="Oceanside" data-region="California" data-lat="33.19" data-lng="-117.38" data-type="us" data-country="United States">Oceanside, CA</li>
+        </ul>
+        <h3>Mexico</h3>
+        <ul class="place-list">
+          <li data-id="tijuana" data-name="Tijuana" data-region="Mexico" data-lat="32.51" data-lng="-117.04" data-type="international" data-country="Mexico">Tijuana, Mexico</li>
+        </ul>
+        <h3>Egypt</h3>
+        <ul class="place-list">
+          <li data-id="cairo" data-name="Cairo" data-region="Egypt" data-lat="30.04" data-lng="31.24" data-type="international" data-country="Egypt">Cairo, Egypt</li>
+          <li data-id="giza" data-name="Giza" data-region="Egypt" data-lat="29.99" data-lng="31.21" data-type="international" data-country="Egypt">Giza, Egypt</li>
+          <li data-id="alexandria" data-name="Alexandria" data-region="Egypt" data-lat="31.2" data-lng="29.92" data-type="current" data-country="Egypt" data-label>Alexandria, Egypt</li>
+        </ul>
+        <h3>United Arab Emirates</h3>
+        <ul class="place-list">
+          <li data-id="dubai" data-name="Dubai" data-region="UAE" data-lat="25.2" data-lng="55.27" data-type="international" data-country="United Arab Emirates" data-label>Dubai, UAE</li>
+        </ul>
+        <h3>Turkey</h3>
+        <ul class="place-list">
+          <li data-id="pendik" data-name="Pendik" data-region="Turkey" data-lat="40.88" data-lng="29.23" data-type="international" data-country="Turkey">Pendik, Turkey</li>
+          <li data-id="istanbul" data-name="Istanbul" data-region="Turkey" data-lat="41.01" data-lng="28.95" data-type="international" data-country="Turkey" data-label>Istanbul, Turkey</li>
+        </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section centered" aria-labelledby="about-contact-title">
+      <div class="container">
+        <h2 class="section-title" id="about-contact-title">Say hello.</h2>
+        <div class="divider"></div>
+        <p class="contact-actions"><a class="btn btn-primary" href="/#contact">Get in touch</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="footer-year">2026</span> Michael Steven Langer &nbsp;·&nbsp; Alexandria, Egypt</p>
+    <ul class="footer-links">
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script src="/assets/js/vendor/three.min.js"></script>
+  <script src="/assets/js/travel-map.js"></script>
+</body>
+</html>
