@@ -1,63 +1,78 @@
-<div align="center">
+# mikeslanger.com
 
-# Michael Steven Langer
+Source for the personal site of Michael Steven Langer, a sales professional who builds software, AI tools, and workflows. It is plain HTML, CSS, and JavaScript. There is no framework, no build step, and no package manager.
 
-[![Live Site](https://img.shields.io/badge/Live_Site-→-black?style=flat-square)](https://mikeslanger.com/)
-&nbsp;
-[![Book a Call](https://img.shields.io/badge/Book_a_7--Min_Call-→-8b0000?style=flat-square)](https://calendly.com/mikeslanger/7min)
-&nbsp;
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-→-0077B5?style=flat-square)](https://www.linkedin.com/in/michael-langer-8358492b5/)
+Live site: https://mikeslanger.com/
 
-*Entrepreneur · Builder · Sales Guy Who Codes*
-*Alexandria, Egypt*
+## Pages
 
-</div>
+| URL | File | What it is |
+| --- | --- | --- |
+| `/` | `index.html` | Introduction with the decorative hero globe, featured work, a short about section, and the contact section |
+| `/work/` | `work/index.html` | Selected projects: what each is for, my part, and where to see it |
+| `/about/` | `about/index.html` | Background and the interactive travel map |
+| 404 | `404.html` | Page not found, served by GitHub Pages for unknown URLs |
 
----
+Contact details live in the `#contact` section on the home page. Other pages link to `/#contact`. Education and notes pages are not included until there is real content for them.
 
-Most people on GitHub are engineers who learned to pitch.
-I went the other way.
-
-20+ years in sales. Then I started building the tools I wished existed.
-By day: outbound at an AI robotics company. By night: whatever needs building.
-Based in Alexandria with Ahd, Maria, and Serene.
-
-This is my portfolio — one HTML file, two Three.js globes, no framework.
-
----
-
-## Stack
+## Folder structure
 
 ```
-HTML · CSS · JavaScript  —  no build tools, no framework
-Three.js r134            —  dual globe renderer
-GitHub Pages             —  zero infra
+index.html
+work/index.html
+about/index.html
+404.html
+robots.txt
+sitemap.xml
+CNAME
+assets/
+  css/
+    site.css            shared styles: tokens, fonts, header, footer, cards, contact
+    home.css            home page hero
+    about.css           travel map and place list
+  js/
+    site.js             shared behavior: header state, fade in, email, cursor trail, old link redirects
+    hero-globe.js       decorative hero globe (home)
+    travel-map.js       interactive travel map (about)
+    vendor/
+      three.min.js      Three.js r134, unmodified, with its license
+      three.LICENSE.txt
+  data/
+    world.geojson       country outlines used by both globes, with its license
+    world.geojson.LICENSE.txt
+  fonts/                Bebas Neue and Inter (latin subset, woff2), with their licenses
+  images/               portrait, Prompt Duel poster, social share image, favicon
 ```
 
-Security hardened: CSP, SRI, email obfuscation, prefers-reduced-motion, WCAG AA.
+## Run it locally
 
----
+All paths in the site start with `/`, so serve the repository root. Any static server works:
 
-## What I Build on the Side
+```bash
+python3 -m http.server 8080
+```
 
-Business automation · custom software · sales systems · AI integration.
+Then open http://localhost:8080/. Opening the files directly from disk will not work, because the globes load their data with `fetch` and the paths are root relative.
 
-If you have a problem and a budget — [let's talk](https://calendly.com/mikeslanger/7min).
+## Editing
 
----
+- The header, footer, and `<head>` are written out in each of the four pages. When you change one, change all four. The current page's nav link carries `aria-current="page"`.
+- Places on the travel map are the `<li data-id="..." data-lat="..." data-lng="...">` items in `about/index.html`. Add or remove an item and the globe, the buttons, and the counts follow. Mark a place with `data-label` to show its name on the globe by default. The decorative arcs are listed by id in `routeIds` in `assets/js/travel-map.js`.
+- Add a page by creating `name/index.html`, copying the head, header, and footer from an existing page, and adding the URL to `sitemap.xml`.
 
-## Selected Work
+## Content Security Policy
 
-| | |
-|--|--|
-| **[Prompt Duel](https://promptduelai.com)** | Live voice-first AI battle game · Groq · ElevenLabs · Firebase · Stripe · Vercel |
-| **[Agent Sandbox](https://github.com/oldmanmike518-design/agent-sandbox)** | Live, open-source interoperability verification for AI agents · FastAPI · PostgreSQL · Redis |
-| **Swivl Outbound Engine** | AI calling, research, territory mapping, and cadence systems for a K-12 sales team (internal) |
+Each page sets a strict policy in a `<meta>` tag: everything must come from the site's own origin, and inline scripts and inline `style` attributes are not allowed. Keep scripts in `assets/js/` and styles in `assets/css/`. If you ever add an outside resource, add its host to the policy on every page first.
 
----
+## Third party code and data
 
-<div align="center">
+| Item | Version or source | License |
+| --- | --- | --- |
+| Three.js | r134, from the `three@0.134.0` npm package | MIT, `assets/js/vendor/three.LICENSE.txt` |
+| Bebas Neue | `@fontsource/bebas-neue` 5.3.0 | SIL Open Font License 1.1, `assets/fonts/bebas-neue.OFL.txt` |
+| Inter | `@fontsource/inter` 5.3.0 | SIL Open Font License 1.1, `assets/fonts/inter.OFL.txt` |
+| `world.geojson` | `DATA/world.geojson` from github.com/holtzy/D3-graph-gallery | MIT, `assets/data/world.geojson.LICENSE.txt` |
 
-*45 years old. Just getting started.*
+## Deployment
 
-</div>
+The site is static files, so GitHub Pages can publish the root of the `main` branch directly. Merging to `main` publishes the change. `CNAME` holds the custom domain, `mikeslanger.com`. There is nothing to build.

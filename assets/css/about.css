@@ -1,0 +1,235 @@
+/* About page: interactive travel map and location list. Loaded after site.css. */
+
+.map-section { text-align: center; }
+.map-section .prose p { margin-inline: auto; }
+.map-section .divider { margin-inline: auto; }
+
+.map-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 32px auto 0;
+  overflow: hidden;
+}
+/* The globe needs JavaScript. Without it the place list below stands alone. */
+html:not(.js) .map-stage,
+html:not(.js) .map-controls,
+html:not(.js) .map-help,
+html:not(.js) .map-legend { display: none; }
+.no-map .map-stage,
+.no-map .map-controls,
+.no-map .map-help,
+.no-map .map-legend { display: none; }
+
+#map-globe {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 54vw, 660px);
+  touch-action: pan-y;
+  cursor: grab;
+}
+#map-globe.dragging { cursor: grabbing; }
+#map-globe.over-pin { cursor: pointer; }
+#map-globe:focus-visible { outline-offset: -3px; }
+
+.map-fallback-note {
+  max-width: var(--measure);
+  margin: 32px auto 0;
+  padding: 16px 20px;
+  border: 1px solid var(--border-mid);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.map-panel {
+  position: absolute;
+  top: clamp(24px, 5vw, 56px);
+  left: clamp(24px, 6vw, 80px);
+  z-index: 3;
+  max-width: 320px;
+  padding: 24px 48px 24px 24px;
+  border-left: 1px solid var(--red);
+  /* Solid enough behind the text, then fades out past it. */
+  background: linear-gradient(to right, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0.78) 72%, rgba(8, 8, 8, 0) 100%);
+  text-align: left;
+  pointer-events: none;
+}
+.map-panel-kicker {
+  margin-bottom: 12px;
+  color: var(--red-text);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.map-panel-title {
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.map-panel-text {
+  margin-bottom: 18px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.map-metrics { display: flex; flex-wrap: wrap; gap: 22px; }
+.map-metric strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.map-metric span {
+  display: block;
+  margin-top: 4px;
+  color: var(--gray);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.map-label-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.map-label {
+  position: absolute;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 8, 8, 0.8);
+  color: var(--text);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -130%);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.map-label.visible { opacity: 1; transform: translate(-50%, -150%); }
+.map-label.current {
+  border-color: rgba(176, 16, 16, 0.8);
+  box-shadow: 0 0 24px rgba(139, 0, 0, 0.28);
+}
+.map-label small {
+  display: block;
+  margin-top: 3px;
+  color: var(--gray);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+}
+
+.map-help {
+  max-width: 60ch;
+  margin: 20px auto 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.map-controls button {
+  min-height: 44px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--border-contact);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+.map-controls button:hover { border-color: var(--text); }
+.map-controls button[aria-pressed="true"] {
+  background: var(--red);
+  border-color: var(--red);
+}
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin-top: 22px;
+  color: var(--gray);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.map-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.map-legend span::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  box-shadow: 0 0 12px rgba(176, 16, 16, 0.8);
+}
+.map-legend span + span::before {
+  width: 18px;
+  height: 1px;
+  border-radius: 0;
+  background: var(--red);
+  box-shadow: none;
+}
+
+/* Location list: plain text without JavaScript, buttons with it. */
+.locations { margin-top: 56px; text-align: left; }
+.locations h3 {
+  margin: 28px 0 12px;
+  color: var(--gray);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.locations h3:first-child { margin-top: 0; }
+.place-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.place-list li,
+.place-list button {
+  padding: 8px 16px;
+  border: 1px solid var(--border-mid);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.place-list li:has(button) { padding: 0; border: 0; }
+.place-list button {
+  min-height: 40px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+.place-list button:hover { border-color: var(--red); color: var(--text); }
+.place-list button[aria-pressed="true"] {
+  border-color: var(--red-bright);
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  #map-globe { height: clamp(360px, 96vw, 540px); }
+  .map-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: none;
+    margin: -12px 20px 8px;
+    padding: 20px 0 20px 20px;
+    background: rgba(8, 8, 8, 0.72);
+  }
+  .map-label { font-size: 0.58rem; }
+}
