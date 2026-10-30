@@ -67,26 +67,22 @@ Then open http://localhost:8080/. Opening the files directly from disk will not 
 
 ## Form invitations
 
-Two invitations to Tally forms are in the pages but switched off. Each is a `div` with the `hidden` attribute, and its button has no link, so nothing shows and nothing can be clicked until it is turned on.
+Two invitations link to forms hosted on Tally. Each button opens its form in a new tab.
 
 | Invitation | Where | Tally form |
 | --- | --- | --- |
-| `#inquiry-invite` | Contact section of `index.html` | Project inquiry |
-| `#playtest-invite` | Prompt Duel case study in `work/index.html` | Prompt Duel playtesting and feedback |
+| `#inquiry-invite` | Contact section of `index.html` | Project inquiry, https://tally.so/r/Z99pLv |
+| `#playtest-invite` | Prompt Duel case study in `work/index.html` | Prompt Duel playtesting and feedback, https://tally.so/r/o994aM |
 
-To turn one on:
-
-1. Publish the form in Tally and copy its share link.
-2. Add that link as the `href` of the `<a class="btn btn-ghost">` inside the invitation.
-3. Remove `hidden` from the invitation's `div`.
-
-The buttons open the form in a new tab, so no change to the Content Security Policy is needed.
+To point an invitation at a different form, change the `href` of the button inside it. To take one down, add `hidden` to its `div` and remove the `href`, so no inactive link is left visible.
 
 ## Content Security Policy
 
 Each page sets a strict policy in a `<meta>` tag: everything must come from the site's own origin, and inline scripts and inline `style` attributes are not allowed. Keep scripts in `assets/js/` and styles in `assets/css/`. If you ever add an outside resource, add its host to the policy on the pages that need it.
 
 The one exception today is `/education/share/`, which adds `frame-src https://tally.so` so the survey can be embedded. It uses a plain iframe without Tally's script, so nothing from the page address is passed into the form. The survey itself lives in Tally; the page only frames it and links to it.
+
+The form invitations are plain links that open Tally in a new tab, so they need no policy change.
 
 ## Third party code and data
 

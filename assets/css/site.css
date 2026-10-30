@@ -384,7 +384,7 @@ ul { list-style: none; }
 /* Case studies run longer than the poster, so the text starts at the top. */
 .project.case .project-body { align-self: start; }
 
-/* INVITATIONS to a Tally form. They stay hidden until the form is published. */
+/* INVITATIONS that link to a Tally form */
 .invite { margin-top: 36px; }
 .invite-text {
   max-width: 46ch;
