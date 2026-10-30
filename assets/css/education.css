@@ -1,0 +1,153 @@
+/* Education pages: the /education/ landing page and the survey at
+   /education/share/. Loaded after site.css. */
+
+/* Landing page */
+.edu-card { max-width: 720px; }
+.edu-card .section-label { margin-bottom: 10px; }
+.edu-card .card-links { margin-top: 8px; }
+.edu-affiliation { margin-top: 48px; }
+.edu-subhead {
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Survey page: introduction beside the form on wide screens */
+.survey-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+  padding-top: calc(var(--nav-h) + clamp(40px, 6vw, 72px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.survey-byline {
+  margin-bottom: 18px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+.survey-intro .page-title { margin-bottom: 24px; }
+.survey-intro .accent { color: var(--red-text); }
+
+.survey-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 24px 0 36px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.survey-details li::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border: 1px solid var(--red-text);
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.survey-note {
+  max-width: 46ch;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+.survey-note h2 {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.survey-note p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* Decorative orbit lines from the design reference */
+.orbit {
+  position: relative;
+  max-width: 400px;
+  height: 93px;
+  margin: 36px 0 12px;
+  overflow: hidden;
+}
+.orbit::before,
+.orbit::after {
+  content: '';
+  position: absolute;
+  border: 1px solid var(--border-contact);
+  border-radius: 50%;
+}
+.orbit::before { width: 370px; height: 180px; left: -15px; top: 30px; transform: rotate(-12deg); }
+.orbit::after { width: 220px; height: 90px; left: 75px; top: 51px; transform: rotate(13deg); }
+.orbit i {
+  position: absolute;
+  z-index: 1;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  box-shadow: 0 0 0 5px rgba(176, 16, 16, 0.15);
+}
+.orbit i:nth-child(1) { left: 114px; top: 47px; }
+.orbit i:nth-child(2) { left: 294px; top: 39px; }
+.orbit i:nth-child(3) { left: 232px; top: 68px; }
+
+.signature { font-size: 0.95rem; }
+.signature span {
+  display: block;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+/* Form panel: the Tally embed and a plain link fallback */
+.survey-panel {
+  padding: clamp(16px, 3vw, 28px);
+  background: var(--black-2);
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--red);
+}
+.survey-frame {
+  display: block;
+  width: 100%;
+  height: clamp(560px, 80vh, 880px);
+  border: 0;
+  background: transparent;
+}
+.survey-fallback {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.survey-about {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+.survey-about h2 {
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.survey-about p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .survey-layout { grid-template-columns: 1fr; }
+  .orbit, .signature { display: none; }
+  .survey-details { margin-bottom: 24px; }
+}
