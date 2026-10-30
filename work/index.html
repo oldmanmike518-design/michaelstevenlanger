@@ -5,11 +5,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work | Michael Steven Langer</title>
-  <meta name="description" content="Selected work by Michael Langer: Prompt Duel, Agent Sandbox, and internal tools at Swivl. What each one does, what I built, and what you can check." />
+  <meta name="description" content="Case studies by Michael Langer on Prompt Duel and Agent Sandbox, with a short note on internal tools at Swivl. The problem, what each one does, my part, and what you can check." />
   <link rel="canonical" href="https://mikeslanger.com/work/" />
   <meta property="og:site_name" content="Michael Steven Langer" />
   <meta property="og:title" content="Work | Michael Steven Langer" />
-  <meta property="og:description" content="Selected work by Michael Langer: Prompt Duel, Agent Sandbox, and internal tools at Swivl. What each one does, what I built, and what you can check." />
+  <meta property="og:description" content="Case studies by Michael Langer on Prompt Duel and Agent Sandbox, with a short note on internal tools at Swivl. The problem, what each one does, my part, and what you can check." />
   <meta property="og:image" content="https://mikeslanger.com/assets/images/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Work | Michael Steven Langer" />
-  <meta name="twitter:description" content="Selected work by Michael Langer: Prompt Duel, Agent Sandbox, and internal tools at Swivl. What each one does, what I built, and what you can check." />
+  <meta name="twitter:description" content="Case studies by Michael Langer on Prompt Duel and Agent Sandbox, with a short note on internal tools at Swivl. The problem, what each one does, my part, and what you can check." />
   <meta name="twitter:image" content="https://mikeslanger.com/assets/images/og.jpg" />
   <meta name="twitter:image:alt" content="Michael Steven Langer. I work in sales. I build tools that make the work better." />
   <meta name="theme-color" content="#080808" />
@@ -48,12 +48,12 @@
       <span class="section-label">Work</span>
       <h1 class="page-title">Selected work</h1>
       <div class="divider"></div>
-      <p class="lede">Projects I would point you to first. Each note covers what the project is for, my part in it, and where to see it. Internal work stays private.</p>
+      <p class="lede">Two projects I built: the problem, what each one does, my part, and what you can check. My work at Swivl is internal, so that note stays short.</p>
     </header>
 
     <section class="section" aria-label="Projects">
       <div class="container">
-        <article class="project" id="prompt-duel" aria-labelledby="prompt-duel-name">
+        <article class="project case" id="prompt-duel" aria-labelledby="prompt-duel-name">
           <div class="project-media">
             <picture>
               <source srcset="/assets/images/prompt-duel-poster.webp" type="image/webp" />
@@ -62,40 +62,61 @@
           </div>
           <div class="project-body">
             <h2 class="project-name" id="prompt-duel-name">Prompt Duel</h2>
+            <p class="project-kind">A voice game against AI opponents</p>
             <dl class="facts">
               <div>
-                <dt>Purpose</dt>
-                <dd>A game you play by speaking. You say your moves out loud against AI opponents, and an AI judge scores each round.</dd>
+                <dt>The problem</dt>
+                <dd>Talking to AI usually means typing a request and reading a reply. Prompt Duel turns that into a contest: what you say is your move.</dd>
+              </div>
+              <div>
+                <dt>What it does</dt>
+                <dd>You speak or type your moves against AI opponents who answer in character, and an AI judge scores what you say. Its public description lists three modes: Arena, Interrogation, and Tribunal.</dd>
               </div>
               <div>
                 <dt>My part</dt>
-                <dd>I designed and built it.</dd>
+                <dd>I designed and built it. Its GitHub profile lists the stack: Groq, ElevenLabs, Firebase, Stripe, and Vercel.</dd>
               </div>
               <div>
-                <dt>Where to see it</dt>
-                <dd class="project-links"><a class="project-link" href="https://promptduelai.com" target="_blank" rel="noopener noreferrer">Visit Prompt Duel<span class="sr-only"> (opens in a new tab)</span></a></dd>
+                <dt>What you can inspect</dt>
+                <dd>The game itself and its public GitHub profile. The source code is private.</dd>
+                <dd class="project-links">
+                  <a class="project-link" href="https://promptduelai.com" target="_blank" rel="noopener noreferrer">Visit Prompt Duel<span class="sr-only"> (opens in a new tab)</span></a>
+                  <a class="project-link" href="https://github.com/prompt-duel-ai" target="_blank" rel="noopener noreferrer">View on GitHub<span class="sr-only">: Prompt Duel</span><span class="sr-only"> (opens in a new tab)</span></a>
+                </dd>
               </div>
             </dl>
+            <div class="invite" id="playtest-invite">
+              <p class="invite-text">Played it, ran into a problem, or want to help test it? A short form takes feedback and playtesting requests.</p>
+              <a class="btn btn-ghost" href="https://tally.so/r/o994aM" target="_blank" rel="noopener noreferrer">Share feedback<span class="sr-only"> on Prompt Duel</span><span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
           </div>
         </article>
 
-        <article class="project no-media" id="agent-sandbox" aria-labelledby="agent-sandbox-name">
+        <article class="project case no-media" id="agent-sandbox" aria-labelledby="agent-sandbox-name">
           <div class="project-body">
             <h2 class="project-name" id="agent-sandbox-name">Agent Sandbox</h2>
+            <p class="project-kind">Interoperability checks for AI agents</p>
             <dl class="facts">
               <div>
-                <dt>Purpose</dt>
-                <dd>A service for testing how autonomous AI agents behave when they work with software they were not built for, such as whether they repeat actions or follow instructions hidden in the data they read.</dd>
+                <dt>The problem</dt>
+                <dd>AI agents are usually tested against the harness they were built with. That can miss what goes wrong with unfamiliar software: reading results out of order, handling a message twice, or treating text in the data as an instruction.</dd>
+              </div>
+              <div>
+                <dt>What it does</dt>
+                <dd>An agent runs a short verification against a partner agent the service operates. The service scores eight checks and publishes a dated report you can link to, with a badge.</dd>
+                <dd>Status: experimental public alpha. The specification is a draft and its thresholds are provisional.</dd>
               </div>
               <div>
                 <dt>My part</dt>
-                <dd>I built it.</dd>
+                <dd>I built it: the API, scoring engine, specification, tests, and deployment setup. The commit history is public.</dd>
               </div>
               <div>
-                <dt>Where to see it</dt>
+                <dt>What you can inspect</dt>
+                <dd>The code, tests, and specification are public under the MIT license, and each report names the code commit that scored it. You can also verify an agent against the live service.</dd>
                 <dd class="project-links">
                   <a class="project-link" href="https://agent-sandbox-xvx2.onrender.com" target="_blank" rel="noopener noreferrer">View project<span class="sr-only">: Agent Sandbox</span><span class="sr-only"> (opens in a new tab)</span></a>
                   <a class="project-link" href="https://github.com/oldmanmike518-design/agent-sandbox" target="_blank" rel="noopener noreferrer">View code<span class="sr-only">: Agent Sandbox</span><span class="sr-only"> (opens in a new tab)</span></a>
+                  <a class="project-link" href="https://github.com/oldmanmike518-design/agent-sandbox/blob/main/docs/INTEROP_SPEC.md" target="_blank" rel="noopener noreferrer">Read the specification<span class="sr-only">: Agent Sandbox</span><span class="sr-only"> (opens in a new tab)</span></a>
                 </dd>
               </div>
             </dl>

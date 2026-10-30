@@ -374,6 +374,32 @@ ul { list-style: none; }
   gap: 4px 24px;
   margin-top: 6px;
 }
+.project-kind {
+  margin-bottom: 28px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+/* Case studies run longer than the poster, so the text starts at the top. */
+.project.case .project-body { align-self: start; }
+
+/* INVITATIONS that link to a Tally form */
+.invite { margin-top: 36px; }
+.invite-text {
+  max-width: 46ch;
+  margin: 0 auto 16px;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.project-body .invite {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+.project-body .invite-text { max-width: var(--measure); margin-left: 0; }
 
 
 .more-link { margin-top: 36px; }
