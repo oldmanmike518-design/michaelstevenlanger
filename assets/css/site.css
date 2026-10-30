@@ -268,28 +268,6 @@ ul { list-style: none; }
 }
 .project-link:hover { color: var(--text); }
 
-/* STATUS LABELS */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  color: var(--gray);
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-.status::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 1px solid currentColor;
-}
-.status-public { color: var(--text); }
-.status-public::before { background: var(--red-bright); border-color: var(--red-bright); }
-.status-private { color: var(--gray); }
-
 /* CARDS (home page featured work) */
 .card-grid {
   display: grid;
@@ -332,7 +310,12 @@ ul { list-style: none; }
   font-size: 0.92rem;
   line-height: 1.75;
 }
-.card .project-link { margin-top: auto; align-self: flex-start; }
+.card .card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin: auto 0 0;
+}
 
 /* PROJECTS (work page) */
 .project {
