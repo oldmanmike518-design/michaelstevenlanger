@@ -47,10 +47,10 @@ html:not(.js) .map-legend { display: none; }
   left: clamp(24px, 6vw, 80px);
   z-index: 3;
   max-width: 320px;
-  padding: 24px 0 24px 24px;
+  padding: 24px 48px 24px 24px;
   border-left: 1px solid var(--red);
-  background: linear-gradient(to right, rgba(8, 8, 8, 0.82), rgba(8, 8, 8, 0.18));
-  backdrop-filter: blur(8px);
+  /* Solid enough behind the text, then fades out past it. */
+  background: linear-gradient(to right, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0.78) 72%, rgba(8, 8, 8, 0) 100%);
   text-align: left;
   pointer-events: none;
 }

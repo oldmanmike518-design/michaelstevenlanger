@@ -618,12 +618,18 @@
 
   // ---- Labels ---------------------------------------------------------------
 
+  // The selected place gets first claim on space, then the rest in list order.
+  function labelOrder() {
+    return [selected].concat(locations.filter(function (l) { return l !== selected; }));
+  }
+
   function updateLabels() {
     if (!labelLayer) return;
     var rect = canvas.getBoundingClientRect();
     var panelRect = panel && getComputedStyle(panel).position === 'absolute'
       ? panel.getBoundingClientRect() : null;
-    locations.forEach(function (loc) {
+    var placed = [];
+    labelOrder().forEach(function (loc) {
       if (!loc.labelEl || !loc.surface) return;
       var wanted = loc.label || loc === selected;
       var world = loc.surface.clone().applyEuler(root.rotation);
@@ -642,7 +648,16 @@
         underPanel = cx > panelRect.left - 24 && cx < panelRect.right + 24 &&
                      cy > panelRect.top - 24 && cy < panelRect.bottom + 24;
       }
-      loc.labelEl.classList.toggle('visible', !underPanel);
+      // Skip a label that would sit on top of one already shown.
+      var w = loc.labelEl.offsetWidth;
+      var h = loc.labelEl.offsetHeight;
+      var box = { l: x - w / 2 - 4, r: x + w / 2 + 4, t: y - h * 1.5 - 4, b: y - h * 0.5 + 4 };
+      var collides = placed.some(function (o) {
+        return box.l < o.r && box.r > o.l && box.t < o.b && box.b > o.t;
+      });
+      var show = !underPanel && !collides;
+      if (show) placed.push(box);
+      loc.labelEl.classList.toggle('visible', show);
       loc.labelEl.classList.toggle('current', loc.type === 'current' || loc === selected);
       loc.labelEl.style.left = x.toFixed(1) + 'px';
       loc.labelEl.style.top = y.toFixed(1) + 'px';

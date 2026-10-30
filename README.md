@@ -9,7 +9,7 @@ Live site: https://mikeslanger.com/
 | URL | File | What it is |
 | --- | --- | --- |
 | `/` | `index.html` | Introduction with the decorative hero globe, featured work, a short about section, and the contact section |
-| `/work/` | `work/index.html` | Selected projects: what each one does, my role, and what can be checked |
+| `/work/` | `work/index.html` | Selected projects: what each is for, my part, and where to see it |
 | `/about/` | `about/index.html` | Background and the interactive travel map |
 | 404 | `404.html` | Page not found, served by GitHub Pages for unknown URLs |
 
